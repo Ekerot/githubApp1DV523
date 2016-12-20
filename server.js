@@ -8,7 +8,7 @@ const express = require('express');
 const hbs = require('express-handlebars');
 
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 443;
 
 app.engine('handlebars', hbs({
     defaultLayout: 'layout',
