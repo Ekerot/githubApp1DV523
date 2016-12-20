@@ -1,0 +1,25 @@
+{
+  "name": "examination-3",
+  "version": "1.0.0",
+  "description": "Examination 3 1dv523",
+  "main": "server.js",
+  "scripts": {
+    "test": "text"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1dv523/dekes03-examination-3.git"
+  },
+  "author": "Daniel Ekerot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/1dv523/dekes03-examination-3/issues"
+  },
+  "homepage": "https://github.com/1dv523/dekes03-examination-3#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "express-vue": "^3.2.0",
+    "vue": "^2.1.6"
+  }
+}
