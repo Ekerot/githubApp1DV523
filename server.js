@@ -4,11 +4,15 @@
  * Created by ekerot on 2016-12-20.
  */
 
-const express = require('express');
-const hbs = require('express-handlebars');
+const       express = require('express');
+const       session = require('express-session');
+const       hbs = require('express-handlebars')
+let         mongoose = require('./config/configDB.js');
 
-const app = express();
-const port = process.env.PORT || 4567;
+const       app = express();
+const       port = process.env.PORT || 3000;
+
+mongoose();
 
 app.engine('handlebars', hbs({
     defaultLayout: 'layout',

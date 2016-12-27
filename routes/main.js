@@ -6,7 +6,7 @@
 
 const router = require('express').Router();
 
-router.route('/')    //function just to show snippets first page
+router.route('/')    //function just to show first page
     .get(function(req, res) {
 
         res.render('main/index');
