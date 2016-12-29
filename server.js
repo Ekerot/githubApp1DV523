@@ -1,26 +1,31 @@
-'use strict';
+'use script';
 
 /**
  * Created by ekerot on 2016-12-20.
  */
 
-const       express = require('express');
-const       session = require('express-session');
-const       hbs = require('express-handlebars')
-let         mongoose = require('./config/configDB.js');
+const   express = require('express');
+const   session = require('express-session');
+const   hbs = require('express-handlebars');
+const   bodyParser = require('body-parser');
+const   path = require('path');
+const   mongoose = require('./config/configDB.js');
 
-const       app = express();
-const       port = process.env.PORT || 3000;
-
+const   app = express();
+const   port = process.env.PORT || 3000;
 mongoose();
 
-app.engine('handlebars', hbs({
+app.set('view engine', 'handlebars');app.engine('handlebars', hbs({
     defaultLayout: 'layout',
     layoutDir: __dirname + '/views/layouts',
     partialsDir  : [__dirname + '/views/partials',]
 }));
 
 app.set('view engine', 'handlebars');
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //routes
 app.use('/', require('./routes/main.js'));
