@@ -47,7 +47,8 @@ router.route('/')  //function just to show first page
                     }
                 })
             };
-console.log(res)
+
+            console.log(res)
             response.render('main/index', issues)
         });
     });
