@@ -1,1 +1,18 @@
-<h1>kjasdfjksadfjkfsdakjadfskö</h1>
+<h1>Issues:</h1>
+<div class="row">
+    {{#if issues }}
+        <ul class="collapsible" data-collapsible="accordion">
+            {{#each issues}}
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">whatshot</i>{{this.title}}</div>
+                    <div class="collapsible-body"><p>{{this.body}}</p>
+                        <p>
+                            {{this.comments}} many comments are written
+                            <a href="{{this.html_url}}">{{this.html_url}}</a>
+                        <p>created at {{this.created_at}}</p>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
+</div>

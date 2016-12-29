@@ -4,37 +4,52 @@
  */
 
 const router = require('express').Router();
-const rp = require('request-promise');
+const GitHubApi = require("github");
 
 router.route('/')  //function just to show first page
+    .get(function(req, response) {
 
-    .get(function(req, res) {
+        let AUTH_TOKEN = '3f8b8e2fc8e148eeadf337c248ec71709fe5244e';
 
-        let token = 'c75298558c9f04ebed2fed3fb5b87040666b4768';
-
-        let options = {
-            uri: 'https://api.github.com/repos/1dv523/dekes03-examination-3/issues',
-            qs: {
-                client_id: 'Ekerot',
-                access_token: token
-            },
+        let github = new GitHubApi({
+            // optional
+            debug: true,
+            protocol: "https",
+            host: 'api.github.com', // should be api.github.com for GitHub
             headers: {
-                'User-Agent': 'daniel.ekerot@gmail.com'
+                "user-agent": "github-issue-handler" // GitHub is happy with a unique user agent
             },
-            json: true // Automatically parses the JSON string in the response
-        };
+            Promise: require('bluebird'),
+            followRedirects: false, // default: true; there's currently an issue with non-get redirects, so allow ability to disable follow-redirects
+            timeout: 5000
+        });
 
-        console.log(options);
+        github.authenticate({
+            type: "oauth",
+            token: AUTH_TOKEN
+        });
 
-        rp(options)
-            .then(function (repos) {
-                console.log('User has %d repos', repos);
-            })
-            .catch(function (err) {
-                // API call failed...
-            });
+        github.issues.getForRepo({owner: '1dv523', repo: 'dekes03-examination-3'}, function (err, res) {
 
-        res.render('main/index')
+            let jsonObject = res;
+
+            let issues = {            //creating context variable to send to view
+
+                issues: jsonObject.map(function (issues) {
+                    return {
+                        title: issues.title,
+                        id: issues.id,
+                        body: issues.body,
+                        comments: issues.comments,
+                        created_at: issues.created_at,
+                        html_url: issues.html_url,
+
+                    }
+                })
+            };
+console.log(res)
+            response.render('main/index', issues)
+        });
     });
 
 module.exports = router;

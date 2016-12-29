@@ -1,0 +1,83 @@
+html {
+    height: 100%;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+}
+
+.logo{
+    height: 70px;
+}
+
+.login-form{
+    float: right;
+    margin-top: 7%;
+    margin-right: 3%;
+    color: black;
+}
+
+.username{
+    height: 15px;
+    width: 90px;
+}
+
+.password{
+    height: 15px;
+    width: 90px;
+}
+
+.login-button{
+    height: 20px;
+    font-size: 10px;
+    float: left;
+}
+
+
+.register{
+    float:right;
+    margin-top:30%;
+    position: relative;
+
+}
+
+.row{
+    margin:15%;
+    margin-top: 5%;
+}
+
+.create-login, .form-create{
+    width: 50%;
+    margin-left: 20%;
+}
+
+.container-create{
+    margin-top:5%;
+    margin-left: 20%;
+    height: 50%;
+    width: 50%;
+
+}
+
+.show-snippet{
+    border: ridge 2px;
+    padding: 5px;
+    min-height: 20em;
+    overflow: auto;
+}
+
+code{
+    height: 10%;
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+}
