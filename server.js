@@ -18,6 +18,15 @@ const   port = process.env.PORT || 3000;
 mongoose();
 websocket();
 
+app.post('/hooks', function (req, res) {
+
+    console.log(res);
+
+    res.json({
+        message: 'ok got it!'
+    });
+});
+
 app.set('view engine', 'handlebars');app.engine('handlebars', hbs({
     defaultLayout: 'layout',
     layoutDir: __dirname + '/views/layouts',
