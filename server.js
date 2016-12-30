@@ -11,9 +11,10 @@ const   bodyParser = require('body-parser');
 const   path = require('path');
 const   mongoose = require('./config/configDB.js');
 const   websocket = require('./lib/websocket.js');
+const   webhook = require('./lib/webhook.js');
 
 let GithubWebHook = new require('express-github-webhook');
-let webhookHandler = GithubWebHook({ path: '/webhook', secret: 'secret' });
+let webhookHandler = GithubWebHook({ path: '/hooks', secret: 'secret' });
 
 const   app = express();
 const   port = process.env.PORT || 3000;
