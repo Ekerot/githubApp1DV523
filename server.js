@@ -11,10 +11,9 @@ const   bodyParser = require('body-parser');
 const   path = require('path');
 const   mongoose = require('./config/configDB.js');
 const   websocket = require('./lib/websocket.js');
-const   webhook = require('./lib/webhook.js');
 
 let GithubWebHook = new require('express-github-webhook');
-let webhookHandler = GithubWebHook({ path: '/hooks', secret: 'secret' });
+let webhookHandler = GithubWebHook({ path: '/webhook', secret: 'secret' });
 
 const   app = express();
 const   port = process.env.PORT || 3000;
@@ -41,10 +40,11 @@ app.use(webhookHandler); // use our middleware
 
 // Now could handle following events
 webhookHandler.on('*', function (event, repo, data) {
-
 });
 
 webhookHandler.on('issues', function (repo, data) {
+
+    console.log('hej hej')
 
 });
 
