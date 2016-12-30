@@ -54,23 +54,8 @@ body {
     margin-left: 20%;
 }
 
-.container-create{
-    margin-top:5%;
-    margin-left: 20%;
-    height: 50%;
+.issue{
     width: 50%;
-
-}
-
-.show-snippet{
-    border: ridge 2px;
-    padding: 5px;
-    min-height: 20em;
-    overflow: auto;
-}
-
-code{
-    height: 10%;
 }
 
 .footer {

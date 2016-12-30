@@ -43,12 +43,13 @@ router.route('/')  //function just to show first page
                         comments: issues.comments,
                         created_at: issues.created_at,
                         html_url: issues.html_url,
-
+                        login: issues.user.login,
+                        avatar_url: issues.user.avatar_url,
                     }
                 })
             };
 
-            console.log(res)
+            console.log(issues)
             response.render('main/index', issues)
         });
     });
