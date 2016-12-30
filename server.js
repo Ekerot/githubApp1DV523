@@ -10,10 +10,13 @@ const   hbs = require('express-handlebars');
 const   bodyParser = require('body-parser');
 const   path = require('path');
 const   mongoose = require('./config/configDB.js');
+const   websocket = require('./lib/websocket.js');
 
 const   app = express();
 const   port = process.env.PORT || 3000;
+
 mongoose();
+websocket();
 
 app.set('view engine', 'handlebars');app.engine('handlebars', hbs({
     defaultLayout: 'layout',

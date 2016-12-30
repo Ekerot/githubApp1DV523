@@ -24,7 +24,7 @@ router.route('/')  //function just to show first page
 
         github.authenticate({
             type: "oauth",
-            token: process.env.AUTH_TOKEN
+            token: "5a980456b4a8bea5ed90afe12df2c4dc215df34"
         });
 
         github.issues.getForRepo({owner: '1dv523', repo: 'dekes03-examination-3'}, function (err, res) {
@@ -48,36 +48,6 @@ router.route('/')  //function just to show first page
             };
             response.render('main/index', issues)
         });
-
-        let rp = require("request-promise");
-
-        let options = { method: 'POST',
-            url: 'https://api.github.com/repos/1dv523/dekes03-examination-3/hooks',
-            headers:
-                {
-                    "name": "issues",
-                    "active": true,
-                    "events": [
-                        "issues",
-                        "issue_comment"
-                    ],
-                    "config": {
-                        "url": "https://www.ekerot.se",
-                        "content_type": "json"
-                    }
-                },
-            authorization: 'Token 3f8b8e2fc8e148eeadf337c248ec71709fe5244e'} ;
-
-        rp(options).then(function(result) {
-
-                console.log(result);
-
-            })
-            .catch(function(err){
-
-                console.log(err);
-
-            });
 
     });
 
