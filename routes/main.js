@@ -9,8 +9,6 @@ const GitHubApi = require("github");
 router.route('/')  //function just to show first page
     .get(function(req, response) {
 
-        let token = process.env.AUTH_TOKEN;
-
         let github = new GitHubApi({
             // optional
             debug: true,
@@ -26,7 +24,7 @@ router.route('/')  //function just to show first page
 
         github.authenticate({
             type: "oauth",
-            token: token
+            token: process.env.AUTH_TOKEN
         });
 
         github.issues.getForRepo({owner: '1dv523', repo: 'dekes03-examination-3'}, function (err, res) {
