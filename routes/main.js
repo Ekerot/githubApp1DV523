@@ -51,7 +51,7 @@ router.route('/')  //function just to show first page
 
     });
 
-router.route('/').post
+router.route('/hooks').post
 const githubhook = new require('express-github-webhook');
 
 let github = githubhook({
