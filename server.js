@@ -43,6 +43,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //routes
 app.use('/', require('./routes/main.js'));
+app.use('/hooks', require('./routes/main.js'));
 
 //console what port that the app uses
 app.listen(port, () => console.log(`Express app listening on port ${port}!`
