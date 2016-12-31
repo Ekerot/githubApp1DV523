@@ -61,8 +61,6 @@ router.route('/hooks').post(function (req, res){
         secret: "hoppetisnoppeti"
     });
 
-    module.exports = function() {
-
         github.on('*', function (event, repo, data) {
             console.log('hejhopp')
         });
@@ -74,8 +72,6 @@ router.route('/hooks').post(function (req, res){
         github.on('error', function (err, req, res) {
             console.log('err')
         });
-
-    };
 
 });
 
