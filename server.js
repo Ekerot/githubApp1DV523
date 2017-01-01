@@ -15,11 +15,6 @@ const   webhookHandler = GitHubWebHook({path: '/webhook', secret: process.env.SE
 const   app = express();
 const   port = process.env.PORT || 3000;
 
-// Set Express routes.
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/index.html');
-});
-
 app.set('view engine', 'handlebars');app.engine('handlebars', hbs({
     defaultLayout: 'layout',
     layoutDir: __dirname + '/views/layouts',
