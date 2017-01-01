@@ -10,10 +10,16 @@ const   hbs = require('express-handlebars');
 const   bodyParser = require('body-parser');
 const   path = require('path');
 const   mongoose = require('./config/configDB.js');
-const   webhookHandler = new require('express-github-webhook');
+const   GitHubWebHook = new require('express-github-webhook');
+const   webhookHandler = GitHubWebHook({path: "/hooks", secret: "hoppetisnoppeti"});
 
 const   app = express();
 const   port = process.env.PORT || 3000;
+
+app.use(bodyParser.json()); // must use bodyParser in express
+app.use(webhookHandler); // use our middleware
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose();
 
@@ -30,13 +36,6 @@ app.set('view engine', 'handlebars');app.engine('handlebars', hbs({
 
 app.set('view engine', 'handlebars');
 
-app.use(bodyParser.json()); // must use bodyParser in express
-app.use(webhookHandler); // use our middleware
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(bodyParser.urlencoded({ extended: true }));
-
 const      server = require('http').createServer(app);
 const      io = new require('socket.io')(server);
 
@@ -47,14 +46,6 @@ io.on('connection', (socket) => {
         console.log('user disconnected');
     });
 });
-
-let github = webhookHandler({
-    host: "api.github.com",
-    protocol: "https",
-    path: "/hooks",
-    secret: "hoppetisnoppeti"
-});
-
 
     github.on('*', function (event, repo, data) {
         console.log('hejhopp')
