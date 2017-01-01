@@ -47,15 +47,18 @@ io.on('connection', (socket) => {
     });
 });
 
-    github.on('*', function (event, repo, data) {
+    webhookHandler.on('*', function (event, repo, data) {
         console.log('hejhopp')
     });
 
-    github.on('issues', function (repo, data) {
+    webhookHandler.on('issues', function (repo, data) {
         console.log('hejhopp')
     });
 
-    github.on('error', function (err, req, res) {
+    webhookHandler.on('dekes03-examination-3', function (event, data) {
+});
+
+    webhookHandler.on('error', function (err, req, res) {
         console.log('err')
     });
 
