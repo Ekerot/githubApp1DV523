@@ -52,7 +52,6 @@ let github = githubhook({
     secret: "hoppetisnoppeti"
 });
 
-module.exports = function() {
 
     github.on('*', function (event, repo, data) {
         console.log('hejhopp')
@@ -66,7 +65,6 @@ module.exports = function() {
         console.log('err')
     });
 
-};
 
 //routes
 app.use('/', require('./routes/main.js'));
