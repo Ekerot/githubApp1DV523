@@ -13,11 +13,12 @@ const   GitHubWebHook = require('express-github-webhook');
 const   webhookHandler = GitHubWebHook({path: '/webhook', secret: process.env.SECRET_TOKEN});
 
 const   app = express();
-const   port = process.env.PORT || 3030;
+const   port = process.env.PORT || 3000;
 
 // ------- set upp websocket --------------
 
-const   http = require('http').createServer(app);
+const   http = app.listen(port, () => console.log(`Express app listening on port ${port}!`
+        + '\nIf you want to terminate press ctrl+c'));
 const   io = new require('socket.io')(http);
 
 // ---------configure template ------------
@@ -58,7 +59,5 @@ http.listen(80, function(){
 //routes
 app.use('/', require('./routes/main.js'));
 
-//console what port that the app uses
-app.listen(port, () => console.log(`Express app listening on port ${port}!`
-    + '\nIf you want to terminate press ctrl+c'));
+
 
