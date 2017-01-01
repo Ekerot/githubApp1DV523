@@ -30,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(webhookHandler); // use middleware
 
 webhookHandler.on('*', function (event, repo, data) {
+    console.log(event, '   ', data)
 });
 
 webhookHandler.on('issues', function (repo, data) {
