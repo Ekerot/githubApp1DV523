@@ -17,8 +17,7 @@ const   port = process.env.PORT || 3000;
 
 // ------- set upp websocket --------------
 
-const   http = app.listen(port, () => console.log(`Express app listening on port ${port}!`
-        + '\nIf you want to terminate press ctrl+c'));
+const   http = app.listen(port);
 const   io = new require('socket.io')(http);
 
 // ---------configure template ------------
@@ -50,10 +49,6 @@ webhookHandler.on('*', function (event, repo, data) {
 
 webhookHandler.on('error', function (err, req, res) {
     console.log('err')
-});
-
-http.listen(80, function(){
-    console.log('Websocket is running bebe!')
 });
 
 //routes
