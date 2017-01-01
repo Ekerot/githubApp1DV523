@@ -11,7 +11,7 @@ const   bodyParser = require('body-parser');
 const   path = require('path');
 const   mongoose = require('./config/configDB.js');
 const   GitHubWebHook = new require('express-github-webhook');
-const   webhookHandler = GitHubWebHook({path: "/webhook", secret: process.env.SECRET_TOKEN});
+const   webhookHandler = GitHubWebHook({path: "/webhook/", secret: process.env.SECRET_TOKEN});
 
 const   app = express();
 const   port = process.env.PORT || 3000;
@@ -49,14 +49,6 @@ webhookHandler.on('dekes03-examination-3', function (event, data) {
 
 webhookHandler.on('error', function (err, req, res) {
     console.log('err')
-});
-
-var request = require('request');
-var url ='http://requestb.in/xjt92oxj'
-request(url, function (error, response, body) {
-    if (!error) {
-        console.log(body);
-    }
 });
 
 //routes
