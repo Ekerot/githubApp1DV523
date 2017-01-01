@@ -10,16 +10,11 @@ const   hbs = require('express-handlebars');
 const   bodyParser = require('body-parser');
 const   path = require('path');
 const   mongoose = require('./config/configDB.js');
+const   GitHubWebHook = new require('express-github-webhook');
+const   webhookHandler = GitHubWebHook({path: '/webhook', secret: process.env.SECRET_TOKEN});
 
 const   app = express();
 const   port = process.env.PORT || 3000;
-const   GitHubWebHook = new require('express-github-webhook');
-const   webhookHandler = GitHubWebHook({path: "/webhook", secret: process.env.SECRET_TOKEN});
-
-app.use(bodyParser.json()); // must use bodyParser in express
-app.use(webhookHandler); // use our middleware
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose();
 
@@ -36,12 +31,16 @@ app.set('view engine', 'handlebars');app.engine('handlebars', hbs({
 
 app.set('view engine', 'handlebars');
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(webhookHandler); // use middleware
+
 webhookHandler.on('*', function (event, repo, data) {
-    console.log('hejhopp')
 });
 
 webhookHandler.on('issues', function (repo, data) {
-    console.log('hejhopp')
 });
 
 webhookHandler.on('dekes03-examination-3', function (event, data) {
