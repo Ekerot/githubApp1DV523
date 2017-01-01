@@ -10,7 +10,7 @@ const   hbs = require('express-handlebars');
 const   bodyParser = require('body-parser');
 const   path = require('path');
 const   mongoose = require('./config/configDB.js');
-const githubhook = new require('express-github-webhook');
+const   webhookHandler = new require('express-github-webhook');
 
 const   app = express();
 const   port = process.env.PORT || 3000;
@@ -30,6 +30,9 @@ app.set('view engine', 'handlebars');app.engine('handlebars', hbs({
 
 app.set('view engine', 'handlebars');
 
+app.use(bodyParser.json()); // must use bodyParser in express
+app.use(webhookHandler); // use our middleware
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,7 +48,7 @@ io.on('connection', (socket) => {
     });
 });
 
-let github = githubhook({
+let github = webhookHandler({
     host: "api.github.com",
     protocol: "https",
     path: "/hooks",
