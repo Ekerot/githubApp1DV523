@@ -10,23 +10,16 @@ const   hbs = require('express-handlebars');
 const   bodyParser = require('body-parser');
 const   path = require('path');
 const   mongoose = require('./config/configDB.js');
-const   websocket = require('./lib/websocket.js');
-const   webhook = require('./lib/webhook.js');
+const githubhook = new require('express-github-webhook');
 
 const   app = express();
 const   port = process.env.PORT || 3000;
 
 mongoose();
-webhook();
 
-
-app.post('/', function (req, res) {
-
-    console.log(res);
-
-    res.json({
-        message: 'ok got it!'
-    });
+// Set Express routes.
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/views/index.html');
 });
 
 app.set('view engine', 'handlebars');app.engine('handlebars', hbs({
@@ -41,9 +34,42 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const      server = require('http').createServer(app);
+const      io = new require('socket.io')(server);
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+});
+
+let github = githubhook({
+    host: "api.github.com",
+    protocol: "https",
+    path: "/hooks",
+    secret: "hoppetisnoppeti"
+});
+
+module.exports = function() {
+
+    github.on('*', function (event, repo, data) {
+        console.log('hejhopp')
+    });
+
+    github.on('issues', function (repo, data) {
+        console.log('hejhopp')
+    });
+
+    github.on('error', function (err, req, res) {
+        console.log('err')
+    });
+
+};
+
 //routes
 app.use('/', require('./routes/main.js'));
-app.use('/hooks', require('./routes/main.js'));
 
 //console what port that the app uses
 app.listen(port, () => console.log(`Express app listening on port ${port}!`
