@@ -10,11 +10,11 @@ const   hbs = require('express-handlebars');
 const   bodyParser = require('body-parser');
 const   path = require('path');
 const   mongoose = require('./config/configDB.js');
-const   GitHubWebHook = new require('express-github-webhook');
-const   webhookHandler = GitHubWebHook({path: "/webhook", secret: process.env.SECRET_TOKEN});
 
 const   app = express();
 const   port = process.env.PORT || 3000;
+const   GitHubWebHook = new require('express-github-webhook');
+const   webhookHandler = GitHubWebHook({path: "/webhook", secret: process.env.SECRET_TOKEN});
 
 app.use(bodyParser.json()); // must use bodyParser in express
 app.use(webhookHandler); // use our middleware
