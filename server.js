@@ -9,7 +9,7 @@ const   session = require('express-session');
 const   hbs = require('express-handlebars');
 const   bodyParser = require('body-parser');
 const   path = require('path');
-const   GitHubWebHook = new require('express-github-webhook');
+const   GitHubWebHook = require('express-github-webhook');
 const   webhookHandler = GitHubWebHook({path: '/webhook', secret: process.env.SECRET_TOKEN});
 
 const   app = express();
