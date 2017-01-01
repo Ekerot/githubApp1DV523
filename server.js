@@ -1,4 +1,4 @@
-'use script';
+'use strict';
 
 /**
  * Created by ekerot on 2016-12-20.
@@ -13,7 +13,14 @@ const   GitHubWebHook = require('express-github-webhook');
 const   webhookHandler = GitHubWebHook({path: '/webhook', secret: process.env.SECRET_TOKEN});
 
 const   app = express();
-const   port = process.env.PORT || 3000;
+const   port = process.env.PORT || 3030;
+
+// ------- set upp websocket --------------
+
+const   http = require('http').createServer(app);
+const   io = new require('socket.io')(http);
+
+// ---------configure template ------------
 
 app.set('view engine', 'handlebars');app.engine('handlebars', hbs({
     defaultLayout: 'layout',
@@ -27,20 +34,25 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// ---------- set up webhook fetcher ----------
+
 app.use(webhookHandler); // use middleware
 
 webhookHandler.on('*', function (event, repo, data) {
-    console.log(event, '   ', data)
+    io.on('connection', function(socket){
+        socket.on('webhook',function (data){
+            io.emit('webhook', data);
+        });
+    });
 });
 
-webhookHandler.on('issues', function (repo, data) {
-});
-
-webhookHandler.on('dekes03-examination-3', function (event, data) {
-});
 
 webhookHandler.on('error', function (err, req, res) {
     console.log('err')
+});
+
+http.listen(3000, function(){
+    console.log('Websocket is running bebe!')
 });
 
 //routes

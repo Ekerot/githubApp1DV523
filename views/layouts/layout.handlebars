@@ -17,6 +17,16 @@
     $('.collapsible').collapsible();
 });</script>
 
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+    var socket = io();
+
+    socket.on('webhook', function(msg){
+        $('#messages').append($('<li>').text(msg));
+    });
+</script>
+
 </body>
 
 </html>
