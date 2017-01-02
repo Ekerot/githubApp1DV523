@@ -18,7 +18,7 @@ const   port = process.env.PORT || 3000;
 // ------- set upp websocket --------------
 
 const   http = app.listen(port);
-const   io = new require('socket.io')(http);
+const   io = require('socket.io').listen(http);
 
 // ---------configure template ------------
 
@@ -47,7 +47,6 @@ webhookHandler.on('*', function (event, repo, data) {
     io.emit('webhook', event);
 
 });
-
 
 webhookHandler.on('error', function (err, req, res) {
     console.log('err')
