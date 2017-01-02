@@ -38,13 +38,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(webhookHandler); // use middleware
 
+io.on('connection', function(){
+    console.log('LOGIN');
+
+});
+
 webhookHandler.on('*', function (event, repo, data) {
-
-    io.on('connection', function(socket){
-        console.log('LOGIN');
-
-        io.emit('webhook', event);
-    });
+    io.emit('webhook', event);
 
 });
 
