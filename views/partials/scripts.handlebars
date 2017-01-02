@@ -13,7 +13,7 @@
     var socket = io.connect();
 
     socket.on('webhook', function(hook){
-        $( ".list-element" ).append(hook);
-
+        console.log(hook)
+        $('#messages').append($('<li>').text(hook));
     });
 </script>
