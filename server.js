@@ -18,7 +18,7 @@ const   port = process.env.PORT || 3000;
 // ------- set upp websocket --------------
 
 const   http = app.listen(port);
-const   io = require('socket.io').listen(http);
+const   io = require('socket.io')(http);
 
 // ---------configure template ------------
 
@@ -36,17 +36,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ---------- set up webhook fetcher ----------
 
-let nsp = io.of("https://www.ekerot.se/websocket")
-nsp.on('connection', function(){
+io.on('connection', function(socket){
     console.log('LOGIN');
-    nsp.emit('webhook', 'Tjena Svante!');
+    io.emit('webhook', 'Tjena Svante!');
 
 });
 
 app.use(webhookHandler); // use middleware
 
 webhookHandler.on('*', function (event, repo, data) {
-    nsp.emit('webhook', event);
+    io.emit('webhook', event);
 });
 
 webhookHandler.on('error', function (err, req, res) {

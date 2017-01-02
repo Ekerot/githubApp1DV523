@@ -7,10 +7,10 @@
 <script type="text/javascript">$(document).ready(function(){
     $('.collapsible').collapsible();});</script>
 
-<script src="https://www.ekerot.se/socket.io/socket.io.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 
 <script>
-    var socket = io.connect("https://www.ekerot.se/websocket");
+    var socket = io.connect(socket);
 
     socket.on('webhook', function(hook){
         console.log(hook)
