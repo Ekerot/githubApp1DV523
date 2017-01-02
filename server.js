@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ---------- set up webhook fetcher ----------
 
-io.on('connection', function(socket){
+io.on('connection', function(){
     console.log('LOGIN');
 });
 

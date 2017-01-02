@@ -1,27 +1,25 @@
 <div class="container">
-<h1 class="center">Issues:</h1>
+    <h1 class="center">Issues:</h1>
 
-    <ul id="messages"></ul>
-
-<div class=" row">
-    {{#if issues }}
-        <ul class="collapsible large issue" data-collapsible="accordion">
-            {{#each issues}}
-                <li id="{{this.id}} list-element">
-                    <div class="collapsible-header red darken-1 white-text z-depth-5"><i class="material-icons">whatshot</i>{{this.title}}</div>
-                    <div class="collapsible-body"><p>{{this.body}}</p>
-                        <p>
-                            {{this.comments}} many comments are written</p>
-                          <p><a href="{{this.html_url}}">{{this.html_url}}</a></p>
-                        <p>created at {{this.created_at}} and by <div class="chip">
-                            <img class="round" src="{{this.avatar_url}}">
-                            <span class="card-title">{{this.login}}</span>
-                        </div></p>
-                    </div>
-                </li>
-            {{/each}}
-        </ul>
-    {{/if}}
-</div>
+    <div class="row">
+        {{#if issues }}
+            <ul id="list-issues" class="collapsible large issue" data-collapsible="accordion">
+                {{#each issues}}
+                    <li id="{{this.id}} list-element">
+                        <div class="collapsible-header red darken-1 white-text z-depth-5"><i class="material-icons">whatshot</i>{{this.title}}</div>
+                        <div class="collapsible-body"><p>{{this.body}}</p>
+                            <p>
+                                {{this.comments}} many comments are written</p>
+                            <p><a href="{{this.html_url}}">{{this.html_url}}</a></p>
+                            <p>created at {{this.created_at}} and by <div class="chip">
+                                <img class="round" src="{{this.avatar_url}}">
+                                <span class="card-title">{{this.login}}</span>
+                            </div></p>
+                        </div>
+                    </li>
+                {{/each}}
+            </ul>
+        {{/if}}
+    </div>
 </div>
 
