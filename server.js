@@ -40,7 +40,7 @@ app.use(webhookHandler); // use middleware
 
 io.on('connection', function(){
     console.log('LOGIN');
-    io.emit('webhook', event);
+    io.emit('webhook', 'Tjena Svante!');
 
 });
 
