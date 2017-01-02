@@ -39,16 +39,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(webhookHandler); // use middleware
 
 webhookHandler.on('*', function (event, repo, data) {
-    io.on('connection', function(socket){
-        socket.on('webhook',function (data){
-            io.emit('webhook', data);
-        });
-    });
+
 });
 
 
 webhookHandler.on('error', function (err, req, res) {
     console.log('err')
+});
+
+io.on('connection', function(socket){
+    console.log('LOGIN')
+    socket.on('webhook',function (data){
+        io.emit('webhook', 'hej hej ehj');
+    });
 });
 
 //routes
