@@ -36,16 +36,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ---------- set up webhook fetcher ----------
 
-app.use(webhookHandler); // use middleware
-
-io.on('connection', function(){
+let nsp = io.of("/websocket")
+nsp.on('connection', function(){
     console.log('LOGIN');
-    io.emit('webhook', 'Tjena Svante!');
+    nsp.emit('webhook', 'Tjena Svante!');
 
 });
 
-webhookHandler.on('*', function (event, repo, data) {
+app.use(webhookHandler); // use middleware
 
+webhookHandler.on('*', function (event, repo, data) {
+    nsp.emit('webhook', event);
 });
 
 webhookHandler.on('error', function (err, req, res) {
