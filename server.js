@@ -38,14 +38,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', function(socket){
     console.log('LOGIN');
-    io.emit('webhook', 'Tjena Svante!');
-
 });
 
 app.use(webhookHandler); // use middleware
 
 webhookHandler.on('*', function (event, repo, data) {
-    io.emit('webhook', event);
+    io.emit('webhook', data);
 });
 
 webhookHandler.on('error', function (err, req, res) {
