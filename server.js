@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ---------- set up webhook fetcher ----------
 
-let nsp = io.of("/websocket")
+let nsp = io.of("https://www.ekerot.se/websocket")
 nsp.on('connection', function(){
     console.log('LOGIN');
     nsp.emit('webhook', 'Tjena Svante!');

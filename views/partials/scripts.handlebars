@@ -10,7 +10,7 @@
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
 <script>
-    var socket = io.connect("/websocket");
+    var socket = io.connect("https://www.ekerot.se/websocket");
 
     socket.on('webhook', function(hook){
         console.log(hook)
