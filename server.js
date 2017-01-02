@@ -40,18 +40,17 @@ app.use(webhookHandler); // use middleware
 
 webhookHandler.on('*', function (event, repo, data) {
 
+    io.on('connection', function(socket){
+        console.log('LOGIN');
+
+        io.emit('webhook', event);
+    });
+
 });
 
 
 webhookHandler.on('error', function (err, req, res) {
     console.log('err')
-});
-
-io.on('connection', function(socket){
-    console.log('LOGIN')
-    socket.on('webhook',function (data){
-        io.emit('webhook', 'hej hej ehj');
-    });
 });
 
 //routes
