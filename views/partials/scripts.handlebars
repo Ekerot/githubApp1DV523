@@ -24,7 +24,7 @@
 
         else if(hook.action === 'created'){
             $(document).ready(function() {
-            $(selector).children("#comments").text(hook.issue.comments + "many comments are written");
+            $(selector).find("#comments").text(hook.issue.comments + "many comments are written");
         });
         }
 
