@@ -34,7 +34,7 @@
 
             $(selector).append($('<div>').attr('class', 'collapsible-header red darken-1 white-text z-depth-5')
                     .append($('<i>').attr('class', 'material-icons').text('whatshot'))
-                            .append(('<p>').text(hook.issue.title)));
+                            .append($('<p>').text(hook.issue.title)));
 
             $(selector).append($('<div>').attr('class', 'collapsible-body')
                         .append($('<p>').text(hook.issue.body)));
