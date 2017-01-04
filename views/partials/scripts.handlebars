@@ -19,12 +19,12 @@
             $('#list-issues').remove('<li>[hook.issue.id]');
         }
 
-        if(hook.action === 'created'){
+        else if(hook.action === 'created'){
                      console.log('Bengtsforst!')
             $('<li>[hook.issue.id] div:last-child li:nth-child[2]').text(hook.issue.comments + "many comments are written");
         }
 
-        if(hook.action === 'opened' || 'reopened'){
+        else if(hook.action === 'opened' || 'reopened'){
                          console.log('Janne!')
             $('#list-issues').append($('<li>').attr("id", hook.issue.id + " list-element"));
 
