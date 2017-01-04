@@ -14,9 +14,11 @@
 
     socket.on('webhook', function(hook){
 
+        var selector = "li[id*=" + hook.issue.id + " list-element]"
+
         if(hook.action === 'closed') {
             console.log('Skalman!')
-            $('<li>[hook.issue.id]').remove();
+            $(selector').remove();
         }
 
         else if(hook.action === 'created'){
