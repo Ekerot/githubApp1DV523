@@ -52,10 +52,10 @@
                         .text('Created at ' + hook.issue.created_at));
 
                 $(selector).find('.collapsible-body').append($('<div>').attr('class', 'chip')
-                        .append($('<img>').attr('class', 'round')));
+                        .append($('<img>').attr({class:'round', src:hook.issue.user.avatar_url})));
 
                 $(selector).find('.chip').append($('<span>')
-                        .attr('class', 'card-title').text(hook.login));
+                        .attr('class', 'card-title').text(hook.issue.user.login));
             }
         });
     });
