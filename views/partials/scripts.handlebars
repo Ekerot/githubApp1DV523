@@ -14,7 +14,7 @@
 
     socket.on('webhook', function(hook){
 
-        var selector = "li[id*=" + hook.issue.id + " list-element]"
+        var selector = "#" + hook.issue.id + " list-element]"
 
         if(hook.action === 'closed') {
             console.log('Skalman!')
