@@ -6,7 +6,7 @@
             <ul id="list-issues" class="collapsible large issue" data-collapsible="accordion">
                 {{#each issues}}
                     <li id="{{this.id}} list-element">
-                        <div class="collapsible-header red darken-1 white-text z-depth-5"><i class="material-icons">whatshot</i><p>{{this.title}}</p></div>
+                        <div class="collapsible-header red darken-1 white-text z-depth-5"><i class="material-icons">whatshot</i>{{this.title}}</div>
                         <div class="collapsible-body"><p>{{this.body}}</p>
                             <p id="comments">
                                 {{this.comments}} comments are written</p>
