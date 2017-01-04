@@ -13,12 +13,12 @@
     var socket = io.connect();
 
     socket.on('webhook', function(hook){
-
+console.log(hook)
         if($('<li>[hook.issue.id]')){
             if(hook.action === 'closed') {
                 $('#list-issues').remove('<li>[hook.issue.id]');
             }
-            $('<li>[hook.issue.id] div:last-child li:nth-child[2]').text(hook.issues.comments + "many comments are written");
+            $('<li>[hook.issue.id] div:last-child li:nth-child[2]').text(hook.issue.comments + "many comments are written");
         }
 
         else {
