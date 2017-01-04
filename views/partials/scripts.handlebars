@@ -16,9 +16,9 @@
 
         if(hook.action === 'closed') {
             console.log('Skalman!')
-            console.log(hook.issue.id)
+
             $(document).ready(function() {
-                $("tr[id*='"+hook.issue.id+"']").remove();
+                $("li[id*='"+hook.issue.id+"']").remove();
             });
         }
 
