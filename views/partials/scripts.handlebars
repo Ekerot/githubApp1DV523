@@ -17,16 +17,15 @@
         var selector = "li[id*='"+hook.issue.id+"']";
 
         if(hook.action === 'closed') {
-            console.log('Skalman!')
-
             $(document).ready(function() {
                 $(selector).remove();
             });
         }
 
         else if(hook.action === 'created'){
-            console.log('Bengtsforst!')
+            $(document).ready(function() {
             $('<li>hook.issue.id div:last-child p:nth-child[2]').text(hook.issue.comments + "many comments are written");
+        });
         }
 
         else if(hook.action === 'opened' || 'reopened'){
