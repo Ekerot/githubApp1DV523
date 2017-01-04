@@ -15,14 +15,6 @@
     socket.on('webhook', function(hook){
 
         $('#list-issues').append($('<li>').attr("id", hook.id + " list-element"));
-        $('#list-element').append($('<div>').attr('class', "collapsible-header red darken-1 white-text z-depth-5").
-        append($('<i>').attr('class', 'material-icons').text('whatshot')));
-        $('#list-element').append($('<div>').attr('class', "collapsible-body").
-        append($('<p>').text(hook.comments + ' many comments are written')));
-        $('.collapsible-body').append($('<div>').attr('class', "collapsible-body").
-        append($('<p>').text('created at ' + hook.created_at + 'and by ').appendChild($('<div>').attr('class', 'chip').text(hook.html_url))));
-        $('.collapsible-body').append($('<div>').attr('class', "collapsible-body").
-        append($('<p>').text(hook.comments + ' many comments are written')));
 
     });
 </script>
