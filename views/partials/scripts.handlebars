@@ -15,17 +15,17 @@
     socket.on('webhook', function(hook){
 
         if(hook.action === 'closed') {
-    console.log('Skalman!')
-            $('#list-issues').remove('<li>[hook.issue.id]');
+            console.log('Skalman!')
+            $('<li>[hook.issue.id]').remove();
         }
 
         else if(hook.action === 'created'){
-                     console.log('Bengtsforst!')
+            console.log('Bengtsforst!')
             $('<li>hook.issue.id div:last-child p:nth-child[2]').text(hook.issue.comments + "many comments are written");
         }
 
         else if(hook.action === 'opened' || 'reopened'){
-                         console.log('Janne!')
+            console.log('Janne!')
             $('#list-issues').append($('<li>').attr("id", hook.issue.id + " list-element"));
 
             $('#hook.issue.id').append($('<div>').attr('class', "collapsible-header red darken-1 white-text z-depth-5")
