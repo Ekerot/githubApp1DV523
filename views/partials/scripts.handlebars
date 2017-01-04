@@ -15,6 +15,7 @@
     socket.on('webhook', function(hook) {
 
         var selector = "li[id*='" + hook.issue.id + "']";
+
         $(document).ready(function () {
             if (hook.action === 'closed') {
 
