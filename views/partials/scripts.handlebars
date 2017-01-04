@@ -21,14 +21,15 @@
 
         else if(hook.action === 'created'){
                      console.log('Bengtsforst!')
-            $('<li>[hook.issue.id] div:last-child li:nth-child[2]').text(hook.issue.comments + "many comments are written");
+            $('<li>hook.issue.id div:last-child li:nth-child[2]').text(hook.issue.comments + "many comments are written");
         }
 
         else if(hook.action === 'opened' || 'reopened'){
                          console.log('Janne!')
             $('#list-issues').append($('<li>').attr("id", hook.issue.id + " list-element"));
 
-            $('<li>[hook.issue.id]').append($('<div>').attr('class', "collapsible-header red darken-1 white-text z-depth-5").append($('<i>').attr('class', 'material-icons').text('whatshot')).text(hook.issue.name));
+            $('#hook.issue.id').append($('<div>').attr('class', "collapsible-header red darken-1 white-text z-depth-5")
+                    .append($('<i>').attr('class', 'material-icons').text('whatshot').text(hook.issue.name)));
         }
 
 
