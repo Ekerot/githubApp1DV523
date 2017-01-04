@@ -16,8 +16,8 @@
 
         if(hook.action === 'closed') {
             console.log('Skalman!')
-            console.log('#' + hook.issue.id)
-            $('#hook.issue.id').remove();
+            console.log(hook.issue.id)
+            $("<li>").remove();
         }
 
         else if(hook.action === 'created'){
