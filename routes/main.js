@@ -25,7 +25,7 @@ router.route('/')  //function just to show first page
 
         github.authenticate({
             type: "oauth",
-            token: process.env.AUTH_TOKEN
+            token: "85a980456b4a8bea5ed90afe12df2c4dc215df34"
         });
 
         github.issues.getForRepo({owner: '1dv523', repo: 'dekes03-examination-3'}, function (err, res) {
