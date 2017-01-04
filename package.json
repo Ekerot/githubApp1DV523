@@ -19,21 +19,14 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
-    "buffer-equal-constant-time": "^1.0.1",
-    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "express-github-webhook": "^1.0.5",
     "express-handlebars": "^3.0.0",
-    "express-partials": "^0.3.0",
     "express-session": "^1.14.2",
     "github": "^7.2.0",
     "githubhook": "^1.7.1",
     "http": "0.0.0",
-    "method-override": "^2.3.7",
-    "mongoose": "^4.7.4",
-    "passport-oauth2": "^1.4.0",
-    "request": "^2.79.0",
-    "request-promise": "^4.1.1",
+    "path": "^0.12.7",
     "session": "^0.1.0",
     "socket.io": "^1.7.2"
   }
