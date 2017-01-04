@@ -14,11 +14,11 @@
 
     socket.on('webhook', function(hook){
 
-        var selector ="#" + hook.issue.id + " list-element"
+        var selector = "#" + hook.issue.id + " list-element"
 
         if(hook.action === 'closed') {
             console.log('Skalman!')
-            console.log(selector.type)
+            console.log(selector[0].type)
             $(selector[0]).remove();
         }
 
