@@ -14,11 +14,13 @@
 
     socket.on('webhook', function(hook){
 
+        var selector = "li[id*='"+hook.issue.id+"']";
+
         if(hook.action === 'closed') {
             console.log('Skalman!')
 
             $(document).ready(function() {
-                $("li[id*='"+hook.issue.id+"']").remove();
+                $(selector).remove();
             });
         }
 
