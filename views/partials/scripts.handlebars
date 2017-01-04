@@ -14,7 +14,7 @@
 
     socket.on('webhook', function(hook){
 
-        if($('<li>').hasAttribute(hook.issue.id)){
+        if($('<li>[hook.issue.id]')){
             console.log('hej')
         }
 
