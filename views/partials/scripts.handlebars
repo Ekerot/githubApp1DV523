@@ -24,7 +24,7 @@
 
         else if(hook.action === 'created'){
             $(document).ready(function() {
-            $(selector).find("#comments").text(hook.issue.comments + "many comments are written");
+            $(selector).find("#comments").text(hook.issue.comments + " comments are written");
         });
         }
 
@@ -32,7 +32,7 @@
             $(document).ready(function() {
             $('#list-issues').append($('<li>').attr("id", hook.issue.id + " list-element"));
 
-            $('#hook.issue.id').append($('<div>').attr('class', "collapsible-header red darken-1 white-text z-depth-5")
+            $(selector).append($('<div>').attr('class', "collapsible-header red darken-1 white-text z-depth-5")
                     .append($('<i>').attr('class', 'material-icons').text('whatshot').text(hook.issue.name)));
         });
 
