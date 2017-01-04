@@ -46,12 +46,12 @@
                         .append($('<a>').attr('href', hook.issue.html_url)
                                 .text(hook.issue.html_url)));
 
-                $(selector).find(".collapsible-body").append($('<p>').text('Created at ' + hook.issue.created_at));
+                $(selector).find(".collapsible-body").append($('<p>')
+                        .text('Created at ' + hook.issue.created_at));
 
                 $(selector).find(".collapsible-body").append($('<div>').attr('class', 'chip')
-                        .append($('<img>').attr({class:'round', src:hook.issue.avatar_url})));
-
-                $(selector).find('.chip').append('span').attr('class', 'card-title').text(hook.issue.login)
+                        .append($('<img>').attr('src', hook.issue.avatar_url)).append('span')
+                        .attr('class', 'card-title').text(hook.issue.login));
             }
         });
     });
