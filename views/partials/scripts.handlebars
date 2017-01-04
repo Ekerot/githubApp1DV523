@@ -14,7 +14,7 @@
 
     socket.on('webhook', function(hook){
         console.log(hook)
-        $('#list-issues').append($('<li>').attr.text(JSON.stringify(hook)));
+        $('#list-issues').append($('<li>').text(JSON.stringify(hook)));
     });
 </script>
 
