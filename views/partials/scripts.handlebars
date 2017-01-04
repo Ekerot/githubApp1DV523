@@ -37,12 +37,12 @@
 
             $(selector).find(".collapsible-header").text(hook.issue.title);
 
-            $(selector).append($('<div>').attr('class', "collapsible-body")
+            $(selector).append($('<div>').attr('class', 'collapsible-body')
                         .append($('<p>').text(hook.issue.body)));
 
             $(selector).find(".collapsible-body").append($('<p>').attr('id', 'comments').text(hook.issue.comments + ' comments are written'));
 
-            $(selector).find(".collapsible-body").append($('<p>').append('<a>').attr('href', hook.issue.html_url).text(hook.issue.html_url));
+            $(selector).find(".collapsible-body").append($('<p>').append($('<a>').attr('href', hook.issue.html_url).text(hook.issue.html_url)));
         });
 
         }
