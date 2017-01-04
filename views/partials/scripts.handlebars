@@ -15,17 +15,20 @@
     socket.on('webhook', function(hook){
 
         if($('<li>[hook.issue.id]')){
-            console.log('hej')
+            if(hook.action === 'closed') {
+                $('#list-issues').remove('<li>[hook.issue.id]');
+            }
+            $('<li>[hook.issue.id] div:last-child li:nth-child[2]').text(hook.issues.comments + "many comments are written");
         }
 
         else {
 
             $('#list-issues').append($('<li>').attr("id", hook.issue.id + " list-element"));
 
-            var selector = "[id*=" + hook.issue.id + " list-element]"
-
-            $(selector).append($('<div>').attr('class', "collapsible-header red darken-1 white-text z-depth-5").append($('<i>').attr('class', 'material-icons').text('whatshot')));
+            $('<li>[hook.issue.id]').append($('<div>').attr('class', "collapsible-header red darken-1 white-text z-depth-5").append($('<i>').attr('class', 'material-icons').text('whatshot')).text(hook.issue.name));
         }
+
+
     });
 </script>
 
