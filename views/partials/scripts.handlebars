@@ -18,7 +18,7 @@
             console.log('Skalman!')
             console.log(hook.issue.id)
             $(document).ready(function() {
-                $("li").remove();
+                $("#" + hook.issue.id).remove();
             });
         }
 
