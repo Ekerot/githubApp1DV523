@@ -14,7 +14,7 @@
 
     socket.on('webhook', function(hook){
 
-        var selector = "li[id*=" + hook.issue.id + " list-element]"
+        var selector = "[id*=" + hook.issue.id + " list-element]"
 
         if($(selector)){
             console.log('hej')
