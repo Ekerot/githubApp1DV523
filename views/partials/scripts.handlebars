@@ -33,8 +33,8 @@
             $('#list-issues').append($('<li>').attr("id", hook.issue.id + ' list-element'));
 
             $(selector).append($('<div>').attr('class', 'collapsible-header red darken-1 white-text z-depth-5')
-                    .append($('<i>').attr('class', 'material-icons').text('whatshot')
-                            .append(('<p>').text(hook.issue.title))));
+                    .append($('<i>').attr('class', 'material-icons').text('whatshot'))
+                            .append(('<p>').text(hook.issue.title)));
 
             $(selector).append($('<div>').attr('class', 'collapsible-body')
                         .append($('<p>').text(hook.issue.body)));
@@ -48,7 +48,7 @@
 
             $(selector).find(".collapsible-body").append($('<p>').text('Created at ' + hook.issue.created_at);
 
-                $(selector).find(".collapsible-body").append($('<div>').attr('class', 'chip')
+            $(selector).find(".collapsible-body").append($('<div>').attr('class', 'chip')
                         .append('<img>').attr('class', 'round').attr('src', hook.issue.avatar_url));
         });
 
