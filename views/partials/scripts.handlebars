@@ -50,8 +50,8 @@
 
                 $(selector).find(".collapsible-body").append($('<div>').attr('class', 'chip')
                         .append($('<img>').attr({class: 'round', src: hook.issue.avatar_url})));
-                $(selector).find(".collapsible-body").find('chip').append('span')
 
+                $(selector).find('chip').append('span').attr('class', 'card-title').text(hook.issue.login)
             }
         });
     });
