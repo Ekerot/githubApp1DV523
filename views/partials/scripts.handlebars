@@ -38,20 +38,20 @@
                 $(selector).append($('<div>').attr('class', 'collapsible-body')
                         .append($('<p>').text(hook.issue.body)));
 
-                var collapsiblebody = (selector).find(".collapsible-body");
+                var collapsiblebody = '(selector).find(".collapsible-body")';
 
-                $(selector).find(".collapsible-body").append($('<p>').attr('id', 'comments')
+                $(collapsiblebody).append($('<p>').attr('id', 'comments')
                         .text(hook.issue.comments + ' comments are written'));
 
-                $(selector).find(".collapsible-body").append($('<p>')
+                $(collapsiblebody).append($('<p>')
                         .append($('<a>').attr('href', hook.issue.html_url)
                                 .text(hook.issue.html_url)));
 
-                $(selector).find(".collapsible-body").append($('<p>').text('Created at ' + hook.issue.created_at));
+                $(collapsiblebody).append($('<p>').text('Created at ' + hook.issue.created_at));
 
-                $(selector).find(".collapsible-body").append($('<div>').attr('class', 'chip')
+                $(collapsiblebody).append($('<div>').attr('class', 'chip')
                         .append($('<img>').attr({class: 'round', src: hook.issue.avatar_url})));
-                $(selector).find(".collapsible-body").find('chip').append('span')
+                $(collapsiblebody).find('chip').append('span')
 
             }
         });
