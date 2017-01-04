@@ -33,8 +33,8 @@
             $('#list-issues').append($('<li>').attr("id", hook.issue.id + " list-element"));
 
             $(selector).append($('<div>').attr('class', "collapsible-header red darken-1 white-text z-depth-5")
-                    .append($('<i>').attr('class', 'material-icons').text('whatshot')))
-                    .append('<p>').text(hook.issue.name);
+                    .appendTo($('<i>').attr('class', 'material-icons').text('whatshot')))
+                    .appendTo('<p>').text(hook.issue.name);
         });
 
         }
