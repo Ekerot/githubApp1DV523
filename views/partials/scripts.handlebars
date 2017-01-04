@@ -24,18 +24,25 @@
 
         else if(hook.action === 'created'){
             $(document).ready(function() {
-            $(selector).find("#comments").text(hook.issue.comments + " comments are written");
+            $(selector).find('.comments').text(hook.issue.comments + ' comments are written');
         });
         }
 
         else if(hook.action === 'opened' || 'reopened'){
             $(document).ready(function() {
-            $('#list-issues').append($('<li>').attr("id", hook.issue.id + " list-element"));
+            $('#list-issues').append($('<li>').attr("id", hook.issue.id + ' list-element'));
 
-            $(selector).append($('<div>').attr('class', "collapsible-header red darken-1 white-text z-depth-5")
+            $(selector).append($('<div>').attr('class', 'collapsible-header red darken-1 white-text z-depth-5')
                     .append($('<i>').attr('class', 'material-icons').text('whatshot')));
 
-            $(selector).find(".collapsible-header").append($('<p>').text(hook.issue.title));
+            $(selector).find(".collapsible-header").text(hook.issue.title);
+
+            $(selector).append($('<div>').attr('class', "collapsible-body")
+                        .append($('<p>').text(hook.issue.body)));
+
+            $(selector).find(".collapsible-header").append($('<p>').attr('id', 'comments').text(hook.issue.comments + ' comments are written'));
+
+            $(selector).find(".collapsible-header").append($('<p>').append('<a>').attr('href', hook.issue.html_url).text(hook.issue.html_url));
         });
 
         }
