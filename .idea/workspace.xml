@@ -38,8 +38,8 @@
       <file leaf-file-name="login-github.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/login-github.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="147" column="28" lean-forward="true" selection-start-line="147" selection-start-column="28" selection-end-line="147" selection-end-column="28" />
+            <state relative-caret-position="179">
+              <caret line="116" column="30" lean-forward="true" selection-start-line="116" selection-start-column="30" selection-end-line="116" selection-end-column="30" />
               <folding>
                 <element signature="e#15#58#0" expanded="false" />
               </folding>
@@ -193,8 +193,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="798" />
-    <option name="y" value="50" />
+    <option name="x" value="38" />
+    <option name="y" value="23" />
     <option name="width" value="1386" />
     <option name="height" value="1006" />
   </component>
@@ -482,12 +482,12 @@
       <workItem from="1483558914990" duration="3922000" />
       <workItem from="1483565394478" duration="10157000" />
       <workItem from="1483625505553" duration="13046000" />
-      <workItem from="1483640932472" duration="17619000" />
+      <workItem from="1483640932472" duration="18349000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145604000" />
+    <option name="totallyTimeSpent" value="146334000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -499,7 +499,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="798" y="50" width="1386" height="1006" extended-state="0" />
+    <frame x="38" y="23" width="1386" height="1006" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16996337" sideWeight="0.48820058" order="0" side_tool="false" content_ui="combo" />
@@ -786,8 +786,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/login-github.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="147" column="28" lean-forward="true" selection-start-line="147" selection-start-column="28" selection-end-line="147" selection-end-column="28" />
+        <state relative-caret-position="179">
+          <caret line="116" column="30" lean-forward="true" selection-start-line="116" selection-start-column="30" selection-end-line="116" selection-end-column="30" />
           <folding>
             <element signature="e#15#58#0" expanded="false" />
           </folding>

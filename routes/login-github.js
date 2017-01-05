@@ -108,7 +108,7 @@ router.use(passport.session());
         });
     });
 
-    router.route('/issues/:name')
+    router.route('*/issues/:name')
     .get(ensureAuthenticated, function(request, response) {
 
         let github = new GitHubApi({
