@@ -7,17 +7,18 @@ body {
     margin: 0;
     padding-bottom: 6rem;
     min-height: 100%;
+    background-image: url("/images/background.jpg");
 }
 
 .logo{
-    height: 70px;
+    margin: 10px;
+    height: 100px;
 }
 
 .login-form{
-    float: right;
-    margin-top: 7%;
-    margin-right: 3%;
-    color: black;
+    width: 70%;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 
 .username{
@@ -34,14 +35,6 @@ body {
     height: 20px;
     font-size: 10px;
     float: left;
-}
-
-
-.register{
-    float:right;
-    margin-top:30%;
-    position: relative;
-
 }
 
 .row{

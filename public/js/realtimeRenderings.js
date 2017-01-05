@@ -1,4 +1,4 @@
-('use strict');
+'use strict';
 
 /**
  * Created by ekerot on 2017-01-05.
@@ -53,3 +53,8 @@ socket.on('webhook', function(hook) {
         }
     });
 });
+
+$(document).ready(function(){
+    $('.collapsible').collapsible();});
+
+$(".button-collapse").sideNav();

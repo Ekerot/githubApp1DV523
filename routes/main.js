@@ -5,18 +5,24 @@
  */
 
 const router = require('express').Router();
-const GitHubApi = require("github");
+const GitHubApi = require('github');
 
-router.route('/')  //function just to show first page
+router.route('/')    //function just to render first page
+    .get(function(req, res) {
+
+        res.render('main/index')
+    });
+
+router.route('/issues')  //function just to show first page
     .get(function(req, response) {
 
         let github = new GitHubApi({
             // optional
             debug: true,
-            protocol: "https",
+            protocol: 'https',
             host: 'api.github.com', // should be api.github.com for GitHub
             headers: {
-                "user-agent": "github-issue-handler" // GitHub is happy with a unique user agent
+                'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
             },
             Promise: require('bluebird'),
             followRedirects: false, // default: true; there's currently an issue with non-get redirects, so allow ability to disable follow-redirects
@@ -25,7 +31,7 @@ router.route('/')  //function just to show first page
 
         github.authenticate({
             type: "oauth",
-            token: "85a980456b4a8bea5ed90afe12df2c4dc215df34"
+            token: process.env.AUTH_TOKEN
         });
 
         github.issues.getForRepo({owner: '1dv523', repo: 'dekes03-examination-3'}, function (err, res) {
