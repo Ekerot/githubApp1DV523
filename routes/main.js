@@ -14,7 +14,7 @@ router.route('/')    //function just to render first page
     });
 
 router.route('/issues')  //function just to show first page
-    .get(function(req, response) {
+    .get(ensureAuthenticated, function(req, response) {
 
         let github = new GitHubApi({
             // optional
@@ -58,4 +58,10 @@ router.route('/issues')  //function just to show first page
 
     });
 
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/')
+}
 module.exports = router;
