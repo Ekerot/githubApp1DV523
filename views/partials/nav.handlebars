@@ -1,26 +1,26 @@
-<ul id="slide-out" class="side-nav">
+<ul id="slide-out" class="side-nav fixed">
     <li><div class="userView">
         <div class="background">
             <img src="http://www.anawalls.com/images/nature/ears-cereals-rye-wheat-orange-beams-sun-light-simplicity.jpg">
         </div>
-        <a href="#!user"><img class="circle" src="{{user._json.avatar_url}}"></a>
-        <a href="#!name"><span class="white-text name">{{user.displayName}}</span></a>
-        <a href="#!email"><span class="white-text email">{{user._json.email}}</span></a>
+        <a href="#!user"><img class="circle" src="{{data.user._json.avatar_url}}"></a>
+        <a href="#!name"><span class="white-text name">{{data.user.displayName}}</span></a>
+        <a href="#!email"><span class="white-text email">{{data.user._json.email}}</span></a>
     </div></li>
 
-    {{#if user}}
 
-        <li><a class="waves-effect" href="#!">Skapa karraktär</a></li>
-        <li><a class="waves-effect" href="#!">Sparade karraktärer</a></li>
+
+        {{#each repo}}
+            <li><a class="waves-effect" href="/issues/{{this.name}}">{{this.name}}</a></li>
+        {{/each}}
         <br>
         <li><div class="divider"></div></li>
 
         <a href="logout/" class="register, waves-effect waves-light btn">Logout</a>
 
-    {{else}}
+
             <a class="login-button, waves-effect waves-light btn" href="/auth/github">Login</a>
 
-    {{/if}}
 </ul>
 </ul>
 <a href="#" data-activates="slide-out" class="button-collapse"><img class="logo" src="/images/logo.png" alt="github logo"/></a>

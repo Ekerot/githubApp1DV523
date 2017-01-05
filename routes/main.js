@@ -13,8 +13,8 @@ router.route('/')    //function just to render first page
         res.render('main/index')
     });
 
-router.route('/issues')  //function just to show first page
-    .get(ensureAuthenticated, function(req, response) {
+router.route('/issues')
+    .get(function(req, response) {
 
         let github = new GitHubApi({
             // optional
@@ -53,15 +53,9 @@ router.route('/issues')  //function just to show first page
                     }
                 })
             };
-            response.render('main/index', issues)
+            response.render('main/listi', issues)
         });
 
     });
 
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/')
-}
 module.exports = router;

@@ -7,7 +7,10 @@ body {
     margin: 0;
     padding-bottom: 6rem;
     min-height: 100%;
-    background-image: url("/images/background.jpg");
+}
+
+.error{
+    margin-left:40%;
 }
 
 .logo{
@@ -37,6 +40,10 @@ body {
     float: left;
 }
 
+.container{
+    right:100%;
+}
+
 .row{
     margin:15%;
     margin-top: 5%;
@@ -49,6 +56,10 @@ body {
 
 .issue{
     width: 50%;
+}
+
+#list-issues{
+    margin-left:40%;
 }
 
 .footer {

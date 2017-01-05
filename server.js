@@ -5,7 +5,6 @@
  */
 
 const   express = require('express');
-const   session = require('express-session');
 const   hbs = require('express-handlebars');
 const   bodyParser = require('body-parser');
 const   path = require('path');
@@ -51,5 +50,5 @@ webhookHandler.on('error', function (err, req, res) {
 });
 
 //routes
-app.use('/', require('./routes/main.js'));
+
 app.use('/', require('./routes/login-github.js'));
