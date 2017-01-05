@@ -52,3 +52,21 @@ webhookHandler.on('error', function (err, req, res) {
 //routes
 
 app.use('/', require('./routes/login-github.js'));
+
+//errors on server
+app.use((req, res) =>
+
+    res.status(404).render('errors/404')
+);
+
+app.use((err, req, res) =>
+    res.status(400).render('errors/400')
+);
+
+app.use((err, req, res) =>
+    res.status(403).render('errors/401')
+);
+
+app.use((err, req, res) =>
+    res.status(500).render("errors/500")
+);

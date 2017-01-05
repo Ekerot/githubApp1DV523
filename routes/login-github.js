@@ -32,7 +32,7 @@ passport.deserializeUser(function(obj, done) {
     passport.use(new GitHubStrategy({
             clientID: '7e66ee29510aa0f4db54',
             clientSecret: '2284eb7c2af97ba1151befe9a98a3f009afda80c',
-            callbackURL: "http://localhost:3000/auth/github/callback"
+            callbackURL: "https://www.ekerot.se/auth/github/callback"
         },
         function (accessToken, refreshToken, profile, done) {
             // asynchronous verification, for effect...
