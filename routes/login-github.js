@@ -95,14 +95,13 @@ router.use(passport.session());
                         }
                     })
                 };
-                let data = {user:req.user, repo}
 
                 res.render('main/index', repo)
             });
 
         });
 
-    router.get('/auth/github/logout', function (req, res) {
+    router.get('/logout', function (req, res) {
         req.session.destroy(function() {
         res.clearCookie('connect.sid');
             res.redirect('/');
@@ -129,6 +128,22 @@ router.use(passport.session());
             type: "oauth",
             token: process.env.AUTH_TOKEN
         });
+
+        github.repos.createHook({
+            "owner": request.user.username,
+            "repo": request.params.name,
+            "name": "web",
+            "active": true,
+            "events": [
+                "issues",
+                "issue_comment"
+            ],
+            "config": {
+                "url": "https://www.ekerot.se/webhook",
+                "content_type": "json"
+            }
+        });
+
 
         github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
 
