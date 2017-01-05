@@ -132,7 +132,7 @@ router.use(passport.session());
         github.repos.createHook({
             "owner": request.user.username,
             "repo": request.params.name,
-            "name": "web",
+            "name": "ekerot.se",
             "active": true,
             "events": [
                 "issues",
@@ -142,6 +142,11 @@ router.use(passport.session());
                 "url": "https://www.ekerot.se/webhook",
                 "content_type": "json"
             }
+        }, function(err, req, res){
+
+            console.log(req)
+            console.log(res)
+
         });
 
 
