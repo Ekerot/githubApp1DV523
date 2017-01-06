@@ -34,7 +34,7 @@ socket.on('webhook', function(hook) {
 
             case 'deleted':
 
-                $(selector).find('.comments').text((hook.issue.comments + 1) + ' comments are written');
+                $(selector).find('.comments').text((hook.issue.comments) + ' comments are written');
 
                 break;
 
