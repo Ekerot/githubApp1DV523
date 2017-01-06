@@ -140,15 +140,15 @@ router.route('/issues/:name')
             "owner": request.user.username,
             "repo": request.params.name,
             "name": "webb",
-            "config": {
-                "url": "https://www.ekerot.se/webhook",
-                "content_type": "json"
-            },
+            "active": "true"
             "events": [
                 "issues",
                 "issue_comment"
             ],
-            "active": "true"
+            "config": {
+                "url": "https://www.ekerot.se/webhook",
+                "content_type": "json"
+            }
         }, function(err, req, res){
 
             console.log(req)
