@@ -15,43 +15,47 @@ socket.on('webhook', function(hook) {
     console.log(hook)
 
     $(document).ready(function () {
-        if (hook.action === 'closed') {
 
-            $(selector).remove();
-        }
+        switch(hook.action) {
 
+            case 'closed':
+                $(selector).remove();
+                break;
 
-        else if (hook.action === 'created') {
+            case 'created':
 
-            $(selector).find('.comments').text(hook.issue.comments + ' comments are written');
-        }
+                $(selector).find('.comments').text(hook.issue.comments + ' comments are written');
 
+                break;
 
-        else if (hook.action === 'opened' || 'reopened') {
-            $('.row').append($('<div>').attr({'id':hook.issue.id, 'class':'col s12 m6'}));
+            case 'opened' || 'reopened':
 
-            $(selector).append($('<div>').attr('class', 'card blue-grey darken-1')
-                .append($('<div>').attr('class', 'card-content white-text')
-                .append($('<span>').attr('class', 'card-title').text(hook.issue.title))));
+                $('.row').append($('<div>').attr({'id': hook.issue.id, 'class': 'col s12 m6'}));
 
-            $(selector).find(".card-content").append($('<p>')
-                .text(hook.issue.body));
+                $(selector).append($('<div>').attr('class', 'card blue-grey darken-1')
+                    .append($('<div>').attr('class', 'card-content white-text')
+                        .append($('<span>').attr('class', 'card-title').text(hook.issue.title))));
 
-            $(selector).find(".card-content").append($('<br>'));
+                $(selector).find(".card-content").append($('<p>')
+                    .text(hook.issue.body));
 
-            $(selector).find(".card-content").append($('<p>')
-                .attr('class', 'comments').text(hook.issue.comments + ' comments are written'))
+                $(selector).find(".card-content").append($('<br>'));
 
-
-            $(selector).find('.card').append($('<div>').attr('class', 'card-action')
-                .append($('<a>').attr('href', hook.issue.html_url).text('Link')));
+                $(selector).find(".card-content").append($('<p>')
+                    .attr('class', 'comments').text(hook.issue.comments + ' comments are written'))
 
 
-            $(selector).find(".card-action").append($('<div>').attr('class', 'chip')
-                .append($('<img class="round">').attr("src", hook.issue.user.avatar_url)));
+                $(selector).find('.card').append($('<div>').attr('class', 'card-action')
+                    .append($('<a>').attr('href', hook.issue.html_url).text('Link')));
 
-            $(selector).find('.chip').append($('<span>')
-                .attr('class', 'card-title').text(hook.issue.user.login));
+
+                $(selector).find(".card-action").append($('<div>').attr('class', 'chip')
+                    .append($('<img class="round">').attr("src", hook.issue.user.avatar_url)));
+
+                $(selector).find('.chip').append($('<span>')
+                    .attr('class', 'card-title').text(hook.issue.user.login));
+
+                break;
         }
     });
 });
