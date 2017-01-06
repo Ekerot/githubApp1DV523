@@ -142,7 +142,6 @@ router.route('/issues/:name')
             "name": "Hook",
             "active": true,
             "events": [
-                "issues",
                 "issue_comment"
             ],
             "config": {
