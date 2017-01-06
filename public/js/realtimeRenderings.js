@@ -10,7 +10,7 @@ socket.on('webhook', function(hook) {
 
     console.log(hook)
 
-    var selector = "div[class*='" + hook.issue.id + "col s12 m6']";
+    var selector = "li[id*='" + hook.issue.id + "']";
 
     console.log(hook)
 
@@ -28,7 +28,7 @@ socket.on('webhook', function(hook) {
 
 
         else if (hook.action === 'opened' || 'reopened') {
-            $('.row').append($('<div>').attr('class', hook.issue.id + ' col s12 m6'));
+            $('.row').append($('<div>').attr({'id':hook.issue.id, 'class':'col s12 m6'}));
 
             $(selector).append($('<div>').attr('class', 'card blue-grey darken-1')
                 .append($('<div>').attr('class', 'card-content white-text')
