@@ -10,16 +10,30 @@ const   bodyParser = require('body-parser');
 const   path = require('path');
 const   GitHubWebHook = require('express-github-webhook');
 const   webhookHandler = GitHubWebHook({path: '/webhook', secret: process.env.SECRET_TOKEN});
+const   session = require('express-session');
 
 const   app = express();
 const   port = process.env.PORT || 3000;
 
-// ------- set upp websocket --------------
+//-------- set up session ---------------------
+
+app.use(session({
+    secret: "keyboardcat",
+    name: "mycookie",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        secure: false,
+        maxAge: 6000000
+    }
+}));
+
+// ------- set up websocket -------------------
 
 const   http = app.listen(port);
 const   io = require('socket.io')(http);
 
-// ---------configure template ------------
+// ---------configure template ----------------
 
 app.set('view engine', 'handlebars');app.engine('handlebars', hbs({
     defaultLayout: 'layout',
@@ -54,9 +68,9 @@ webhookHandler.on('error', function (err, req, res) {
 
 app.use('/', require('./routes/login-github.js'));
 
-//errors on server
-app.use((req, res) =>
+//-------------routing errors------------------
 
+app.use((req, res) =>
     res.status(404).render('errors/404')
 );
 

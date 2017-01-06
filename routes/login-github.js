@@ -38,6 +38,7 @@ passport.use(new GitHubStrategy({                           //making a strategy 
         // asynchronous verification, for effect...
         process.nextTick(function () {
             process.env['AUTH_TOKEN'] = accessToken;
+            console.log(profile);
             return done(null, profile);
         });
     }
@@ -86,8 +87,6 @@ router.get('/auth/github/callback',                             //authentication
 
         github.repos.getAll({type: 'owner'}, function(err, request){  //get all repositories
 
-
-
             let jsonObject = request;
 
             let repo = {            //creating context variable to send to view
@@ -102,10 +101,7 @@ router.get('/auth/github/callback',                             //authentication
 
             res.render('main/index', repo)
         });
-
     });
-
-//TODO: Logout should work from all different locations
 
 router.get('/:route/logout', function (req, res) { //logout function, kill/clear cookie manually
     req.session.destroy(function() {
