@@ -134,61 +134,39 @@ router.route('/:name')
             token: process.env.AUTH_TOKEN
         });
 
-        //TODO: Create new hook does not work, fix it!
-
-        let username = request.user.username
-
-        github.repos.createHook({
-            "owner": username,
-            "repo": request.params.name,
-            "name": "web",
-            "active": true,
-            "events": [
-                "issues",
-                "issue_comment"
-            ],
-            "config": {
-                "url": "https://www.ekerot.se/webhook",
-                "content_type": "json",
-                "secret": "kljfd9823u4nfkls923nfdjks989324",
-                "insecure_ssl": "1"
-            }
-        }, function (err, req, res) {
-
-            console.log(err);
-            response.redirect('/:name/issues');
-        });
-
-        response.redirect('/:name/issues');
-
-    });
-
-        router.route('/:name/issues').get(ensureAuthenticated, function(request, response) {
-
-            let github = new GitHubApi({
-                // optional
-                debug: true,
-                protocol: 'https',
-                host: 'api.github.com', // should be api.github.com for GitHub
-                headers: {
-                    'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
-                },
-                Promise: require('bluebird'),
-                followRedirects: false, // default: true; there's currently an issue with non-get redirects, so allow ability to disable follow-redirects
-                timeout: 5000
-            });
-
-            github.authenticate({
-                type: "oauth",
-                token: process.env.AUTH_TOKEN
-            });
-
-            //TODO: Create new hook does not work, fix it!
-
             let username = request.user.username
 
             //get all issues from selected repo
             github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
+
+                if(res.status = 404){
+                    let username = request.user.username
+
+                    github.repos.createHook({
+                        "owner": username,
+                        "repo": request.params.name,
+                        "name": "web",
+                        "active": true,
+                        "events": [
+                            "issues",
+                            "issue_comment"
+                        ],
+                        "config": {
+                            "url": "https://www.ekerot.se/webhook",
+                            "content_type": "json",
+                            "secret": "kljfd9823u4nfkls923nfdjks989324",
+                            "insecure_ssl": "1"
+                        }
+                    }, function (err, req, res) {
+
+                        console.log(err);
+                        response.redirect('/:name/issues');
+                    });
+
+                    response.redirect('/:name/issues');
+
+                });
+                }
 
                 let jsonObject = res;
 
