@@ -140,15 +140,16 @@ router.route('/issues/:name')
             "owner": request.user.username,
             "repo": request.params.name,
             "name": "webb",
-            "secret": "kljfd9823u4nfkls923nfdjks989324",
-            "insecure_ssl": "1",
+            "active": true,
             "events": [
                 "issues",
                 "issue_comment"
             ],
             "config": {
                 "url": "https://www.ekerot.se/webhook",
-                "content_type": "json"
+                "content_type": "json",
+                "secret": "kljfd9823u4nfkls923nfdjks989324",
+                "insecure_ssl": "1"
             }
         }, function(err, req, res){
 
