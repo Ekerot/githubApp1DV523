@@ -1,24 +1,26 @@
 <p class="container">
     <div class="row">
         {{#if issues }}
-        <p class="repo-name">{this.repo}}></p>
-            <ul id="list-issues" class="collapsible large issue" data-collapsible="accordion">
+        <p class="repo-name">{{this.repo}}></p>
                 {{#each issues}}
-                    <li id="{{this.id}} list-element">
-                        <div class="collapsible-header red darken-1 white-text z-depth-5"><i class="material-icons">whatshot</i><p>{{this.title}}</p></div>
-                        <div class="collapsible-body"><p>{{this.body}}</p>
-                            <p class="comments">
-                                {{this.comments}} comments are written</p>
-                            <p><a href="{{this.html_url}}">{{this.html_url}}</a></p>
-                            <p>Created at {{this.created_at}}</p>
-                            <div class="chip">
-                                <img class="round" src="{{this.avatar_url}}">
-                                <span class="card-title">{{this.login}}</span>
+                    <div class="col s12 m6">
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text">
+                                <span class="card-title">{{this.title}}</span>
+                                <p>{{this.body}}</p>
+                            <br>
+                                <p class="comments">
+                                    {{this.comments}} comments are written</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="{{this.html_url}}">Link</a>
+                                <div class="chip">
+                                    <img class="round" src="{{this.avatar_url}}">
+                                    <span class="card-title">{{this.login}}</span>
+                                </div>
                             </div>
                         </div>
-                    </li>
                 {{/each}}
-            </ul>
         {{/if}}
     </div>
 </div>
