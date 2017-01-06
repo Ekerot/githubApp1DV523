@@ -40,15 +40,15 @@ socket.on('webhook', function(hook) {
             $(selector).find(".card-content").append($('<br>'));
 
             $(selector).find(".card-content").append($('<p>')
-                .attr('class', 'comments').text('{{this.comments}} comments are written'))
+                .attr('class', 'comments').text(hook.issue.comments + ' comments are written'))
 
 
             $(selector).find('.card-content').append($('<div>').attr('class', 'card-action')
                 .append($('<a>').attr('href', hook.issue.html_url).text('Link')));
 
 
-            $(selector).find(".card-action").append($('<div>').attr('class', 'chip')
-                .append($('<img>').attr({class:'round', src:hook.issue.user.avatar_url})));
+            $(selector).find(".card-action").append($('<div>').attr('class', 'chip'))
+                .append($('<img>').attr({class:'round', src:hook.issue.user.avatar_url}));
 
             $(selector).find('.chip').append($('<span>')
                 .attr('class', 'card-title').text(hook.issue.user.login));
