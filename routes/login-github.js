@@ -113,7 +113,7 @@ router.get('/:route/logout', function (req, res) { //logout function, kill/clear
     });
 });
 
-router.route('/issues/:name')
+router.route('/:name')
     .get(ensureAuthenticated, function(request, response) {
 
         let github = new GitHubApi({
@@ -153,41 +153,68 @@ router.route('/issues/:name')
                 "secret": "kljfd9823u4nfkls923nfdjks989324",
                 "insecure_ssl": "1"
             }
-        }, function(err, req, res){
+        }, function (err, req, res) {
 
-            console.log(req)
-            console.log(res)
+            console.log(err);
 
         });
 
-        //get all issues from selected repo
-        github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
-
-            let jsonObject = res;
-
-            let issues = {            //creating context variable to send to view
-
-                issues: jsonObject.map(function (issues) {
-                    return {
-                        repo: request.params.name,
-                        title: issues.title,
-                        id: issues.id,
-                        body: issues.body,
-                        comments: issues.comments,
-                        created_at: issues.created_at,
-                        html_url: issues.html_url,
-                        login: issues.user.login,
-                        avatar_url: issues.user.avatar_url,
-                    }
-                })
-            };
-
-            console.log(res)
-
-            response.render('main/index', issues)
-        });
+        response.redirect('/:name/issues');
 
     });
+
+        router.route('/:name/issues').get(ensureAuthenticated, function(request, response) {
+
+            let github = new GitHubApi({
+                // optional
+                debug: true,
+                protocol: 'https',
+                host: 'api.github.com', // should be api.github.com for GitHub
+                headers: {
+                    'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
+                },
+                Promise: require('bluebird'),
+                followRedirects: false, // default: true; there's currently an issue with non-get redirects, so allow ability to disable follow-redirects
+                timeout: 5000
+            });
+
+            github.authenticate({
+                type: "oauth",
+                token: process.env.AUTH_TOKEN
+            });
+
+            //TODO: Create new hook does not work, fix it!
+
+            let username = request.user.username
+
+            //get all issues from selected repo
+            github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
+
+                let jsonObject = res;
+
+                let issues = {            //creating context variable to send to view
+
+                    issues: jsonObject.map(function (issues) {
+                        return {
+                            repo: request.params.name,
+                            title: issues.title,
+                            id: issues.id,
+                            body: issues.body,
+                            comments: issues.comments,
+                            created_at: issues.created_at,
+                            html_url: issues.html_url,
+                            login: issues.user.login,
+                            avatar_url: issues.user.avatar_url,
+                        }
+                    })
+                };
+
+                console.log(res)
+
+                response.render('main/index', issues)
+            });
+
+        });
 
 //function to authenticate user
 function ensureAuthenticated(req, res, next) {
