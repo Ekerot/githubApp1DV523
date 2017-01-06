@@ -55,7 +55,7 @@ router.use(passport.session());
 //----------------------------------------------------------------------------------------
 
     router.get('/auth/github',
-        passport.authenticate('github', {scope: ['user:email', 'admin:repo_hook']}),
+        passport.authenticate('github', {scope: ['admin:repo_hook']}),
         function (req, res) {
 
         });
@@ -133,9 +133,6 @@ router.use(passport.session());
             type: "oauth",
             token: process.env.AUTH_TOKEN
         });
-
-        console.log(request.user.username)
-        console.log(request.params.name)
 
         //TODO: Create new hook does not work, fix it!
 
