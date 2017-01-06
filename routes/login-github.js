@@ -57,13 +57,14 @@ router.use(passport.session());
 router.get('/auth/github',
     passport.authenticate('github', {scope: ['admin:repo_hook']}),
     function (req, res) {
-
     });
 
 router.get('/auth/github/callback',                             //authentication callback, selecting all repos
     // and listing them in the nav bar
     passport.authenticate('github', {failureRedirect: '/'}),
     function (req, res) {
+
+        console.log(req.session)
 
         let github = new GitHubApi({  //setup to access the GitHub API
             // optional
