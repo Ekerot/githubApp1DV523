@@ -168,7 +168,7 @@ router.use(passport.session());
 
                 issues: jsonObject.map(function (issues) {
                     return {
-
+                        repo: issues.repo,
                         title: issues.title,
                         id: issues.id,
                         body: issues.body,
