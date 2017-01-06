@@ -106,7 +106,7 @@ router.get('/auth/github/callback',                             //authentication
 
 //TODO: Logout should work from all different locations
 
-router.get('/*/logout', function (req, res) { //logout function, kill/clear cookie manually
+router.get('/.*/logout', function (req, res) { //logout function, kill/clear cookie manually
     req.session.destroy(function() {
         res.clearCookie('connect.sid');
         res.redirect('/');
@@ -136,8 +136,10 @@ router.route('/issues/:name')
 
         //TODO: Create new hook does not work, fix it!
 
+        let username = request.user.username
+
         github.repos.createHook({
-            "owner": request.user.username,
+            "owner": username,
             "repo": request.params.name,
             "name": "web",
             "active": true,
