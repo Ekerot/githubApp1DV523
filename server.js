@@ -42,6 +42,7 @@ io.on('connection', function(){
 app.use(webhookHandler); // use middleware to get webhooks
 
 webhookHandler.on('*', function (event, repo, data) {
+    console.log(event)
     io.emit('webhook', data);
 });
 
