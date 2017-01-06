@@ -156,7 +156,7 @@ router.route('/:name')
         }, function (err, req, res) {
 
             console.log(err);
-
+            response.redirect('/:name/issues');
         });
 
         response.redirect('/:name/issues');
