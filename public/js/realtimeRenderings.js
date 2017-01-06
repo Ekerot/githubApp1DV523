@@ -47,8 +47,8 @@ socket.on('webhook', function(hook) {
                 .append($('<a>').attr('href', hook.issue.html_url).text('Link')));
 
 
-            $(selector).find(".card-action").append($('<div>').attr('class', 'chip'))
-                .append($('<img class="round">').attr("src", hook.issue.user.avatar_url));
+            $(selector).find(".card-action").append($('<div>').attr('class', 'chip')
+                .append($('<img class="round">').attr("src", hook.issue.user.avatar_url)));
 
             $(selector).find('.chip').append($('<span>')
                 .attr('class', 'card-title').text(hook.issue.user.login));
