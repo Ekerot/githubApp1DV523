@@ -138,7 +138,7 @@ router.route('/:name')
 
             //get all issues from selected repo
             github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
-
+            console.log(res)
                 if(res.status = 404){
                     let username = request.user.username
 
@@ -165,8 +165,7 @@ router.route('/:name')
 
                     response.redirect('/:name/issues');
 
-                });
-                }
+                };
 
                 let jsonObject = res;
 
@@ -186,13 +185,10 @@ router.route('/:name')
                         }
                     })
                 };
-
-                console.log(res)
-
                 response.render('main/index', issues)
             });
 
-        });
+    });
 
 //function to authenticate user
 function ensureAuthenticated(req, res, next) {
