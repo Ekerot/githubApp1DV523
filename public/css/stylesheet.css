@@ -75,6 +75,14 @@ body {
     height:130%
 }
 
+.create-container{
+    margin-top:5%;
+    margin-left: 20%;
+    height: 50%;
+    width: 50%;
+
+}
+
 .user-background{
     resize: both;
 }
