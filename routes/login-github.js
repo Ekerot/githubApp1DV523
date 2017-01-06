@@ -139,7 +139,7 @@ router.route('/issues/:name')
         github.repos.createHook({
             "owner": request.user.username,
             "repo": request.params.name,
-            "name": "webb",
+            "name": "ekerot",
             "active": true,
             "events": [
                 "issues",
