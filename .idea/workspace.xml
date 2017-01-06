@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bb31e093-1d51-455c-881d-b9292affd450" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/realtimeRenderings.js" afterPath="$PROJECT_DIR$/public/js/realtimeRenderings.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/main/index.handlebars" afterPath="$PROJECT_DIR$/views/main/index.handlebars" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,7 +23,7 @@
     <favorites_list name="examination3" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.8980938">
+    <splitter split-orientation="horizontal" split-proportion="0.14126016">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
@@ -90,8 +91,8 @@
           <file leaf-file-name="realtimeRenderings.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/js/realtimeRenderings.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="615">
-                  <caret line="48" column="60" lean-forward="true" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
+                <state relative-caret-position="441">
+                  <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -103,7 +104,7 @@
                 <state relative-caret-position="375">
                   <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
                   <folding>
-                    <marker date="1483719600000" expanded="true" signature="76:1047" ph="..." />
+                    <marker date="1483720333000" expanded="true" signature="97:1017" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -116,8 +117,18 @@
           <file leaf-file-name="index.handlebars" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/views/main/index.handlebars">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="405">
-                  <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+                <state relative-caret-position="360">
+                  <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="nav.handlebars" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/views/partials/nav.handlebars">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="450">
+                  <caret line="30" column="6" lean-forward="true" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
@@ -181,8 +192,8 @@
         <option value="$PROJECT_DIR$/views/partials/nav.handlebars" />
         <option value="$PROJECT_DIR$/public/css/stylesheet.css" />
         <option value="$PROJECT_DIR$/routes/login-github.js" />
-        <option value="$PROJECT_DIR$/views/main/index.handlebars" />
         <option value="$PROJECT_DIR$/public/js/realtimeRenderings.js" />
+        <option value="$PROJECT_DIR$/views/main/index.handlebars" />
       </list>
     </option>
   </component>
@@ -202,8 +213,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="643" />
-    <option name="y" value="36" />
+    <option name="x" value="158" />
+    <option name="y" value="57" />
     <option name="width" value="1143" />
     <option name="height" value="1006" />
   </component>
@@ -491,12 +502,12 @@
       <workItem from="1483558914990" duration="3922000" />
       <workItem from="1483565394478" duration="10157000" />
       <workItem from="1483625505553" duration="13046000" />
-      <workItem from="1483640932472" duration="34045000" />
+      <workItem from="1483640932472" duration="34155000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="162030000" />
+    <option name="totallyTimeSpent" value="162140000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -508,10 +519,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="643" y="36" width="1143" height="1006" extended-state="0" />
+    <frame x="158" y="57" width="1143" height="1006" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12216956" sideWeight="0.48820058" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.122103386" sideWeight="0.48820058" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19146608" sideWeight="0.41622102" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871288" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -616,9 +627,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="23" lean-forward="false" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
-          <folding>
-            <marker date="1483719600000" expanded="true" signature="76:1047" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -699,9 +708,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="22" selection-end-column="6" />
-          <folding>
-            <marker date="1483719600000" expanded="true" signature="76:1047" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -779,14 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/nav.handlebars">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="6" lean-forward="true" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/login-github.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="979">
@@ -795,20 +794,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/main/index.handlebars">
+    <entry file="file://$PROJECT_DIR$/public/js/realtimeRenderings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <marker date="1483719600000" expanded="true" signature="76:1047" ph="..." />
-          </folding>
+        <state relative-caret-position="441">
+          <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/realtimeRenderings.js">
+    <entry file="file://$PROJECT_DIR$/views/partials/nav.handlebars">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="48" column="60" lean-forward="true" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
+        <state relative-caret-position="450">
+          <caret line="30" column="6" lean-forward="true" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/main/index.handlebars">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
           <folding />
         </state>
       </provider>
