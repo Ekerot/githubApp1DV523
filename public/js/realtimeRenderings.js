@@ -34,16 +34,16 @@ socket.on('webhook', function(hook) {
                 .append($('<div>').attr('class', 'card-content white-text')
                 .append($('<span>').attr('class', 'card-title').text(hook.issue.title))));
 
-            $(selector).find(".card-content white-text").append($('<p>')
+            $(selector).find(".card-content").append($('<p>')
                 .text(hook.issue.body));
 
-            $(selector).find(".card-content white-text").append($('<br>'));
+            $(selector).find(".card-content").append($('<br>'));
 
-            $(selector).find(".card-content white-text").append($('<p>')
+            $(selector).find(".card-content").append($('<p>')
                 .attr('class', 'comments').text('{{this.comments}} comments are written'))
 
 
-            $(selector).find('.card-content white-text').append($('<div>').attr('class', 'card-action')
+            $(selector).find('.card-content').append($('<div>').attr('class', 'card-action')
                 .append($('<a>').attr('href', hook.issue.html_url).text('Link')));
 
             $(selector).find(".card-action").append($('<p>')
