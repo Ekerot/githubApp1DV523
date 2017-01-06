@@ -140,7 +140,8 @@ router.route('/:name')
             console.log(res);
             if (err) console.log(err);
 
-            if (res.status = 200) {
+            if (github.repos.pingHook({repo: request.params.name, owner:request.user.username},
+                    function(err, req, res) => {req.status === 422})){
 
                 let jsonObject = res;
 
@@ -184,11 +185,8 @@ router.route('/:name')
                 }, function (err, req, res) {
 
                     console.log(err);
-                    response.redirect('/:name/issues');
+                    response.redirect('/:name');
                 });
-
-                response.redirect('/:name/issues');
-
             };
         });
     });
