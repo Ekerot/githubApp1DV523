@@ -106,7 +106,7 @@ router.get('/auth/github/callback',                             //authentication
 
 //TODO: Logout should work from all different locations
 
-router.get('issues/logout', function (req, res) { //logout function, kill/clear cookie manually
+router.get('/*/logout', function (req, res) { //logout function, kill/clear cookie manually
     req.session.destroy(function() {
         res.clearCookie('connect.sid');
         res.redirect('/');
