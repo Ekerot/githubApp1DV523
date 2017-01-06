@@ -137,10 +137,8 @@ router.route('/issues/:name')
         //TODO: Create new hook does not work, fix it!
 
         github.repos.createHook({
-            "owner": request.user.username,
-            "repo": request.params.name,
             "name": "webb",
-            "active": "true"
+            "active": "true,
             "events": [
                 "issues",
                 "issue_comment"
