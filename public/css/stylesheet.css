@@ -45,9 +45,13 @@ body {
 }
 
 .row{
-
     margin-left:40%;
     margin-top: 5%;
+}
+
+.col s12 m6{
+    width:50%;
+    margin-left: 40%;
 }
 
 .issue{
