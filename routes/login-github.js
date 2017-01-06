@@ -135,69 +135,68 @@ router.route('/:name')
             token: process.env.AUTH_TOKEN
         });
 
-            let username = request.user.username
+        //get all issues from selected repo
+        github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
+            console.log(res);
+            if (err) console.log(err);
 
-            //get all issues from selected repo
-            github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
-                console.log(res);
-                if(err) console.log(err);
+            if (res.status = 200) {
 
-                if (res.status = 200) {
+                let jsonObject = res;
 
-                    let jsonObject = res;
+                let issues = {            //creating context variable to send to view
 
-                    let issues = {            //creating context variable to send to view
-
-                        issues: jsonObject.map(function (issues) {
-                            return {
-                                repo: request.params.name,
-                                title: issues.title,
-                                id: issues.id,
-                                body: issues.body,
-                                comments: issues.comments,
-                                created_at: issues.created_at,
-                                html_url: issues.html_url,
-                                login: issues.user.login,
-                                avatar_url: issues.user.avatar_url,
-                            }
-                        })
-                    };
-                    response.render('main/index', issues)
-                }
-
-            else{
-                    let username = request.user.username
-
-                    github.repos.createHook({
-                        "owner": username,
-                        "repo": request.params.name,
-                        "name": "web",
-                        "active": true,
-                        "events": [
-                            "issues",
-                            "issue_comment"
-                        ],
-                        "config": {
-                            "url": "https://www.ekerot.se/webhook",
-                            "content_type": "json",
-                            "secret": "kljfd9823u4nfkls923nfdjks989324",
-                            "insecure_ssl": "1"
+                    issues: jsonObject.map(function (issues) {
+                        return {
+                            repo: request.params.name,
+                            title: issues.title,
+                            id: issues.id,
+                            body: issues.body,
+                            comments: issues.comments,
+                            created_at: issues.created_at,
+                            html_url: issues.html_url,
+                            login: issues.user.login,
+                            avatar_url: issues.user.avatar_url,
                         }
-                    }, function (err, req, res) {
-
-                        console.log(err);
-                        response.redirect('/:name/issues');
-                    });
-
-                    response.redirect('/:name/issues');
-
+                    })
                 };
+                response.render('main/index', issues)
+            }
+
+            else {
+                let username = request.user.username
+
+                github.repos.createHook({
+                    "owner": username,
+                    "repo": request.params.name,
+                    "name": "web",
+                    "active": true,
+                    "events": [
+                        "issues",
+                        "issue_comment"
+                    ],
+                    "config": {
+                        "url": "https://www.ekerot.se/webhook",
+                        "content_type": "json",
+                        "secret": "kljfd9823u4nfkls923nfdjks989324",
+                        "insecure_ssl": "1"
+                    }
+                }, function (err, req, res) {
+
+                    console.log(err);
+                    response.redirect('/:name/issues');
+                });
+
+                response.redirect('/:name/issues');
+
+            };
+        });
     });
 
 //function to authenticate user
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    res.render('errors/401')
-}
+        function ensureAuthenticated(req, res, next) {
+            if (req.isAuthenticated()) { return next(); }
+            res.render('errors/401')
+        }
 
-module.exports = router;
+        module.exports = router;
