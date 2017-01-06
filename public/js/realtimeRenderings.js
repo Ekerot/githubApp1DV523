@@ -22,7 +22,11 @@ socket.on('webhook', function(hook) {
                 $(selector).remove();
                 break;
 
-            case 'created':
+            case 'edited':
+                $(selector).remove();
+                break;
+
+            case 'created' || 'deleted':
 
                 $(selector).find('.comments').text(hook.issue.comments + ' comments are written');
 
@@ -36,7 +40,7 @@ socket.on('webhook', function(hook) {
                     .append($('<div>').attr('class', 'card-content white-text')
                         .append($('<span>').attr('class', 'card-title').text(hook.issue.title))));
 
-                $(selector).find(".card-content").append($('<p>')
+                $(selector).find(".card-content").append($('<p>').attr('class', 'body')
                     .text(hook.issue.body));
 
                 $(selector).find(".card-content").append($('<br>'));
