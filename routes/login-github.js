@@ -29,15 +29,15 @@ passport.deserializeUser(function(obj, done) {
     done(null, obj);
 });
 
-    passport.use(new GitHubStrategy({
-            clientID: "7e66ee29510aa0f4db54",
-            clientSecret: "2284eb7c2af97ba1151befe9a98a3f009afda80c",
+    passport.use(new GitHubStrategy({                           //making a strategy to login with oauth2
+            clientID: process.env.CLIENT_ID,
+            clientSecret: process.env.CLIENT_SECRET,
             callbackURL: "https://www.ekerot.se/auth/github/callback"
         },
         function (accessToken, refreshToken, profile, done) {
             // asynchronous verification, for effect...
             process.nextTick(function () {
-                process.env['AUTH_TOKEN'] = accessToken;
+                process.env['AUTH_TOKEN'] = accessToken;a
                 return done(null, profile);
             });
         }
@@ -55,16 +55,17 @@ router.use(passport.session());
 //----------------------------------------------------------------------------------------
 
     router.get('/auth/github',
-        passport.authenticate('github', {scope: ['user:email']}),
+        passport.authenticate('github', {scope: ['user:email', 'admin:repo_hook']}),
         function (req, res) {
 
         });
 
-    router.get('/auth/github/callback',
+    router.get('/auth/github/callback',                             //authentication callback, selecting all repos
+                                                                    // and listing them in the nav bar
         passport.authenticate('github', {failureRedirect: '/'}),
         function (req, res) {
 
-            let github = new GitHubApi({
+            let github = new GitHubApi({  //setup to access the GitHub API
                 // optional
                 debug: true,
                 protocol: 'https',
@@ -73,16 +74,18 @@ router.use(passport.session());
                     'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
                 },
                 Promise: require('bluebird'),
-                followRedirects: false, // default: true; there's currently an issue with non-get redirects, so allow ability to disable follow-redirects
+                followRedirects: false,
                 timeout: 5000
             });
 
-            github.authenticate({
+            github.authenticate({  //authenticate user with Oauth
                 type: "oauth",
                 token: process.env.AUTH_TOKEN
             });
 
-            github.repos.getAll({type: 'owner'}, function(err, request){
+            github.repos.getAll({type: 'owner'}, function(err, request){  //get all repositories
+
+
 
                 let jsonObject = request;
 
@@ -101,7 +104,9 @@ router.use(passport.session());
 
         });
 
-    router.get('/logout', function (req, res) {
+    //TODO: Logout should work from all different locations
+
+    router.get('/logout', function (req, res) { //logout funcion, kill session manually
         req.session.destroy(function() {
         res.clearCookie('connect.sid');
             res.redirect('/');
@@ -132,6 +137,8 @@ router.use(passport.session());
         console.log(request.user.username)
         console.log(request.params.name)
 
+        //TODO: Create new hook does not work, fix it!
+
         github.repos.createHook({
             "owner": request.user.username,
             "repo": request.params.name,
@@ -152,7 +159,7 @@ router.use(passport.session());
 
         });
 
-
+        //get all issues from selected repo
         github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
 
             let jsonObject = res;
@@ -178,6 +185,7 @@ router.use(passport.session());
 
     });
 
+//function to authenticate user
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
     res.render('errors/401')
