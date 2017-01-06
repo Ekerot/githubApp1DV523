@@ -30,7 +30,7 @@ passport.deserializeUser(function(obj, done) {
 });
 
     passport.use(new GitHubStrategy({
-            clientID: process.env.CLIENT_ID,
+            clientID: "7e66ee29510aa0f4db54",
             clientSecret: process.env.CLIENT_SECRET,
             callbackURL: "https://www.ekerot.se/auth/github/callback"
         },
