@@ -10,7 +10,7 @@ socket.on('webhook', function(hook) {
 
     console.log(hook)
 
-    var selector = "li[id*='" + hook.issue.id + "']";
+    var selector = "div[class*='" + hook.issue.id + "col s12 m6']";
 
     console.log(hook)
 
@@ -28,26 +28,28 @@ socket.on('webhook', function(hook) {
 
 
         else if (hook.action === 'opened' || 'reopened') {
-            $('#list-issues').append($('<li>').attr('id', hook.issue.id + ' list-element'));
+            $('.row').append($('<div>').attr('class', '{{this.id}} col s12 m6'));
 
-            $(selector).append($('<div>').attr('class', 'collapsible-header red darken-1 white-text z-depth-5')
-                .append($('<i>').attr('class', 'material-icons').text('whatshot'))
-                .append($('<p>').text(hook.issue.title)));
+            $(selector).append($('<div>').attr('class', 'card blue-grey darken-1')
+                .append($('<div>').attr('class', 'card-content white-text')
+                .append($('<span>').attr('class', 'card-title').text(hook.issue.title))));
 
-            $(selector).append($('<div>').attr('class', 'collapsible-body')
-                .append($('<p>').attr('class', 'body').text(hook.issue.body)));
+            $(selector).find(".card-content white-text").append($('<p>')
+                .text(hook.issue.body));
 
-            $(selector).find(".collapsible-body").append($('<p>').attr('id', 'comments')
-                .text(hook.issue.comments + ' comments are written'));
+            $(selector).find(".card-content white-text").append($('<br>'));
 
-            $(selector).find(".collapsible-body").append($('<p>')
-                .append($('<a>').attr('href', hook.issue.html_url)
-                    .text(hook.issue.html_url)));
+            $(selector).find(".card-content white-text").append($('<p>')
+                .attr('class', 'comments').text('{{this.comments}} comments are written'))
 
-            $(selector).find(".collapsible-body").append($('<p>')
+
+            $(selector).find('.card-content white-text').append($('<div>').attr('class', 'card-action')
+                .append($('<a>').attr('href', hook.issue.html_url).text('Link')));
+
+            $(selector).find(".card-action").append($('<p>')
                 .text('Created at ' + hook.issue.created_at));
 
-            $(selector).find('.collapsible-body').append($('<div>').attr('class', 'chip')
+            $(selector).find(".card-action").append($('<div>').attr('class', 'chip')
                 .append($('<img>').attr({class:'round', src:hook.issue.user.avatar_url})));
 
             $(selector).find('.chip').append($('<span>')
@@ -56,7 +58,5 @@ socket.on('webhook', function(hook) {
     });
 });
 
-$(document).ready(function(){
-    $('.collapsible').collapsible();});
-
+//collapsible nav
 $(".button-collapse").sideNav();
