@@ -23,7 +23,7 @@ socket.on('webhook', function(hook) {
                 break;
 
             case 'edited':
-                $(selector).remove();
+                $(selector).find('.body').text(hook.issue.body);
                 break;
 
             case 'created' || 'deleted':
