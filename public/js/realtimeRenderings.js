@@ -43,7 +43,7 @@ socket.on('webhook', function(hook) {
                 .attr('class', 'comments').text(hook.issue.comments + ' comments are written'))
 
 
-            $(selector).find('.card-content').append($('<div>').attr('class', 'card-action')
+            $(selector).find('.card blue-grey darken-1').append($('<div>').attr('class', 'card-action')
                 .append($('<a>').attr('href', hook.issue.html_url).text('Link')));
 
 
