@@ -139,8 +139,33 @@ router.route('/:name')
 
             //get all issues from selected repo
             github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
-            console.log(res)
-                if(res.status = 404){
+                console.log(res);
+                if(err) console.log(err);
+
+                if (res.status = 200) {
+
+                    let jsonObject = res;
+
+                    let issues = {            //creating context variable to send to view
+
+                        issues: jsonObject.map(function (issues) {
+                            return {
+                                repo: request.params.name,
+                                title: issues.title,
+                                id: issues.id,
+                                body: issues.body,
+                                comments: issues.comments,
+                                created_at: issues.created_at,
+                                html_url: issues.html_url,
+                                login: issues.user.login,
+                                avatar_url: issues.user.avatar_url,
+                            }
+                        })
+                    };
+                    response.render('main/index', issues)
+                }
+
+            else{
                     let username = request.user.username
 
                     github.repos.createHook({
@@ -167,28 +192,6 @@ router.route('/:name')
                     response.redirect('/:name/issues');
 
                 };
-
-                let jsonObject = res;
-
-                let issues = {            //creating context variable to send to view
-
-                    issues: jsonObject.map(function (issues) {
-                        return {
-                            repo: request.params.name,
-                            title: issues.title,
-                            id: issues.id,
-                            body: issues.body,
-                            comments: issues.comments,
-                            created_at: issues.created_at,
-                            html_url: issues.html_url,
-                            login: issues.user.login,
-                            avatar_url: issues.user.avatar_url,
-                        }
-                    })
-                };
-                response.render('main/index', issues)
-            });
-
     });
 
 //function to authenticate user
