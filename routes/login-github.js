@@ -55,7 +55,7 @@ router.use(passport.session());
 //----------------------------------------------------------------------------------------
 
     router.get('/auth/github',
-        passport.authenticate('github', {scope: ['admin:repo_hook']}),
+        passport.authenticate('github', {scope: ['user:email']}),
         function (req, res) {
 
         });
