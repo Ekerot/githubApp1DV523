@@ -26,7 +26,13 @@ socket.on('webhook', function(hook) {
                 $(selector).find('.body').text(hook.issue.body);
                 break;
 
-            case 'created' || 'deleted':
+            case 'created':
+
+                $(selector).find('.comments').text((hook.issue.comments + 1) + ' comments are written');
+
+                break;
+
+            case 'deleted':
 
                 $(selector).find('.comments').text((hook.issue.comments + 1) + ' comments are written');
 
