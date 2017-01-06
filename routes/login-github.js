@@ -143,6 +143,8 @@ router.route('/:name')
             github.repos.pingHook({repo: request.params.name, owner: request.user.username},
                 function (err, req, res) {
 
+                console.log(req.status === 422)
+
                     if (err) console.log(err);
 
                     if (req.status === 422) {
