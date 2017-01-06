@@ -138,6 +138,7 @@ router.route('/issues/:name')
 
         github.repos.createHook({
             "name": "webb",
+            "active": true,
             "secret": "kljfd9823u4nfkls923nfdjks989324",
             "insecure_ssl": "1",
             "events": [
