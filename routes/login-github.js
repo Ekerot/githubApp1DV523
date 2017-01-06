@@ -129,10 +129,13 @@ router.use(passport.session());
             token: process.env.AUTH_TOKEN
         });
 
+        console.log(request.user.username)
+        console.log(request.params.name)
+
         github.repos.createHook({
             "owner": request.user.username,
             "repo": request.params.name,
-            "name": "ekerot",
+            "name": "webb",
             "config": {
                 "url": "https://www.ekerot.se/webhook",
                 "content_type": "json"
