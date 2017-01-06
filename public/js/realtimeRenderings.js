@@ -28,7 +28,7 @@ socket.on('webhook', function(hook) {
 
 
         else if (hook.action === 'opened' || 'reopened') {
-            $('.row').append($('<div>').attr('class', '{{this.id}} col s12 m6'));
+            $('.row').append($('<div>').attr('class', hook.issue.id + ' col s12 m6'));
 
             $(selector).append($('<div>').attr('class', 'card blue-grey darken-1')
                 .append($('<div>').attr('class', 'card-content white-text')
