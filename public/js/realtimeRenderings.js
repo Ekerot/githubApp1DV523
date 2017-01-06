@@ -48,7 +48,7 @@ socket.on('webhook', function(hook) {
 
 
             $(selector).find(".card-action").append($('<div>').attr('class', 'chip'))
-                .append($('<img>').attr({class:'round', src:hook.issue.user.avatar_url}));
+                .append($('<img class="round">').attr("src", hook.issue.user.avatar_url));
 
             $(selector).find('.chip').append($('<span>')
                 .attr('class', 'card-title').text(hook.issue.user.login));
