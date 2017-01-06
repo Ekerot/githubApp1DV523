@@ -131,7 +131,7 @@ router.route('/:name')
         });
 
         github.authenticate({
-            type: "oauth",
+            type: 'oauth',
             token: process.env.AUTH_TOKEN
         });
 
@@ -140,54 +140,60 @@ router.route('/:name')
             console.log(res);
             if (err) console.log(err);
 
-            if (github.repos.pingHook({repo: request.params.name, owner:request.user.username},
-                    function(err, req, res) => {req.status === 422})){
+            github.repos.pingHook({repo: request.params.name, owner: request.user.username},
+                function (err, req, res) {
 
-                let jsonObject = res;
+                    if (err) console.log(err);
 
-                let issues = {            //creating context variable to send to view
+                    if (req.status === 422) {
 
-                    issues: jsonObject.map(function (issues) {
-                        return {
-                            repo: request.params.name,
-                            title: issues.title,
-                            id: issues.id,
-                            body: issues.body,
-                            comments: issues.comments,
-                            created_at: issues.created_at,
-                            html_url: issues.html_url,
-                            login: issues.user.login,
-                            avatar_url: issues.user.avatar_url,
-                        }
-                    })
-                };
-                response.render('main/index', issues)
-            }
+                        let jsonObject = res;
 
-            else {
-                let username = request.user.username
+                        let issues = {            //creating context variable to send to view
 
-                github.repos.createHook({
-                    "owner": username,
-                    "repo": request.params.name,
-                    "name": "web",
-                    "active": true,
-                    "events": [
-                        "issues",
-                        "issue_comment"
-                    ],
-                    "config": {
-                        "url": "https://www.ekerot.se/webhook",
-                        "content_type": "json",
-                        "secret": "kljfd9823u4nfkls923nfdjks989324",
-                        "insecure_ssl": "1"
+                            issues: jsonObject.map(function (issues) {
+                                return {
+                                    repo: request.params.name,
+                                    title: issues.title,
+                                    id: issues.id,
+                                    body: issues.body,
+                                    comments: issues.comments,
+                                    created_at: issues.created_at,
+                                    html_url: issues.html_url,
+                                    login: issues.user.login,
+                                    avatar_url: issues.user.avatar_url,
+                                }
+                            })
+                        };
+                        response.render('main/index', issues)
                     }
-                }, function (err, req, res) {
 
-                    console.log(err);
-                    response.redirect('/:name');
+                    else {
+                        let username = request.user.username;
+
+                        github.repos.createHook({
+                            "owner": username,
+                            "repo": request.params.name,
+                            "name": "web",
+                            "active": true,
+                            "events": [
+                                "issues",
+                                "issue_comment"
+                            ],
+                            "config": {
+                                "url": "https://www.ekerot.se/webhook",
+                                "content_type": "json",
+                                "secret": "kljfd9823u4nfkls923nfdjks989324",
+                                "insecure_ssl": "1"
+                            }
+                        }, function (err, req, res) {
+
+                            console.log(err);
+                            response.redirect('/:name');
+                        });
+                    }
+                    ;
                 });
-            };
         });
     });
 
