@@ -10,7 +10,7 @@ socket.on('webhook', function(hook) {
 
     console.log(hook)
 
-    var selector = "li[id*='" + hook.issue.id + "']";
+    var selector = "div[id*='" + hook.issue.id + "']";
 
     console.log(hook)
 
