@@ -168,6 +168,7 @@ router.use(passport.session());
 
                 issues: jsonObject.map(function (issues) {
                     return {
+
                         title: issues.title,
                         id: issues.id,
                         body: issues.body,
@@ -179,6 +180,8 @@ router.use(passport.session());
                     }
                 })
             };
+
+            console.log(res)
 
             response.render('main/index', issues)
     });

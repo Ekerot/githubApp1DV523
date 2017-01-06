@@ -1,6 +1,7 @@
 <div class="container">
     <div class="row">
         {{#if issues }}
+        <li id="{{this.title}} list-element">
             <ul id="list-issues" class="collapsible large issue" data-collapsible="accordion">
                 {{#each issues}}
                     <li id="{{this.id}} list-element">
