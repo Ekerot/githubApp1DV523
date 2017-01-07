@@ -44,8 +44,8 @@ body {
     right:100%;
 }
 
-.row{
-    margin-left: 70%;
+.r{
+    float:right;
     margin-top: 5%;
 }
 
