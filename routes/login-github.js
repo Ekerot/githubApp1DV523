@@ -104,7 +104,7 @@ router.get('/auth/github/callback',                             //authentication
         });
     });
 
-router.get('/:route/logout', ensureAuthenticated, function (req, res) {  //logout function, kill/clear cookie manually
+router.get('/:route/logout', function (req, res) {  //logout function, kill/clear cookie manually
     // --- .logout() not supported in Express 4
     req.session.destroy(function() {
         res.clearCookie('connect.sid');
@@ -140,7 +140,7 @@ router.route('/:name')
 
                 let jsonObject = res;
 
-                let issues = {            //creating context variable to send to view
+                request.session['issues'] = {            //creating context variable to send to view
 
                     issues: jsonObject.map(function (issues) {
                         return {
@@ -155,7 +155,7 @@ router.route('/:name')
                         }
                     })
                 };
-                response.render('main/index', issues)
+                response.render('main/index', request.session)
             })
     });
 
