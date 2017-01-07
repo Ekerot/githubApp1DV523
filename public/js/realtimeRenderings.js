@@ -36,7 +36,8 @@ socket.on('webhook', function(hook) {
 
                 break;
 
-            case 'reopened'||'opened':
+            case 'opened':
+            case 'reopened':
 
 
                 $('.row').append($('<div>').attr({'id': hook.issue.id, 'class': 'col s12 m6'}));
@@ -48,9 +49,9 @@ socket.on('webhook', function(hook) {
                 $(selector).find(".card-content").append($('<p>').attr('class', 'body')
                     .text(hook.issue.body));
 
-                $(selector).find(".card-content").append($('<br>'));
+                $(selector).find('.card-content').append($('<br>'));
 
-                $(selector).find(".card-content").append($('<p>')
+                $(selector).find('.card-content').append($('<p>')
                     .attr('class', 'comments').text(hook.issue.comments + ' comments are written'))
 
 
@@ -58,7 +59,7 @@ socket.on('webhook', function(hook) {
                     .append($('<a>').attr('href', hook.issue.html_url).text('Link')));
 
 
-                $(selector).find(".card-action").append($('<div>').attr('class', 'chip')
+                $(selector).find('.card-action').append($('<div>').attr('class', 'chip')
                     .append($('<img class="round">').attr("src", hook.issue.user.avatar_url)));
 
                 $(selector).find('.chip').append($('<span>')
