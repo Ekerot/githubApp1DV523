@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb31e093-1d51-455c-881d-b9292affd450" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/login-github.js" afterPath="$PROJECT_DIR$/routes/login-github.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partials/nav.handlebars" afterPath="$PROJECT_DIR$/views/partials/nav.handlebars" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,7 +22,7 @@
     <favorites_list name="examination3" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5897436">
+    <splitter split-orientation="horizontal" split-proportion="0.10337243">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
@@ -40,7 +40,7 @@
           <file leaf-file-name="login-github.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/login-github.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="414">
+                <state relative-caret-position="609">
                   <caret line="102" column="42" lean-forward="true" selection-start-line="102" selection-start-column="42" selection-end-line="102" selection-end-column="42" />
                   <folding />
                 </state>
@@ -94,8 +94,8 @@
           <file leaf-file-name="nav.handlebars" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/views/partials/nav.handlebars">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="8" column="67" lean-forward="false" selection-start-line="8" selection-start-column="67" selection-end-line="8" selection-end-column="67" />
+                <state relative-caret-position="450">
+                  <caret line="30" column="6" lean-forward="true" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
@@ -159,8 +159,8 @@
         <option value="$PROJECT_DIR$/views/main/index.handlebars" />
         <option value="$PROJECT_DIR$/public/js/realtimeRenderings.js" />
         <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/views/partials/nav.handlebars" />
         <option value="$PROJECT_DIR$/routes/login-github.js" />
+        <option value="$PROJECT_DIR$/views/partials/nav.handlebars" />
       </list>
     </option>
   </component>
@@ -180,8 +180,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="61" />
-    <option name="y" value="26" />
+    <option name="x" value="492" />
+    <option name="y" value="76" />
     <option name="width" value="1386" />
     <option name="height" value="976" />
   </component>
@@ -469,12 +469,12 @@
       <workItem from="1483558914990" duration="3922000" />
       <workItem from="1483565394478" duration="10157000" />
       <workItem from="1483625505553" duration="13046000" />
-      <workItem from="1483640932472" duration="46650000" />
+      <workItem from="1483640932472" duration="46916000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174635000" />
+    <option name="totallyTimeSpent" value="174901000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -486,7 +486,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="61" y="26" width="1386" height="976" extended-state="0" />
+    <frame x="492" y="76" width="1386" height="976" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.122103386" sideWeight="0.48820058" order="0" side_tool="false" content_ui="combo" />
@@ -763,18 +763,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/nav.handlebars">
+    <entry file="file://$PROJECT_DIR$/routes/login-github.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="67" lean-forward="false" selection-start-line="8" selection-start-column="67" selection-end-line="8" selection-end-column="67" />
+        <state relative-caret-position="609">
+          <caret line="102" column="42" lean-forward="true" selection-start-line="102" selection-start-column="42" selection-end-line="102" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/login-github.js">
+    <entry file="file://$PROJECT_DIR$/views/partials/nav.handlebars">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="102" column="42" lean-forward="true" selection-start-line="102" selection-start-column="42" selection-end-line="102" selection-end-column="42" />
+        <state relative-caret-position="450">
+          <caret line="30" column="6" lean-forward="true" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
           <folding />
         </state>
       </provider>
