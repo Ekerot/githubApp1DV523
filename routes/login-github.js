@@ -133,7 +133,7 @@ router.route('/:name')
             token: process.env.AUTH_TOKEN
         });
 
-        let username = request.user.username;
+        let username = response.user.username;
 
         github.repos.pingHook({owner:request.user.username}, {repo:request.params.name},
             {id:request.session.repo.id}, (req, res) => {
