@@ -45,7 +45,7 @@ body {
 }
 
 .row{
-    margin-left:40%;
+    margin-left:55%;
     margin-top: 5%;
 }
 
@@ -84,5 +84,5 @@ body {
 }
 
 .user-background{
-    resize: both;
+    height: 20%;
 }
