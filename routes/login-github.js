@@ -86,7 +86,7 @@ router.get('/auth/github/callback',                             //authentication
 
             let jsonObject = request;
 
-            req.session['repo'] = {            //creating context variable to send to view
+            let repos = {            //creating context variable to send to view
 
                 repo: jsonObject.map(function (repo) {
                     return {
@@ -95,6 +95,9 @@ router.get('/auth/github/callback',                             //authentication
                     }
                 })
             };
+
+            req.session['repo'] = JSON.stringify(repos)
+
             req.session['nav'] = {
                         avatar_url: req.user._json.avatar_url,
                         email: req.user._json.email,
@@ -107,7 +110,7 @@ router.get('/auth/github/callback',                             //authentication
         });
     });
 
-router.get('/:route/logout', function (req, res) {  //logout function, kill/clear cookie manually
+router.get('/:route/logout', ensureAuthenticated, function (req, res) {  //logout function, kill/clear cookie manually
                                                     // --- .logout() not supported in Express 4
     req.session.destroy(function() {
         res.clearCookie('connect.sid');
