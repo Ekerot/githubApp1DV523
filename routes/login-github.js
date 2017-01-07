@@ -103,8 +103,8 @@ router.get('/auth/github/callback',                             //authentication
 
             let data = {repo, user:user};
 
-            req.session[lebenhaus] = JSON.stringify(user);
-            req.session[repo] = JSON.stringify(repo);
+
+            req.session[user] = JSON.stringify({repo:repo, user:user});
 
             console.log(req.session)
 
