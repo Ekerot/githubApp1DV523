@@ -151,7 +151,7 @@ router.route('/:name')
                             created_at: issues.created_at,
                             html_url: issues.html_url,
                             login: issues.user.login,
-                            avatar_url: issues.user.avatar_url,
+                            avatar_url: issues.user.avatar_url
                         }
                     })
                 };
