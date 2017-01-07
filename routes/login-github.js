@@ -120,8 +120,6 @@ router.get('/:route/logout', function (req, res) {  //logout function, kill/clea
 router.route('/:name')
     .get(ensureAuthenticated, function(request, response) {
 
-        console.log('hej hej')
-
         let github = new GitHubApi({
             // optional
             debug: true,
@@ -140,13 +138,17 @@ router.route('/:name')
             token: process.env.AUTH_TOKEN
         });
 
+        console.log(request.user)
+
+        console.log(request.params.name);
+        cponsle.log(request.user.username)
+
         github.repos.pingHook({repo: request.params.name, owner: request.user.username},
             function (err, req, res) {
 
             console.log(err);
 
-                    let username = request.user.username;
-
+            let username = request.user.username;
 
             });
 
@@ -154,8 +156,6 @@ router.route('/:name')
         github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
 
             let jsonObject = res;
-
-            console.log(res)
 
             let issues = {            //creating context variable to send to view
 
