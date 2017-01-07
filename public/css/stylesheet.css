@@ -45,7 +45,7 @@ body {
 }
 
 .row{
-    margin-left:55%;
+    margin-left: 70%;
     margin-top: 5%;
 }
 
@@ -84,5 +84,6 @@ body {
 }
 
 .user-background{
+    image-resolution: 50dppx;
     height: 20%;
 }
