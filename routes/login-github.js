@@ -167,6 +167,8 @@ router.route('/:name')
                     })
                 };
                 response.render('main/index', issues)
+            }).catch(function(err){
+                console.log(err)
             });
     });
 
