@@ -131,7 +131,6 @@ router.route('/:name')
 
             //get all issues from selected repo
             github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
-                console.log(res);
                 if (err) console.log(err);
 
                 github.repos.pingHook({repo: request.params.name, owner: request.user.username},
@@ -139,7 +138,7 @@ router.route('/:name')
 
                         if (err) console.log(err);
 
-                        if (err.message.errors.message === "Hook already exists on this repository") {
+                        if (message.errors.message == "Hook already exists on this repository") {
 
                             let jsonObject = res;
 
