@@ -96,7 +96,6 @@ router.get('/auth/github/callback',                             //authentication
                 })
             };
             let user = {
-                        id: req.user.id,
                         avatar_url: req.user._json.avatar_url,
                         email: req.user._json.email,
                         displayName: req.user.displayName
@@ -171,7 +170,7 @@ router.route('/:name')
 
                 if (err) console.log(err);
 
-                if (err) {
+                if (!err.message.errors.mesage("Hook already exists on this repository")) {
 
                     let username = request.user.username;
 
