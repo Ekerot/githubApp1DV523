@@ -156,8 +156,8 @@ router.route('/:name')
                     })
                 };
 
-                console.log(req.session)
-                response.render('main/index', req.session)
+                console.log(request.session)
+                response.render('main/index', request.session)
             })
     });
 
