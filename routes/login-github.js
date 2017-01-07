@@ -98,6 +98,8 @@ router.get('/auth/github/callback',                             //authentication
 
             let data = {repo:repo, user:req.user};
 
+            console.log(data)
+
             res.render('main/index', data)
         });
     });
