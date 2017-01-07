@@ -86,7 +86,7 @@ router.get('/auth/github/callback',                             //authentication
 
             let jsonObject = request;
 
-            req.session = {
+            req.session['repo'] = {
                 repo: jsonObject.map(function (repo) {
                     return {
                         name: repo.name,
@@ -99,8 +99,6 @@ router.get('/auth/github/callback',                             //authentication
                 email: req.user._json.email,
                 displayName: req.user.displayName
             };
-
-            console.log(req.session)
 
             res.render('main/index', req.session)
         });
@@ -134,7 +132,6 @@ router.route('/:name')
                 type: 'oauth',
                 token: process.env.AUTH_TOKEN
             })
-            console.log(request)
 
             //TODO: Get sessionId get repository ID seperate usersSession and use session to store values
 
