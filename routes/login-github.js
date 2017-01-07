@@ -101,8 +101,6 @@ router.get('/auth/github/callback',                             //authentication
                         email: req.user._json.email,
                         displayName: req.user.displayName
                     }
-                })
-            };
 
             res.render('main/index', repo)
         });
