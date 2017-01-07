@@ -9,8 +9,8 @@
             <a href="#!email"><span class="white-text email">{{user._json.email}}</span></a>
         </div></li>
 
-        {{#each repo}}
-            <li><a class="waves-effect" href="/issues/{{repo.name}}">{{repo.name}}</a></li>
+        {{#each repo.repo}}
+            <li><a class="waves-effect" href="/issues/{{this.name}}">{{this.name}}</a></li>
         {{/each}}
         <br>
         <li><div class="divider"></div></li>

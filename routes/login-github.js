@@ -99,6 +99,8 @@ router.get('/auth/github/callback',                             //authentication
 
             let data = repo + req.user;
 
+            console.log(data);
+
             res.render('main/index', data)
         });
     });
