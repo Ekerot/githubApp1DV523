@@ -10,7 +10,7 @@
         </div></li>
         {{#if repo}}
             <a href="/logout" class="register, waves-effect grey-light btn">Logout</a>
-            {{#each repo}}
+            {{#each repo.repo}}
                 <li><a class="waves-effect" href="/{{this.name}}">{{this.name}}</a></li>
             {{/each}}
             {{else}}
