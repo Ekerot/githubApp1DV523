@@ -104,7 +104,7 @@ router.get('/auth/github/callback',                             //authentication
         });
     });
 
-router.get('/:route/logout', function (req, res) {  //logout function, kill/clear cookie manually
+router.get('/logout', function (req, res) {  //logout function, kill/clear cookie manually
     // --- .logout() not supported in Express 4
     req.session.destroy(function() {
         res.clearCookie('connect.sid');
