@@ -36,7 +36,7 @@ socket.on('webhook', function(hook) {
 
                 break;
 
-            case 'reopened' || 'opened':
+            case 'reopened'||'opened':
 
 
                 $('.row').append($('<div>').attr({'id': hook.issue.id, 'class': 'col s12 m6'}));
