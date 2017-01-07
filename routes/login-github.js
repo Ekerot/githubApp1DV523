@@ -104,7 +104,7 @@ router.get('/auth/github/callback',                             //authentication
             let data = {repo, user:user};
 
 
-            req.session = JSON.stringify({repo, user});
+            req.session['repo'] = JSON.stringify({repo, user});
 
             console.log(req.session)
 
