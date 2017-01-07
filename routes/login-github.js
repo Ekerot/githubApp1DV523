@@ -106,6 +106,8 @@ router.get('/auth/github/callback',                             //authentication
             req.session[repo] = repo;
             req.session[user] = user;
 
+            console.log(req.session)
+
             res.render('main/index', req.session)
         });
     });
