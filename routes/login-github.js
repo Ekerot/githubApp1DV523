@@ -136,7 +136,9 @@ router.route('/:name')
             github.authenticate({
                 type: 'oauth',
                 token: process.env.AUTH_TOKEN
-            });
+            }).catch(function(err){
+                console.log(err)
+            })
 
             console.log(request.params.name)
 
