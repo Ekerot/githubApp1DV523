@@ -10,9 +10,23 @@ const   bodyParser = require('body-parser');
 const   path = require('path');
 const   GitHubWebHook = require('express-github-webhook');
 const   webhookHandler = GitHubWebHook({path: '/webhook', secret: process.env.SECRET_TOKEN});
+const   session = require('express-session');
 
 const   app = express();
 const   port = process.env.PORT || 3000;
+
+//-------- set up session ---------------------
+
+app.use(session({
+    secret: "keyboardcat",
+    name: "mycookie",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        secure: false,
+        maxAge: 6000000
+    }
+}));
 
 // ------- set up websocket -------------------
 
