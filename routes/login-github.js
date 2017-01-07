@@ -31,7 +31,7 @@ passport.deserializeUser(function(obj, done) {
 
 passport.use(new GitHubStrategy({                           //making a strategy to login with oauth2
         clientID: "7e66ee29510aa0f4db54",
-        clientSecret: "57ee389384a77d0417635e2dfe29273c5f987c72",
+        clientSecret: "2284eb7c2af97ba1151befe9a98a3f009afda80c",
         callbackURL: "https://www.ekerot.se/auth/github/callback"
     },
     function (accessToken, refreshToken, profile, done) {
