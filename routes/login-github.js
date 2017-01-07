@@ -99,7 +99,7 @@ router.get('/auth/github/callback',                             //authentication
 
             let user = req.user
 
-            let data = {repo:repo, user:req.user};
+            let data = {repo:repo, user:user};
 
             res.render('main/index', data)
         });
