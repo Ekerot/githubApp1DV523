@@ -170,7 +170,7 @@ router.route('/:name')
 
                 if (err) console.log(err);
 
-                if (!err.message.errors.mesage("Hook already exists on this repository")) {
+                if (!err.message.errors.message("Hook already exists on this repository")) {
 
                     let username = request.user.username;
 

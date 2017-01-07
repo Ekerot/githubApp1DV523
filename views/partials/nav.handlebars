@@ -8,17 +8,17 @@
             <a href="#!name"><span class="white-text name">{{user.displayName}}</span></a>
             <a href="#!email"><span class="white-text email">{{user.email}}</span></a>
         </div></li>
-        <li><div class="divider"></div></li>
-        <br>
-        {{#each repo.repo}}
+        {{#if repo.repo}}
+            <li><div class="divider"></div></li>
             <a href="logout/" class="register, waves-effect waves-light btn">Logout</a>
-            <li><a class="waves-effect" href="/{{this.name}}">{{this.name}}</a></li>
-        {{/each}}
+            <br>
+            {{#each repo.repo}}
+                <li><a class="waves-effect" href="/{{this.name}}">{{this.name}}</a></li>
+            {{/each}}
+
+        {{/if}}
         <a class="login-button, waves-effect waves-light btn" href="/auth/github">Login</a>
     </ul>
-
     <i href="#" data-activates="slide-out" class="button-collapse material-icons menu">menu</i></a>
-
     <img class="logo" src="/images/logo.jpg" alt="github logo"/>
-
 </nav>
