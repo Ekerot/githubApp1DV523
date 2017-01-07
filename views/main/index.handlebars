@@ -3,19 +3,19 @@
     <div class="row">
         {{#if issues }}
             {{#each issues}}
-                <div id="{{this.issues.id}}" class="col s12 m6">
+                <div id="{{this.id}}" class="col s12 m6">
                     <div class="card blue-grey darken-1">
                         <div class="card-content white-text">
-                            <span class="card-title">{{this.issues.title}}</span>
-                            <p class="body">{{this.issues.body}}</p>
+                            <span class="card-title">{{issues.title}}</span>
+                            <p class="body">{{this.body}}</p>
                             <br>
                             <p class="comments">
-                                {{this.issues.comments}} comments are written</p>
+                                {{issues.comments}} comments are written</p>
                         </div>
                         <div class="card-action">
-                            <a href="{{this.issues.html_url}}">Link</a>
+                            <a href="{{issues.html_url}}">Link</a>
                             <div class="chip">
-                                <img class="round" src="{{this.issues.avatar_url}}">
+                                <img class="round" src="{{issues.avatar_url}}">
                                 <span class="card-title">{{this.issues.login}}</span>
                             </div>
                         </div>
