@@ -140,9 +140,6 @@ router.route('/:name')
 
             console.log(request.user)
 
-            console.log(request.params.name);
-            console.log(request.user.username)
-
             console.log(request)
 
             //TODO: Get sessionId get repository ID seperate usersSession and use session to store values
