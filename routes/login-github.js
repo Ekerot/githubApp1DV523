@@ -118,7 +118,7 @@ router.get('/:route/logout', function (req, res) {  //logout function, kill/clea
 });
 
 router.route('/:name')
-    .get(function(err, request, response) {
+    .get(function(request, response) {
 
             let github = new GitHubApi({
                 // optional
@@ -137,9 +137,6 @@ router.route('/:name')
                 type: 'oauth',
                 token: process.env.AUTH_TOKEN
             })
-
-            console.log(request.params.name)
-
             console.log(request)
 
             //TODO: Get sessionId get repository ID seperate usersSession and use session to store values
