@@ -34,7 +34,7 @@ body {
     width: 90px;
 }
 
-.log-button{
+.logout-button{
     position: fixed;
     margin-top: 150px;
     height: 20px;
@@ -83,7 +83,7 @@ body {
 }
 
 .background{
-    height:190px;
+    height:145px;
 }
 
 .user-background{
