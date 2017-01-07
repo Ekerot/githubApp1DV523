@@ -140,6 +140,8 @@ router.route('/:name')
 
                 let jsonObject = req;
 
+                console.log(jsonObject)
+
                 request.session['issues'] = {
 
                     issues: jsonObject.map(function (issues) {
