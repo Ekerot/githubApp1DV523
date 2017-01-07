@@ -29,14 +29,14 @@ body {
 }
 
 .login-button{
-    margin-top: 180px;
     height: 20px;
     font-size: 10px;
     float: left;
+    margin-top: 180px;
 }
 
 .logout-button{
-    margin-top: 150px;
+
     height: 20px;
     font-size: 10px;
     float: left;
