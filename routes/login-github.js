@@ -141,7 +141,7 @@ router.route('/:name')
         console.log(request.user)
 
         console.log(request.params.name);
-        cponsle.log(request.user.username)
+        console.log(request.user.username)
 
         github.repos.pingHook({repo: request.params.name, owner: request.user.username},
             function (err, req, res) {
