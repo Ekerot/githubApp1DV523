@@ -117,7 +117,7 @@ router.get('/:route/logout', function (req, res) {  //logout function, kill/clea
     });
 });
 
-router.route('/issues/:name')
+router.route('/issues/:this.name')
     .get(ensureAuthenticated, function(request, response) {
 
         console.log('hej hej')
