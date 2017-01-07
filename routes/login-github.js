@@ -78,11 +78,6 @@ router.get('/auth/github/callback',                             //authentication
             timeout: 5000
         });
 
-        github.authenticate({  //authenticate user with Oauth
-            type: "oauth",
-            token: process.env.AUTH_TOKEN
-        });
-
         github.repos.getAll({type: 'owner'}, function(err, request){  //get all repositories
 
             let jsonObject = request;
@@ -122,6 +117,11 @@ router.route('/issues/:name')
             Promise: require('bluebird'),
             followRedirects: false, // default: true; there's currently an issue with non-get redirects, so allow ability to disable follow-redirects
             timeout: 5000
+        });
+
+        github.authenticate({  //authenticate user with Oauth
+            type: "oauth",
+            token: process.env.AUTH_TOKEN
         });
 
         //get all issues from selected repo
