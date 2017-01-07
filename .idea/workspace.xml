@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bb31e093-1d51-455c-881d-b9292affd450" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/login-github.js" afterPath="$PROJECT_DIR$/routes/login-github.js" />
-    </list>
+    <list default="true" id="bb31e093-1d51-455c-881d-b9292affd450" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -481,12 +479,12 @@
       <workItem from="1483558914990" duration="3922000" />
       <workItem from="1483565394478" duration="10157000" />
       <workItem from="1483625505553" duration="13046000" />
-      <workItem from="1483640932472" duration="76851000" />
+      <workItem from="1483640932472" duration="76864000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="204836000" />
+    <option name="totallyTimeSpent" value="204849000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
