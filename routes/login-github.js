@@ -99,7 +99,7 @@ router.get('/auth/github/callback',                             //authentication
                 email: req.user._json.email,
                 displayName: req.user.displayName
             };
-               console.log(req.session)
+            console.log(req.session)
             res.render('main/index', req.session)
         });
     });
@@ -121,46 +121,76 @@ router.route('/:name')
             protocol: 'https',
             host: 'api.github.com', // should be api.github.com for GitHub
             headers: {
-                    'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
-                },
-                Promise: require('bluebird'),
-                followRedirects: false, // default: true; there's currently an issue with non-get redirects, so allow ability to disable follow-redirects
-                timeout: 5000
-            });
+                'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
+            },
+            Promise: require('bluebird'),
+            followRedirects: false, // default: true; there's currently an issue with non-get redirects, so allow ability to disable follow-redirects
+            timeout: 5000
+        });
 
-            github.authenticate({
-                type: 'oauth',
-                token: process.env.AUTH_TOKEN
-            })
+        github.authenticate({
+            type: 'oauth',
+            token: process.env.AUTH_TOKEN
+        });
 
-            //TODO: Get sessionId get repository ID seperate usersSession and use session to store values
+        let username = request.user.username;
 
-            //get all issues from selected repo
-            github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, req) {
+        github.repos.pingHook({owner:request.user.username}, {repo:request.params.name},
+                                {id:request.session.repo.repo.id}, (req, res) => {
 
-                let jsonObject = req;
+                                                           console.log(req)
 
-                console.log(jsonObject)
+    }
 
-                request.session['issues'] = {
+        github.repos.createHook({
+            "owner": username,
+            "repo": request.params.name,
+            "name": "web",
+            "active": true,
+            "events": [
+                "issues",
+                "issue_comment"
+            ],
+            "config": {
+                "url": "https://www.ekerot.se/webhook",
+                "content_type": "json",
+                "secret": "kljfd9823u4nfkls923nfdjks989324",
+                "insecure_ssl": "1"
+            }
+        }, function (err, req, res) {
 
-                    issues: jsonObject.map(function (issues) {
-                        return {
-                            title: issues.title,
-                            id: issues.id,
-                            body: issues.body,
-                            comments: issues.comments,
-                            created_at: issues.created_at,
-                            html_url: issues.html_url,
-                            login: issues.user.login,
-                            avatar_url: issues.user.avatar_url
-                        }
-                    })
-                };
+            console.log(err);
+            response.redirect('/:name');
+        });
 
-                console.log(request.session)
-                response.render('main/index', request.session)
-            })
+//TODO: Get sessionId get repository ID seperate usersSession and use session to store values
+
+//get all issues from selected repo
+        github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, req) {
+
+            let jsonObject = req;
+
+            console.log(jsonObject)
+
+            request.session['issues'] = {
+
+                issues: jsonObject.map(function (issues) {
+                    return {
+                        title: issues.title,
+                        id: issues.id,
+                        body: issues.body,
+                        comments: issues.comments,
+                        created_at: issues.created_at,
+                        html_url: issues.html_url,
+                        login: issues.user.login,
+                        avatar_url: issues.user.avatar_url
+                    }
+                })
+            };
+
+            console.log(request.session)
+            response.render('main/index', request.session)
+        })
     });
 
 //function to authenticate user
