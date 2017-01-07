@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bb31e093-1d51-455c-881d-b9292affd450" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/login-github.js" afterPath="$PROJECT_DIR$/routes/login-github.js" />
-    </list>
+    <list default="true" id="bb31e093-1d51-455c-881d-b9292affd450" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -25,11 +23,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.7561956">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/server.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="435">
-                  <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+                <state relative-caret-position="315">
+                  <caret line="21" column="11" lean-forward="false" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="19" />
                   <folding>
                     <marker date="1483792110000" expanded="true" signature="1551:1552" ph="{...}" />
                   </folding>
@@ -37,7 +35,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="login-github.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="login-github.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/login-github.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="374">
@@ -480,12 +478,12 @@
       <workItem from="1483558914990" duration="3922000" />
       <workItem from="1483565394478" duration="10157000" />
       <workItem from="1483625505553" duration="13046000" />
-      <workItem from="1483640932472" duration="61194000" />
+      <workItem from="1483640932472" duration="61612000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="189179000" />
+    <option name="totallyTimeSpent" value="189597000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -748,16 +746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding>
-            <marker date="1483792110000" expanded="true" signature="1551:1552" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/partials/nav.handlebars">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -787,6 +775,16 @@
         <state relative-caret-position="374">
           <caret line="131" column="72" lean-forward="false" selection-start-line="131" selection-start-column="72" selection-end-line="131" selection-end-column="72" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="11" lean-forward="false" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="19" />
+          <folding>
+            <marker date="1483792110000" expanded="true" signature="1551:1552" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
