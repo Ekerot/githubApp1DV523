@@ -8,11 +8,11 @@
             <a href="#!name"><span class="white-text name">{{passport.user.displayName}}</span></a>
             <a href="#!email"><span class="white-text email">{{passport.user.emails}}</span></a>
         </div></li>
-        {{#if passport.repo}}
+        {{#if repo.repo}}
             <li><div class="divider"></div></li>
             <a href="/logout" class="register, waves-effect waves-light btn">Logout</a>
             <br>
-            {{#each repo}}
+            {{#each repo.repo}}
                 <li><a class="waves-effect" href="/{{this.name}}">{{this.name}}</a></li>
             {{/each}}
 
