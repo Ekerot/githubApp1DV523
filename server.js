@@ -16,6 +16,22 @@ const   genuuid = require('uid-safe');
 const   app = express();
 const   port = process.env.PORT || 3000;
 
+//-------- set up session ---------------------
+
+app.use(session({
+    genid: function(req) {
+        return genuuid();// use UUIDs for session IDs
+    },
+    secret: "superDuperBestMunchiCookie",
+    name: "hwerethehellismysecretpasswordforgotitagain",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        secure: false,
+        maxAge: 6000000
+    }
+}));
+
 // ------- set up websocket -------------------
 
 const   http = app.listen(port);
