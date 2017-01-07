@@ -175,7 +175,7 @@ router.route('/:name')
 //function to authenticate user
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
-    res.render('errors/401')
+    res.render('errors/404')
 }
 
 module.exports = router;
