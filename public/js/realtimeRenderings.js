@@ -12,8 +12,6 @@ socket.on('webhook', function(hook) {
 
     var selector = "div[id*='" + hook.issue.id + "']";
 
-    console.log(hook)
-
     $(document).ready(function () {
 
         switch(hook.action) {
