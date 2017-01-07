@@ -121,6 +121,8 @@ router.get('/:route/logout', function (req, res) {  //logout function, kill/clea
 router.route('/:name')
     .get(ensureAuthenticated, function(request, response) {
 
+        console.log('hej hej')
+
         let github = new GitHubApi({
             // optional
             debug: true,
@@ -139,73 +141,63 @@ router.route('/:name')
             token: process.env.AUTH_TOKEN
         });
 
-        console.log('hej hej')
-
         //get all issues from selected repo
         github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
-            console.log(res);
+
             if (err) console.log(err);
 
-            if (req.session && req.session.id) {  //authorize
+            let jsonObject = res;
 
-            github.repos.pingHook({repo: request.params.name, owner: request.user.username},
-                function (err, req, res) {
+            let issues = {            //creating context variable to send to view
 
-                    console.log(req.status === 422)
-
-                    if (err) console.log(err);
-
-                    if (err.message.errors.message === "Hook already exists on this repository") {
-
-                        let jsonObject = res;
-
-                        let issues = {            //creating context variable to send to view
-
-                            issues: jsonObject.map(function (issues) {
-                                return {
-                                    repo: request.params.name,
-                                    title: issues.title,
-                                    id: issues.id,
-                                    body: issues.body,
-                                    comments: issues.comments,
-                                    created_at: issues.created_at,
-                                    html_url: issues.html_url,
-                                    login: issues.user.login,
-                                    avatar_url: issues.user.avatar_url,
-                                }
-                            })
-                        };
-                        response.render('main/index', issues)
+                issues: jsonObject.map(function (issues) {
+                    return {
+                        repo: request.params.name,
+                        title: issues.title,
+                        id: issues.id,
+                        body: issues.body,
+                        comments: issues.comments,
+                        created_at: issues.created_at,
+                        html_url: issues.html_url,
+                        login: issues.user.login,
+                        avatar_url: issues.user.avatar_url,
                     }
-
-                    else {
-                        let username = request.user.username;
-
-                        github.repos.createHook({
-                            "owner": username,
-                            "repo": request.params.name,
-                            "name": "web",
-                            "active": true,
-                            "events": [
-                                "issues",
-                                "issue_comment"
-                            ],
-                            "config": {
-                                "url": "https://www.ekerot.se/webhook",
-                                "content_type": "json",
-                                "secret": "kljfd9823u4nfkls923nfdjks989324",
-                                "insecure_ssl": "1"
-                            }
-                        }, function (err, req, res) {
-
-                            console.log(err);
-                            response.redirect('/:name');
-                        });
-                    }
-                    ;
-                });
-                };
+                })
+            };
+            response.render('main/index', issues)
         });
+
+        github.repos.pingHook({repo: request.params.name, owner: request.user.username},
+            function (err, req, res) {
+
+                if (err) console.log(err);
+
+                if (err.message.errors.message !== "Hook already exists on this repository") {
+
+                    let username = request.user.username;
+
+                    github.repos.createHook({
+                        "owner": username,
+                        "repo": request.params.name,
+                        "name": "web",
+                        "active": true,
+                        "events": [
+                            "issues",
+                            "issue_comment"
+                        ],
+                        "config": {
+                            "url": "https://www.ekerot.se/webhook",
+                            "content_type": "json",
+                            "secret": "kljfd9823u4nfkls923nfdjks989324",
+                            "insecure_ssl": "1"
+                        }
+                    }, function (err, req, res) {
+
+                        console.log(err);
+                        response.redirect('/:name');
+                    });
+                }
+            });
     });
 
 //function to authenticate user
