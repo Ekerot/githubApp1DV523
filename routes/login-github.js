@@ -114,7 +114,7 @@ router.get('/logout', function (req, res) {  //logout function, kill/clear cooki
 });
 
 router.route('/:name')
-    .get(ensureAuthenticated, function(err, request, response) {
+    .get(ensureAuthenticated, function(request, response) {
 
         let github = new GitHubApi({
             // optional
