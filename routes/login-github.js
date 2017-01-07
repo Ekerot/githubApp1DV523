@@ -1,3 +1,5 @@
+
+205 lines (168 sloc)  7 KB
 'use strict';
 
 /**
@@ -30,14 +32,15 @@ passport.deserializeUser(function(obj, done) {
 });
 
 passport.use(new GitHubStrategy({                           //making a strategy to login with oauth2
-        clientID: '7e66ee29510aa0f4db54',
-        clientSecret: '2284eb7c2af97ba1151befe9a98a3f009afda80c',
+        clientID: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
         callbackURL: "https://www.ekerot.se/auth/github/callback"
     },
     function (accessToken, refreshToken, profile, done) {
         // asynchronous verification, for effect...
         process.nextTick(function () {
             process.env['AUTH_TOKEN'] = accessToken;
+            console.log(profile);
             return done(null, profile);
         });
     }
@@ -64,6 +67,8 @@ router.get('/auth/github/callback',                             //authentication
     passport.authenticate('github', {failureRedirect: '/'}),
     function (req, res) {
 
+        console.log(req.session)
+
         let github = new GitHubApi({  //setup to access the GitHub API
             // optional
             debug: true,
@@ -75,6 +80,11 @@ router.get('/auth/github/callback',                             //authentication
             Promise: require('bluebird'),
             followRedirects: false,
             timeout: 5000
+        });
+
+        github.authenticate({  //authenticate user with Oauth
+            type: "oauth",
+            token: process.env.AUTH_TOKEN
         });
 
         github.repos.getAll({type: 'owner'}, function(err, request){  //get all repositories
@@ -102,7 +112,7 @@ router.get('/:route/logout', function (req, res) { //logout function, kill/clear
     });
 });
 
-router.route('/issues/:name')
+router.route('/:name')
     .get(ensureAuthenticated, function(request, response) {
 
         let github = new GitHubApi({
@@ -118,8 +128,8 @@ router.route('/issues/:name')
             timeout: 5000
         });
 
-        github.authenticate({  //authenticate user with Oauth
-            type: "oauth",
+        github.authenticate({
+            type: 'oauth',
             token: process.env.AUTH_TOKEN
         });
 
@@ -131,10 +141,34 @@ router.route('/issues/:name')
             github.repos.pingHook({repo: request.params.name, owner: request.user.username},
                 function (err, req, res) {
 
+                    console.log(req.status === 422)
+
                     if (err) console.log(err);
 
-                    if (req.message.errors.message !== "Hook already exists on this repository") {
+                    if (err.message.errors.message === "Hook already exists on this repository") {
 
+                        let jsonObject = res;
+
+                        let issues = {            //creating context variable to send to view
+
+                            issues: jsonObject.map(function (issues) {
+                                return {
+                                    repo: request.params.name,
+                                    title: issues.title,
+                                    id: issues.id,
+                                    body: issues.body,
+                                    comments: issues.comments,
+                                    created_at: issues.created_at,
+                                    html_url: issues.html_url,
+                                    login: issues.user.login,
+                                    avatar_url: issues.user.avatar_url,
+                                }
+                            })
+                        };
+                        response.render('main/index', issues)
+                    }
+
+                    else {
                         let username = request.user.username;
 
                         github.repos.createHook({
@@ -154,36 +188,13 @@ router.route('/issues/:name')
                             }
                         }, function (err, req, res) {
 
-                            if(err) console.log(err);
-
-                            response.redirect('issues/:name');
+                            console.log(err);
+                            response.redirect('/:name');
                         });
-                    };
-                });
-
-            console.log(res)
-
-            let jsonObject = res;
-
-            let issues = {            //creating context variable to send to view
-
-                issues: jsonObject.map(function (issues) {
-                    return {
-                        repo: request.params.name,
-                        title: issues.title,
-                        id: issues.id,
-                        body: issues.body,
-                        comments: issues.comments,
-                        created_at: issues.created_at,
-                        html_url: issues.html_url,
-                        login: issues.user.login,
-                        avatar_url: issues.user.avatar_url,
                     }
-                })
-            };
-            response.render('main/index', issues)
+                    ;
+                });
         });
-
     });
 
 //function to authenticate user
