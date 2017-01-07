@@ -96,9 +96,9 @@ router.get('/auth/github/callback',                             //authentication
                 })
             };
 
-            console.log(req.user)
+            let data = {repo:repo, user:req.user};
 
-            res.render('main/index', repo)
+            res.render('main/index', data)
         });
     });
 
@@ -111,7 +111,6 @@ router.get('/:route/logout', function (req, res) { //logout function, kill/clear
 
 router.route('/:name')
     .get(ensureAuthenticated, function(request, response) {
-        if (req.session && req.session.user) {
             let github = new GitHubApi({
                 // optional
                 debug: true,
@@ -191,7 +190,6 @@ router.route('/:name')
                         };
                     });
             });
-        }
     });
 
 
