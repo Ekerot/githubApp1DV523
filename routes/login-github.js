@@ -86,7 +86,7 @@ router.get('/auth/github/callback',                             //authentication
 
             let jsonObject = request;
 
-            req.session['repo'] = {
+            req.session = {
                 repo: jsonObject.map(function (repo) {
                     return {
                         name: repo.name,
