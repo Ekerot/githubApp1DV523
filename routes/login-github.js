@@ -136,11 +136,11 @@ router.route('/:name')
         let username = request.user.username;
 
         github.repos.pingHook({owner:request.user.username}, {repo:request.params.name},
-                                {id:request.session.repo.repo.id}, (req, res) => {
+            {id:request.session.repo.repo.id}, (req, res) => {
 
-                                                           console.log(req)
+                console.log(req)
 
-    }
+            } );
 
         github.repos.createHook({
             "owner": username,
