@@ -8,7 +8,7 @@
             <a href="#!name"><span class="white-text name">{{session.user.displayName}}</span></a>
             <a href="#!email"><span class="white-text email">{{session.user.email}}</span></a>
         </div></li>
-        {{#if session.repo}}
+        {{#if session}}
             <li><div class="divider"></div></li>
             <a href="/logout" class="register, waves-effect waves-light btn">Logout</a>
             <br>
