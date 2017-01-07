@@ -86,18 +86,14 @@ router.get('/auth/github/callback',                             //authentication
 
             let jsonObject = request;
 
-            let repos = {            //creating context variable to send to view
-
+            req.session['repo'] = {
                 repo: jsonObject.map(function (repo) {
-                    return {
+                    return JSON.parse({
                         name: repo.name,
                         id: repo.id,
-                    }
+                    })
                 })
-            };
-
-            req.session['repo'] = JSON.stringify(repos)
-
+                };
             req.session['nav'] = {
                         avatar_url: req.user._json.avatar_url,
                         email: req.user._json.email,
