@@ -102,7 +102,11 @@ router.get('/auth/github/callback',                             //authentication
                         displayName: req.user.displayName
                     }
 
-            res.render('main/index', repo)
+                    let data = {repo, user};
+
+            console.log(data)
+
+            res.render('main/index', data)
         });
     });
 
