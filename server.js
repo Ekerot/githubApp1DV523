@@ -18,6 +18,9 @@ const   port = process.env.PORT || 3000;
 //-------- set up session ---------------------
 
 app.use(session({
+    genid: function(req) {
+        return genuuid();// use UUIDs for session IDs
+    },
     secret: "keyboardcat",
     name: "mycookie",
     resave: true,

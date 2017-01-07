@@ -101,11 +101,11 @@ router.get('/auth/github/callback',                             //authentication
                         displayName: req.user.displayName
                     };
 
-            req.session.repo = {repo, user:user};
+            let data = {repo, user:user};
 
             console.log(data)
 
-            res.render('main/index', req.session)
+            res.render('main/index', data)
         });
     });
 
@@ -152,7 +152,7 @@ router.route('/:name')
 
             });
 
-        console.log(request.session)
+        console.log(request)
 
         //TODO: Get sessionId get repository ID seperate usersSession and use session to store values
 

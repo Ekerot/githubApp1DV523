@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bb31e093-1d51-455c-881d-b9292affd450" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/login-github.js" afterPath="$PROJECT_DIR$/routes/login-github.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,23 +26,23 @@
     <splitter split-orientation="horizontal" split-proportion="0.7561956">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/server.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="315">
-                  <caret line="21" column="11" lean-forward="false" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="19" />
+                <state relative-caret-position="300">
+                  <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
                   <folding>
-                    <marker date="1483792110000" expanded="true" signature="1551:1552" ph="{...}" />
+                    <marker date="1483813849000" expanded="true" signature="1639:1640" ph="{...}" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="login-github.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="login-github.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/login-github.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="345">
-                  <caret line="103" column="20" lean-forward="false" selection-start-line="103" selection-start-column="20" selection-end-line="103" selection-end-column="20" />
+                <state relative-caret-position="630">
+                  <caret line="103" column="12" lean-forward="true" selection-start-line="103" selection-start-column="12" selection-end-line="103" selection-end-column="20" />
                   <folding />
                 </state>
               </provider>
@@ -168,11 +169,11 @@
         <option value="$PROJECT_DIR$/views/errors/403.handlebars" />
         <option value="$PROJECT_DIR$/views/errors/401.handlebars" />
         <option value="$PROJECT_DIR$/public/css/stylesheet.css" />
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/views/partials/nav.handlebars" />
         <option value="$PROJECT_DIR$/views/main/index.handlebars" />
         <option value="$PROJECT_DIR$/public/js/realtimeRenderings.js" />
         <option value="$PROJECT_DIR$/routes/login-github.js" />
+        <option value="$PROJECT_DIR$/server.js" />
       </list>
     </option>
   </component>
@@ -480,12 +481,12 @@
       <workItem from="1483558914990" duration="3922000" />
       <workItem from="1483565394478" duration="10157000" />
       <workItem from="1483625505553" duration="13046000" />
-      <workItem from="1483640932472" duration="62318000" />
+      <workItem from="1483640932472" duration="62546000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="190303000" />
+    <option name="totallyTimeSpent" value="190531000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -582,7 +583,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1483792110000" expanded="true" signature="1551:1552" ph="{...}" />
+            <marker date="1483813849000" expanded="true" signature="1639:1640" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -618,7 +619,7 @@
         <state relative-caret-position="375">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <marker date="1483792110000" expanded="true" signature="1551:1552" ph="{...}" />
+            <marker date="1483813849000" expanded="true" signature="1639:1640" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -772,21 +773,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
+    <entry file="file://$PROJECT_DIR$/routes/login-github.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="11" lean-forward="false" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="19" />
-          <folding>
-            <marker date="1483792110000" expanded="true" signature="1551:1552" ph="{...}" />
-          </folding>
+        <state relative-caret-position="630">
+          <caret line="103" column="12" lean-forward="true" selection-start-line="103" selection-start-column="12" selection-end-line="103" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/login-github.js">
+    <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="103" column="20" lean-forward="false" selection-start-line="103" selection-start-column="20" selection-end-line="103" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="300">
+          <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+          <folding>
+            <marker date="1483813849000" expanded="true" signature="1639:1640" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
