@@ -34,9 +34,9 @@ body {
     width: 90px;
 }
 
-.logout-button{
+.login-button{
     position: fixed;
-    margin-top: 180px;
+    margin-top: 200px;
     height: 20px;
     font-size: 10px;
     float: left;
