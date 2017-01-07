@@ -38,6 +38,7 @@ passport.use(new GitHubStrategy({                           //making a strategy 
         // asynchronous verification, for effect...
         process.nextTick(function () {
             process.env['AUTH_TOKEN'] = accessToken;
+            console.log(accessToken);
             return done(null, profile);
         });
     }
@@ -96,10 +97,6 @@ router.get('/auth/github/callback',                             //authentication
                 })
             };
 
-            let data = {repo, user:req.user};
-
-            console.log(data)
-
             res.render('main/index', repo)
         });
     });
@@ -113,88 +110,93 @@ router.get('/:route/logout', function (req, res) { //logout function, kill/clear
 
 router.route('/:name')
     .get(ensureAuthenticated, function(request, response) {
-            let github = new GitHubApi({
-                // optional
-                debug: true,
-                protocol: 'https',
-                host: 'api.github.com', // should be api.github.com for GitHub
-                headers: {
-                    'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
-                },
-                Promise: require('bluebird'),
-                followRedirects: false, // default: true; there's currently an issue with non-get redirects, so allow ability to disable follow-redirects
-                timeout: 5000
-            });
 
-            github.authenticate({
-                type: 'oauth',
-                token: process.env.AUTH_TOKEN
-            });
+        let github = new GitHubApi({
+            // optional
+            debug: true,
+            protocol: 'https',
+            host: 'api.github.com', // should be api.github.com for GitHub
+            headers: {
+                'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
+            },
+            Promise: require('bluebird'),
+            followRedirects: false, // default: true; there's currently an issue with non-get redirects, so allow ability to disable follow-redirects
+            timeout: 5000
+        });
 
-            //get all issues from selected repo
-            github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
-                if (err) console.log(err);
+        github.authenticate({
+            type: 'oauth',
+            token: process.env.AUTH_TOKEN
+        });
 
-                github.repos.pingHook({repo: request.params.name, owner: request.user.username},
-                    function (err, req, res) {
-                        if (err) console.log(err);
+        //get all issues from selected repo
+        github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
+            console.log(res);
+            if (err) console.log(err);
 
-                        if (err.message.errors.message == "Hook already exists on this repository") {
+            github.repos.pingHook({repo: request.params.name, owner: request.user.username},
+                function (err, req, res) {
 
-                            let jsonObject = res;
+                console.log(req.status === 422)
 
-                            let issues = {            //creating context variable to send to view
+                    if (err) console.log(err);
 
-                                issues: jsonObject.map(function (issues) {
-                                    return {
-                                        repo: request.params.name,
-                                        title: issues.title,
-                                        id: issues.id,
-                                        body: issues.body,
-                                        comments: issues.comments,
-                                        created_at: issues.created_at,
-                                        html_url: issues.html_url,
-                                        login: issues.user.login,
-                                        avatar_url: issues.user.avatar_url,
-                                    }
-                                })
-                            };
-                            response.render('main/index', issues)
-                        }
+                    if (err.message.errors.message === "Hook already exists on this repository") {
 
-                        else {
-                            let username = request.user.username;
+                        let jsonObject = res;
 
-                            github.repos.createHook({
-                                "owner": username,
-                                "repo": request.params.name,
-                                "name": "web",
-                                "active": true,
-                                "events": [
-                                    "issues",
-                                    "issue_comment"
-                                ],
-                                "config": {
-                                    "url": "https://www.ekerot.se/webhook",
-                                    "content_type": "json",
-                                    "secret": "kljfd9823u4nfkls923nfdjks989324",
-                                    "insecure_ssl": "1"
+                        let issues = {            //creating context variable to send to view
+
+                            issues: jsonObject.map(function (issues) {
+                                return {
+                                    repo: request.params.name,
+                                    title: issues.title,
+                                    id: issues.id,
+                                    body: issues.body,
+                                    comments: issues.comments,
+                                    created_at: issues.created_at,
+                                    html_url: issues.html_url,
+                                    login: issues.user.login,
+                                    avatar_url: issues.user.avatar_url,
                                 }
-                            }, function (err, req, res) {
-
-                                console.log(err);
-                                response.redirect('/:name');
-                            });
+                            })
                         };
-                    });
-            });
+                        response.render('main/index', issues)
+                    }
+
+                    else {
+                        let username = request.user.username;
+
+                        github.repos.createHook({
+                            "owner": username,
+                            "repo": request.params.name,
+                            "name": "web",
+                            "active": true,
+                            "events": [
+                                "issues",
+                                "issue_comment"
+                            ],
+                            "config": {
+                                "url": "https://www.ekerot.se/webhook",
+                                "content_type": "json",
+                                "secret": "kljfd9823u4nfkls923nfdjks989324",
+                                "insecure_ssl": "1"
+                            }
+                        }, function (err, req, res) {
+
+                            console.log(err);
+                            response.redirect('/:name');
+                        });
+                    }
+                    ;
+                });
+        });
     });
 
-
 //function to authenticate user
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    res.render('errors/401')
-}
+        function ensureAuthenticated(req, res, next) {
+            if (req.isAuthenticated()) { return next(); }
+            res.render('errors/401')
+        }
 
-module.exports = router;
+        module.exports = router;
