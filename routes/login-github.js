@@ -152,8 +152,8 @@ router.route('/:name')
 
                 issues: jsonObject.map(function (issues) {
                     return {
-                        repo: request.params.name,
                         title: issues.title,
+                        id: issues.id,
                         body: issues.body,
                         comments: issues.comments,
                         created_at: issues.created_at,
