@@ -146,6 +146,8 @@ router.route('/:name')
 
             let jsonObject = res;
 
+            console.log(res)
+
             let issues = {            //creating context variable to send to view
 
                 issues: jsonObject.map(function (issues) {
