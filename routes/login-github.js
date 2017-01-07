@@ -96,13 +96,10 @@ router.get('/auth/github/callback',                             //authentication
                 })
             };
             let user = {
-
-                user: request.user.map(function (user) {
-                    return {
-                        id: user.id,
-                        avatar_url: user._json.avatar_url,
-                        email: user._json.email,
-                        displayName: user.displayName
+                        id: req.user.id,
+                        avatar_url: req.user._json.avatar_url,
+                        email: req.user._json.email,
+                        displayName: req.user.displayName
                     }
                 })
             };
