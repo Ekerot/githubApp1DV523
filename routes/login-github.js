@@ -120,8 +120,6 @@ router.get('/:route/logout', function (req, res) {  //logout function, kill/clea
 router.route('/:name')
     .get(ensureAuthenticated, function(err, request, response) {
 
-        if (request.session && request.session.id) {  //authorize
-
             let github = new GitHubApi({
                 // optional
                 debug: true,
@@ -171,7 +169,6 @@ router.route('/:name')
                 };
                 response.render('main/index', issues)
             });
-        }
     });
 
 //function to authenticate user
