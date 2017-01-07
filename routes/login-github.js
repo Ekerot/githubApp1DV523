@@ -138,6 +138,8 @@ router.route('/:name/issues/')
             console.log(res);
             if (err) console.log(err);
 
+            if (req.session && req.session.user) {  //authorize
+
             github.repos.pingHook({repo: request.params.name, owner: request.user.username},
                 function (err, req, res) {
 
@@ -194,6 +196,7 @@ router.route('/:name/issues/')
                     }
                     ;
                 });
+                };
         });
     });
 
