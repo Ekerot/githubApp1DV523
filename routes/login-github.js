@@ -155,11 +155,14 @@ router.route('/issues/:name')
                             }
                         }, function (err, req, res) {
 
-                            console.log(err);
-                            response.redirect('/:name');
+                            if(err) console.log(err);
+
+                            response.redirect('issues/:name');
                         });
                     };
                 });
+
+            console.log(res)
 
             let jsonObject = res;
 
