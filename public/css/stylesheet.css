@@ -81,8 +81,7 @@ body {
 }
 
 .user-background{
-    image-resolution: 50dppx;
-    height: 70%;
+    image-resolution: 100dppx;
 }
 
 .footer {
