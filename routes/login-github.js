@@ -141,12 +141,8 @@ router.route('/:name')
         });
 
 
-        let username = request.user.username;
-
         //get all issues from selected repo
         github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
-
-            if (err) console.log(err);
 
             let jsonObject = res;
 
@@ -166,27 +162,6 @@ router.route('/:name')
                 })
             };
             response.render('main/index', issues)
-        });
-
-        github.repos.createHook({
-            "owner": username,
-            "repo": request.params.name,
-            "name": "web",
-            "active": true,
-            "events": [
-                "issues",
-                "issue_comment"
-            ],
-            "config": {
-                "url": "https://www.ekerot.se/webhook",
-                "content_type": "json",
-                "secret": "kljfd9823u4nfkls923nfdjks989324",
-                "insecure_ssl": "1"
-            }
-        }, function (err, req, res) {
-
-            console.log(err);
-            response.redirect('/:name');
         });
     });
 
