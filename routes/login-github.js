@@ -38,7 +38,6 @@ passport.use(new GitHubStrategy({                           //making a strategy 
         // asynchronous verification, for effect...
         process.nextTick(function () {
             process.env['AUTH_TOKEN'] = accessToken;
-            console.log(profile);
             return done(null, profile);
         });
     }
@@ -98,9 +97,7 @@ router.get('/auth/github/callback',                             //authentication
             };
 
             let data = repo + req.user;
-
-            console.log(data);
-
+            
             res.render('main/index', data)
         });
     });
@@ -138,7 +135,7 @@ router.route('/:name/issues/')
             console.log(res);
             if (err) console.log(err);
 
-            if (req.session && req.session.user) {  //authorize
+            if (req.session && req.session.id) {  //authorize
 
             github.repos.pingHook({repo: request.params.name, owner: request.user.username},
                 function (err, req, res) {
