@@ -192,14 +192,13 @@ router.route('/:name')
                     });
             });
         }
-
-        });
+    });
 
 
 //function to authenticate user
-        function ensureAuthenticated(req, res, next) {
-            if (req.isAuthenticated()) { return next(); }
-            res.render('errors/401')
-        }
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) { return next(); }
+    res.render('errors/401')
+}
 
-        module.exports = router;
+module.exports = router;
