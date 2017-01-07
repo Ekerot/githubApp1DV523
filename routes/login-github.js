@@ -95,6 +95,7 @@ router.get('/auth/github/callback',                             //authentication
                 })
             };
             req.session['nav'] = {
+                username: req.user.username,
                 avatar_url: req.user._json.avatar_url,
                 email: req.user._json.email,
                 displayName: req.user.displayName
@@ -135,7 +136,7 @@ router.route('/:name')
 
 
 
-        github.repos.pingHook({owner:response.user.username}, {repo:request.params.name},
+        github.repos.pingHook({owner:request.nav.username}, {repo:request.params.name},
             {id:request.repo.repo.id}, (err, req, res) => {
 
                 console.log(req)
@@ -143,7 +144,7 @@ router.route('/:name')
             } );
 
         github.repos.createHook({
-            "owner": response.user.username,
+            "owner": request.nav.user.username,
             "repo": request.params.name,
             "name": "web",
             "active": true,
@@ -166,7 +167,7 @@ router.route('/:name')
 //TODO: Get sessionId get repository ID seperate usersSession and use session to store values
 
 //get all issues from selected repo
-        github.issues.getForRepo({owner: response.user.username, repo: request.params.name}, function (err, req) {
+        github.issues.getForRepo({owner: request.nav.username, repo: request.params.name}, function (err, req) {
 
             let jsonObject = req;
 
