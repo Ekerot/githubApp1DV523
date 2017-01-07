@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb31e093-1d51-455c-881d-b9292affd450" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/stylesheet.css" afterPath="$PROJECT_DIR$/public/css/stylesheet.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/login-github.js" afterPath="$PROJECT_DIR$/routes/login-github.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -37,20 +38,20 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="login-github.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="login-github.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/login-github.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="295">
-                  <caret line="142" column="16" lean-forward="false" selection-start-line="142" selection-start-column="16" selection-end-line="142" selection-end-column="16" />
+                <state relative-caret-position="45">
+                  <caret line="133" column="48" lean-forward="true" selection-start-line="133" selection-start-column="48" selection-end-line="133" selection-end-column="48" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="stylesheet.css" pinned="false" current-in-tab="true">
+          <file leaf-file-name="stylesheet.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/css/stylesheet.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="868">
+                <state relative-caret-position="808">
                   <caret line="102" column="17" lean-forward="false" selection-start-line="102" selection-start-column="17" selection-end-line="102" selection-end-column="17" />
                   <folding />
                 </state>
@@ -172,8 +173,8 @@
         <option value="$PROJECT_DIR$/public/js/realtimeRenderings.js" />
         <option value="$PROJECT_DIR$/views/main/index.handlebars" />
         <option value="$PROJECT_DIR$/views/partials/nav.handlebars" />
-        <option value="$PROJECT_DIR$/routes/login-github.js" />
         <option value="$PROJECT_DIR$/public/css/stylesheet.css" />
+        <option value="$PROJECT_DIR$/routes/login-github.js" />
       </list>
     </option>
   </component>
@@ -481,12 +482,12 @@
       <workItem from="1483558914990" duration="3922000" />
       <workItem from="1483565394478" duration="10157000" />
       <workItem from="1483625505553" duration="13046000" />
-      <workItem from="1483640932472" duration="74998000" />
+      <workItem from="1483640932472" duration="75290000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="202983000" />
+    <option name="totallyTimeSpent" value="203275000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -775,18 +776,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/login-github.js">
+    <entry file="file://$PROJECT_DIR$/public/css/stylesheet.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="142" column="16" lean-forward="false" selection-start-line="142" selection-start-column="16" selection-end-line="142" selection-end-column="16" />
+        <state relative-caret-position="808">
+          <caret line="102" column="17" lean-forward="false" selection-start-line="102" selection-start-column="17" selection-end-line="102" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/stylesheet.css">
+    <entry file="file://$PROJECT_DIR$/routes/login-github.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="868">
-          <caret line="102" column="17" lean-forward="false" selection-start-line="102" selection-start-column="17" selection-end-line="102" selection-end-column="17" />
+        <state relative-caret-position="45">
+          <caret line="133" column="48" lean-forward="true" selection-start-line="133" selection-start-column="48" selection-end-line="133" selection-end-column="48" />
           <folding />
         </state>
       </provider>
