@@ -38,7 +38,6 @@ passport.use(new GitHubStrategy({                           //making a strategy 
         // asynchronous verification, for effect...
         process.nextTick(function () {
             process.env['AUTH_TOKEN'] = accessToken;
-            console.log(accessToken);
             return done(null, profile);
         });
     }
