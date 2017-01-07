@@ -100,12 +100,9 @@ router.get('/auth/github/callback',                             //authentication
                         avatar_url: req.user.avatar_url,
                         email: req.user._json.email,
                         displayName: req.user.displayName
-                    }
+                    };
 
-            console.log(user)
-            console.log(repo)
-
-            let data = {reo:repo, user:user};
+            let data = {repo, user:user};
 
             console.log(data)
 
