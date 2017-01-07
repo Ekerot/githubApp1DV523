@@ -139,7 +139,7 @@ router.route('/:name')
                     function (err, req, res) {
                         if (err) console.log(err);
 
-                        if (req.message.errors.message == "Hook already exists on this repository") {
+                        if (err.message.errors.message == "Hook already exists on this repository") {
 
                             let jsonObject = res;
 
