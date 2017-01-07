@@ -135,7 +135,7 @@ router.route('/:name')
         });
 
         github.repos.pingHook({repo:request.params.name},
-            {id:request.repo.repo.id}, (err, req, res) => {
+            {id:response.repo.repo.id}, (err, req, res) => {
 
                 console.log(req)
 
