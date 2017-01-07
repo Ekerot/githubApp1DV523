@@ -88,17 +88,17 @@ router.get('/auth/github/callback',                             //authentication
 
             req.session['repo'] = {
                 repo: jsonObject.map(function (repo) {
-                    return JSON.stringify({
+                    return {
                         name: repo.name,
                         id: repo.id,
-                    })
+                    }
                 })
-                };
+            };
             req.session['nav'] = {
-                        avatar_url: req.user._json.avatar_url,
-                        email: req.user._json.email,
-                        displayName: req.user.displayName
-                    };
+                avatar_url: req.user._json.avatar_url,
+                email: req.user._json.email,
+                displayName: req.user.displayName
+            };
 
             console.log(req.session)
 
@@ -107,7 +107,7 @@ router.get('/auth/github/callback',                             //authentication
     });
 
 router.get('/:route/logout', ensureAuthenticated, function (req, res) {  //logout function, kill/clear cookie manually
-                                                    // --- .logout() not supported in Express 4
+    // --- .logout() not supported in Express 4
     req.session.destroy(function() {
         res.clearCookie('connect.sid');
         res.redirect('/');
@@ -117,12 +117,12 @@ router.get('/:route/logout', ensureAuthenticated, function (req, res) {  //logou
 router.route('/:name')
     .get(ensureAuthenticated, function(request, response) {
 
-            let github = new GitHubApi({
-                // optional
-                debug: true,
-                protocol: 'https',
-                host: 'api.github.com', // should be api.github.com for GitHub
-                headers: {
+        let github = new GitHubApi({
+            // optional
+            debug: true,
+            protocol: 'https',
+            host: 'api.github.com', // should be api.github.com for GitHub
+            headers: {
                     'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
                 },
                 Promise: require('bluebird'),
