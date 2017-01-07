@@ -110,14 +110,15 @@ router.get('/auth/github/callback',                             //authentication
         });
     });
 
-router.get('/:route/logout', function (req, res) { //logout function, kill/clear cookie manually
+router.get('/:route/logout', function (req, res) {  //logout function, kill/clear cookie manually
+                                                    // --- .logout() not supported in Express 4
     req.session.destroy(function() {
         res.clearCookie('connect.sid');
         res.redirect('/');
     });
 });
 
-router.route('/:issues/:name/')
+router.route('/issues/:name/')
     .get(ensureAuthenticated, function(request, response) {
 
         let github = new GitHubApi({
@@ -137,7 +138,7 @@ router.route('/:issues/:name/')
             type: 'oauth',
             token: process.env.AUTH_TOKEN
         });
-
+debugger;
         //get all issues from selected repo
         github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
             console.log(res);
