@@ -38,7 +38,7 @@ passport.use(new GitHubStrategy({                           //making a strategy 
         // asynchronous verification, for effect...
         process.nextTick(function () {
             process.env['AUTH_TOKEN'] = accessToken;
-            console.log(profile);
+            console.log(accessToken);
             return done(null, profile);
         });
     }
@@ -64,8 +64,6 @@ router.get('/auth/github/callback',                             //authentication
     // and listing them in the nav bar
     passport.authenticate('github', {failureRedirect: '/'}),
     function (req, res) {
-
-        console.log(req.session)
 
         let github = new GitHubApi({  //setup to access the GitHub API
             // optional
