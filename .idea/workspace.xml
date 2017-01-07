@@ -479,12 +479,12 @@
       <workItem from="1483558914990" duration="3922000" />
       <workItem from="1483565394478" duration="10157000" />
       <workItem from="1483625505553" duration="13046000" />
-      <workItem from="1483640932472" duration="73930000" />
+      <workItem from="1483640932472" duration="73975000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201915000" />
+    <option name="totallyTimeSpent" value="201960000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -662,11 +662,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/background.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
@@ -779,6 +774,11 @@
           <caret line="38" column="4" lean-forward="true" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/images/background.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/partials/nav.handlebars">
