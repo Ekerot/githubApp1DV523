@@ -140,37 +140,12 @@ router.route('/:name')
             token: process.env.AUTH_TOKEN
         });
 
-        //get all issues from selected repo
-        github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
-
-            if (err) console.log(err);
-
-            let jsonObject = res;
-
-            let issues = {            //creating context variable to send to view
-
-                issues: jsonObject.map(function (issues) {
-                    return {
-                        title: issues.title,
-                        id: issues.id,
-                        body: issues.body,
-                        comments: issues.comments,
-                        created_at: issues.created_at,
-                        html_url: issues.html_url,
-                        login: issues.user.login,
-                        avatar_url: issues.user.avatar_url,
-                    }
-                })
-            };
-            response.render('main/index', issues)
-        });
-
         github.repos.pingHook({repo: request.params.name, owner: request.user.username},
             function (err, req, res) {
 
                 if (err) console.log(err);
 
-                if (!err.message.errors.message("Hook already exists on this repository")) {
+                if (!req.message.errors.message("Hook already exists on this repository")) {
 
                     let username = request.user.username;
 
@@ -196,6 +171,31 @@ router.route('/:name')
                     });
                 }
             });
+
+        //get all issues from selected repo
+        github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
+
+            if (err) console.log(err);
+
+            let jsonObject = res;
+
+            let issues = {            //creating context variable to send to view
+
+                issues: jsonObject.map(function (issues) {
+                    return {
+                        title: issues.title,
+                        id: issues.id,
+                        body: issues.body,
+                        comments: issues.comments,
+                        created_at: issues.created_at,
+                        html_url: issues.html_url,
+                        login: issues.user.login,
+                        avatar_url: issues.user.avatar_url,
+                    }
+                })
+            };
+            response.render('main/index', issues)
+        });
     });
 
 //function to authenticate user
