@@ -35,15 +35,13 @@ body {
 }
 
 .login-button{
-    position: fixed;
-    margin-top: 200px;
+    margin-top: 56px;
     height: 20px;
     font-size: 10px;
     float: left;
 }
 
 .logout-button{
-    position: fixed;
     margin-top: 150px;
     height: 20px;
     font-size: 10px;
