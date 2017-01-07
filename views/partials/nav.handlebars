@@ -4,9 +4,9 @@
             <div class="background">
                 <img class="user-background" src="/images/background.jpg">
             </div>
-            <a href="#!user"><img class="circle" src="{{passport.user.avatar_url}}"></a>
+            <a href="#!user"><img class="circle" src="{{passport.user._raw.avatar_url}}"></a>
             <a href="#!name"><span class="white-text name">{{passport.user.displayName}}</span></a>
-            <a href="#!email"><span class="white-text email">{{passport.user.email}}</span></a>
+            <a href="#!email"><span class="white-text email">{{passport.user.emails}}</span></a>
         </div></li>
         {{#if passport.repo}}
             <li><div class="divider"></div></li>
