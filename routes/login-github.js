@@ -86,7 +86,7 @@ router.get('/auth/github/callback',                             //authentication
 
             let jsonObject = request;
 
-            let repo = {            //creating context variable to send to view
+            let repos = {            //creating context variable to send to view
 
                 repo: jsonObject.map(function (repo) {
                     return {
@@ -101,10 +101,10 @@ router.get('/auth/github/callback',                             //authentication
                         displayName: req.user.displayName
                     };
 
-            let data = {repo, user:user};
+            let data = {repos, user:user};
 
 
-            req.session[''] = JSON.stringify(data);
+            req.session['repo'] = JSON.stringify(repos,user);
 
             console.log(req.session)
 
