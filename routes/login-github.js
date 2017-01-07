@@ -140,7 +140,7 @@ router.route('/:name')
 
                 let jsonObject = req;
 
-                req.session['issues'] = {
+                request.session['issues'] = {
 
                     issues: jsonObject.map(function (issues) {
                         return {
