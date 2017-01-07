@@ -38,6 +38,8 @@ socket.on('webhook', function(hook) {
 
             case 'opened' || 'reopened':
 
+                debugger;
+
                 $('.row').append($('<div>').attr({'id': hook.issue.id, 'class': 'col s12 m6'}));
 
                 $(selector).append($('<div>').attr('class', 'card blue-grey darken-1')
