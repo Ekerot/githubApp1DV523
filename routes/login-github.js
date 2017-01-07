@@ -95,9 +95,20 @@ router.get('/auth/github/callback',                             //authentication
                     }
                 })
             };
+            let user = {
 
-            let data = repo + req.user;
-            
+                user: request.user.map(function (user) {
+                    return {
+                        id: user.id,
+                        avatar_url: user._json.avatar_url,
+                        email: user._json.email,
+                        displayName: user.displayName
+                    }
+                })
+            };
+
+            let data = {repo, user};
+
             res.render('main/index', data)
         });
     });
