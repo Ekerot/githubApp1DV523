@@ -143,15 +143,12 @@ router.route('/:name')
         github.repos.pingHook({repo: request.params.name, owner: request.user.username},
             function (err, req, res) {
 
-            console.log(res);
+            console.log(req);
 
                     let username = request.user.username;
 
 
             });
-
-
-
 
         //get all issues from selected repo
         github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
