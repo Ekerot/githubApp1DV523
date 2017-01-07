@@ -117,7 +117,7 @@ router.get('/:route/logout', function (req, res) {  //logout function, kill/clea
     });
 });
 
-router.route('/:name')
+router.route('/issues/:name')
     .get(ensureAuthenticated, function(request, response) {
 
         console.log('hej hej')
@@ -140,35 +140,30 @@ router.route('/:name')
             token: process.env.AUTH_TOKEN
         });
 
-        github.repos.pingHook({repo: request.params.name, owner: request.user.username},
-            function (err, req, res) {
 
-                if (err) {
+        let username = request.user.username;
 
-                    let username = request.user.username;
+        github.repos.createHook({
+            "owner": username,
+            "repo": request.params.name,
+            "name": "web",
+            "active": true,
+            "events": [
+                "issues",
+                "issue_comment"
+            ],
+            "config": {
+                "url": "https://www.ekerot.se/webhook",
+                "content_type": "json",
+                "secret": "kljfd9823u4nfkls923nfdjks989324",
+                "insecure_ssl": "1"
+            }
+        }, function (err, req, res) {
 
-                    github.repos.createHook({
-                        "owner": username,
-                        "repo": request.params.name,
-                        "name": "web",
-                        "active": true,
-                        "events": [
-                            "issues",
-                            "issue_comment"
-                        ],
-                        "config": {
-                            "url": "https://www.ekerot.se/webhook",
-                            "content_type": "json",
-                            "secret": "kljfd9823u4nfkls923nfdjks989324",
-                            "insecure_ssl": "1"
-                        }
-                    }, function (err, req, res) {
+            console.log(err);
+            response.redirect('/:name');
+        });
 
-                        console.log(err);
-                        response.redirect('/:name');
-                    });
-                }
-            });
 
         //get all issues from selected repo
         github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
