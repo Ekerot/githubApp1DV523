@@ -138,7 +138,7 @@ router.route('/:name')
                 token: process.env.AUTH_TOKEN
             });
 
-            console.log(request.user)
+            console.log(request.params.name)
 
             console.log(request)
 
