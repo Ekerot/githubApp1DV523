@@ -45,7 +45,8 @@ body {
 }
 
 .r{
-    float:right;
+    width: 60%;
+    margin-left: 30%;
     margin-top: 5%;
 }
 
@@ -71,10 +72,6 @@ body {
     text-align: center;
 }
 
-.background{
-    height:120%
-}
-
 .create-container{
     margin-top:5%;
     margin-left: 20%;
@@ -85,5 +82,14 @@ body {
 
 .user-background{
     image-resolution: 50dppx;
-    height: 20%;
+    height: 70%;
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
 }
