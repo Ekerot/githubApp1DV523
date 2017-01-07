@@ -103,9 +103,10 @@ router.get('/auth/github/callback',                             //authentication
 
             let data = {repo, user:user};
 
-            console.log(data)
+            req.session[repo] = repo;
+            req.session[user] = user;
 
-            res.render('main/index', data)
+            res.render('main/index', req.session)
         });
     });
 
@@ -118,7 +119,7 @@ router.get('/:route/logout', function (req, res) {  //logout function, kill/clea
 });
 
 router.route('/:name')
-    .get(function(request, response) {
+    .get(ensureAuthenticated, function(request, response) {
 
             let github = new GitHubApi({
                 // optional
@@ -168,7 +169,7 @@ router.route('/:name')
 //function to authenticate user
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
-    res.render('errors/404')
+    res.render('errors/401')
 }
 
 module.exports = router;
