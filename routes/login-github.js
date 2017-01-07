@@ -124,11 +124,6 @@ router.route('/issues/:name')
             timeout: 5000
         });
 
-        github.authenticate({
-            type: 'oauth',
-            token: process.env.AUTH_TOKEN
-        });
-
         //get all issues from selected repo
         github.issues.getForRepo({owner: request.user.username, repo: request.params.name}, function (err, res) {
             console.log(res);
@@ -137,11 +132,9 @@ router.route('/issues/:name')
             github.repos.pingHook({repo: request.params.name, owner: request.user.username},
                 function (err, req, res) {
 
-                console.log(req.status === 422)
-
                     if (err) console.log(err);
 
-                    if (err.message.errors.message === "Hook already exists on this repository") {
+                    if (req.code === '422') {
 
                         let jsonObject = res;
 
