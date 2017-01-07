@@ -11,7 +11,7 @@ const   path = require('path');
 const   GitHubWebHook = require('express-github-webhook');
 const   webhookHandler = GitHubWebHook({path: '/webhook', secret: process.env.SECRET_TOKEN});
 const   session = require('express-session');
-const   genuuid = require('uid-safe');
+const   uid = require('uid-safe');
 
 const   app = express();
 const   port = process.env.PORT || 3000;
@@ -19,9 +19,10 @@ const   port = process.env.PORT || 3000;
 //-------- set up session ---------------------
 
 app.use(session({
-    genid: function(req) {
-        return genuuid();// use UUIDs for session IDs
-    },
+    genid: uid(18, function (err, string) {
+        if (err) throw err
+        return string
+    }),
     secret: "superDuperBestMunchiCookie",
     name: "hwerethehellismysecretpasswordforgotitagain",
     resave: true,
