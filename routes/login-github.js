@@ -112,7 +112,7 @@ router.get('/:route/logout', function (req, res) { //logout function, kill/clear
     });
 });
 
-router.route('/issues/:name')
+router.route('/:name/issues/')
     .get(ensureAuthenticated, function(request, response) {
 
         let github = new GitHubApi({
