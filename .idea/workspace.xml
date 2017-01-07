@@ -40,8 +40,8 @@
           <file leaf-file-name="login-github.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/login-github.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="585">
-                  <caret line="142" column="57" lean-forward="true" selection-start-line="142" selection-start-column="57" selection-end-line="142" selection-end-column="57" />
+                <state relative-caret-position="825">
+                  <caret line="158" column="31" lean-forward="false" selection-start-line="158" selection-start-column="31" selection-end-line="158" selection-end-column="31" />
                   <folding />
                 </state>
               </provider>
@@ -471,12 +471,12 @@
       <workItem from="1483558914990" duration="3922000" />
       <workItem from="1483565394478" duration="10157000" />
       <workItem from="1483625505553" duration="13046000" />
-      <workItem from="1483640932472" duration="70767000" />
+      <workItem from="1483640932472" duration="70816000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="198752000" />
+    <option name="totallyTimeSpent" value="198801000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -775,8 +775,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/login-github.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="142" column="57" lean-forward="true" selection-start-line="142" selection-start-column="57" selection-end-line="142" selection-end-column="57" />
+        <state relative-caret-position="825">
+          <caret line="158" column="31" lean-forward="false" selection-start-line="158" selection-start-column="31" selection-end-line="158" selection-end-column="31" />
           <folding />
         </state>
       </provider>
