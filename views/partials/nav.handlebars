@@ -13,7 +13,7 @@
             <a href="/logout" class="register, waves-effect waves-light btn">Logout</a>
             <br>
             {{#each repo.repo}}
-                <li><a class="waves-effect" href="/issues/{{repo.repo.name}}">{{this.name}}</a></li>
+                <li><a class="waves-effect" href="/issues/{{repo.name}}">{{this.name}}</a></li>
             {{/each}}
 
         {{/if}}
