@@ -4,16 +4,16 @@
             <div class="background">
                 <img class="user-background" src="/images/background.jpg">
             </div>
-            <a href="#!user"><img class="circle" src="{{user.avatar_url}}"></a>
-            <a href="#!name"><span class="white-text name">{{user.displayName}}</span></a>
-            <a href="#!email"><span class="white-text email">{{user.email}}</span></a>
+            <a href="#!user"><img class="circle" src="{{session.user.avatar_url}}"></a>
+            <a href="#!name"><span class="white-text name">{{session.user.displayName}}</span></a>
+            <a href="#!email"><span class="white-text email">{{session.user.email}}</span></a>
         </div></li>
-        {{#if repo.repo}}
+        {{#if session.repo}}
             <li><div class="divider"></div></li>
             <a href="/logout" class="register, waves-effect waves-light btn">Logout</a>
             <br>
-            {{#each repo.repo}}
-                <li><a class="waves-effect" href="/{{this.name}}">{{this.name}}</a></li>
+            {{#each session.repo}}
+                <li><a class="waves-effect" href="/{{sesion.repo.name}}">{{session.repo.name}}</a></li>
             {{/each}}
 
         {{/if}}
