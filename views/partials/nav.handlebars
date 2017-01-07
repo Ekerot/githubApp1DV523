@@ -4,12 +4,12 @@
             <div class="background">
                 <img class="user-background" src="/images/background.jpg">
             </div>
-            <a href="#!user"><img class="circle" src="{{request.session.user.avatar_url}}"></a>
-            <a href="#!name"><span class="white-text name">{{request.session.user.displayName}}</span></a>
-            <a href="#!email"><span class="white-text email">{{request.session._json.email}}</span></a>
+            <a href="#!user"><img class="circle" src="{{this.avatar_url}}"></a>
+            <a href="#!name"><span class="white-text name">{{this.displayName}}</span></a>
+            <a href="#!email"><span class="white-text email">{{this._json.email}}</span></a>
         </div></li>
 
-        {{#each request.session.repo}}
+        {{#each this.repo}}
             <li><a class="waves-effect" href="/{{this.repo.name}}">{{this.name}}</a></li>
         {{/each}}
         <br>
