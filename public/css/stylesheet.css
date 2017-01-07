@@ -34,7 +34,9 @@ body {
     width: 90px;
 }
 
-.login-button{
+.log-button{
+    position: absolute;
+    margin-top: 150px;
     height: 20px;
     font-size: 10px;
     float: left;
@@ -81,7 +83,7 @@ body {
 }
 
 .background{
-    height:150px;
+    height:190px;
 }
 
 .user-background{
