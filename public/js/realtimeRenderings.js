@@ -40,7 +40,7 @@ socket.on('webhook', function(hook) {
             case 'reopened':
 
 
-                $('.row').append($('<div>').attr({'id': hook.issue.id, 'class': 'col s12 m6'}));
+                $('.r').append($('<div>').attr({'id': hook.issue.id, 'class': 'col s12 m6'}));
 
                 $(selector).append($('<div>').attr('class', 'card blue-grey darken-1')
                     .append($('<div>').attr('class', 'card-content white-text')
