@@ -30,7 +30,7 @@ passport.deserializeUser(function(obj, done) {
 });
 
 passport.use(new GitHubStrategy({                           //making a strategy to login with oauth2
-        clientID: "9f4915e24916e4f85ead931dd1db3f5f93ab0d69",
+        clientID: "7e66ee29510aa0f4db54",
         clientSecret: "57ee389384a77d0417635e2dfe29273c5f987c72",
         callbackURL: "https://www.ekerot.se/auth/github/callback"
     },
@@ -64,8 +64,6 @@ router.get('/auth/github/callback',                             //authentication
     // and listing them in the nav bar
     passport.authenticate('github', {failureRedirect: '/'}),
     function (req, res) {
-
-        console.log(req.session)
 
         let github = new GitHubApi({  //setup to access the GitHub API
             // optional
