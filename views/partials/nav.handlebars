@@ -11,7 +11,7 @@
         {{#if repo}}
             <a href="/logout" class="register, waves-effect grey-light btn">Logout</a>
             {{#each repo.repo}}
-                <li><a class="waves-effect" href="/{{JSON.parse(repo.repo.name)}}">{{repo.repo.name}}</a></li>
+                <li><a class="waves-effect" href="/{{repo.repo.name}}">{{repo.repo.name}}</a></li>
             {{/each}}
             {{else}}
             <a class="login-button, waves-effect grey-light btn" href="/auth/github">Login</a>
