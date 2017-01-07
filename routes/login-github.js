@@ -135,10 +135,10 @@ router.route('/:name')
 
                 github.repos.pingHook({repo: request.params.name, owner: request.user.username},
                     function (err, req, res) {
-
+console.log(req.message.errors.message)
                         if (err) console.log(err);
 
-                        if (message.errors.message == "Hook already exists on this repository") {
+                        if (req.message.errors.message == "Hook already exists on this repository") {
 
                             let jsonObject = res;
 
