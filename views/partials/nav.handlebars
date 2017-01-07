@@ -1,19 +1,29 @@
 <nav class="black">
     <ul id="slide-out" class="side-nav fixed">
-        <li><div class="userView">
-            <div class="background">
-                <img class="user-background" src="/images/background1.jpg">
-            </div>
-            <a href="#!user"><img class="circle" src="{{this.nav.avatar_url}}"></a>
-            <a href="#!name"><span class="white-text name">{{this.nav.displayName}}</span></a>
-            <a href="#!email"><span class="white-text email">{{this.nav.email}}</span></a>
-        </div></li>
         {{#if repo}}
+            <li><div class="userView">
+                <div class="background">
+                    <img class="user-background" src="/images/background.jpg">
+                </div>
+
+                <a href="#!user"><img class="circle" src="{{this.nav.avatar_url}}"></a>
+                <a href="#!name"><span class="white-text name">{{this.nav.displayName}}</span></a>
+                <a href="#!email"><span class="white-text email">{{this.nav.email}}</span></a>
+            </div></li>
             <a href="/logout" class="logout-button, waves-effect grey btn">Logout</a>
             {{#each repo.repo}}
                 <li><a class="waves-effect" href="/{{this.name}}">{{this.name}}</a></li>
             {{/each}}
             {{else}}
+            <li><div class="userView">
+                <div class="background">
+                    <img class="user-background" src="/images/background.jpg">
+                </div>
+
+                <a href="#!user"><img class="circle" src="/images/user.jpg"></a>
+                <a href="#!name"><span class="white-text name">Jon Dorian</span></a>
+                <a href="#!email"><span class="white-text email">JD_and_Turk@gmail.com</span></a>
+            </div></li>
             <a class="login-button, waves-effect grey btn" href="/auth/github">Login</a>
         {{/if}}
 
