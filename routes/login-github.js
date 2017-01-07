@@ -104,7 +104,7 @@ router.get('/auth/github/callback',                             //authentication
 
                     let data = {repo, user};
 
-            console.log(data)
+            session({data})
 
             res.render('main/index', data)
         });
@@ -117,7 +117,7 @@ router.get('/:route/logout', function (req, res) { //logout function, kill/clear
     });
 });
 
-router.route('/:name/issues/')
+router.route('/:issues/:name/')
     .get(ensureAuthenticated, function(request, response) {
 
         let github = new GitHubApi({
