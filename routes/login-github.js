@@ -86,7 +86,7 @@ router.get('/auth/github/callback',                             //authentication
 
             let jsonObject = request;
 
-            console.log(request.user)
+            console.log(req.user)
 
             let repo = {            //creating context variable to send to view
 
@@ -98,10 +98,10 @@ router.get('/auth/github/callback',                             //authentication
                 })
             };
             let user = {
-                        id: request.user.id,
-                        avatar_url: request.user.avatar_url,
-                        email: request.user._json.email,
-                        displayName: request.user.displayName
+                        id: req.user.id,
+                        avatar_url: req.user.avatar_url,
+                        email: req.user._json.email,
+                        displayName: req.user.displayName
                     }
 
                     let data = {repo, user};
