@@ -101,11 +101,11 @@ router.get('/auth/github/callback',                             //authentication
                         displayName: req.user.displayName
                     };
 
-            let data = {repo, user:user};
+            req.sesssion.repo = {repo, user:user};
 
             console.log(data)
 
-            res.render('main/index', data)
+            res.render('main/index', req.session)
         });
     });
 
@@ -152,7 +152,9 @@ router.route('/:name')
 
             });
 
-        console.log(request)
+        console.log(request.session)
+
+        //TODO: Get sessionId get repository ID seperate usersSession and use session to store values
 
         //get all issues from selected repo
         github.issues.getForRepo({owner: request.user.username, repo: request.params.name, }, function (err, res) {
