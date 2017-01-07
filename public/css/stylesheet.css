@@ -80,6 +80,10 @@ body {
 
 }
 
+.background{
+    height:100px;
+}
+
 .user-background{
     image-resolution: 100dppx;
 }
