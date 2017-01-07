@@ -97,7 +97,7 @@ router.get('/auth/github/callback',                             //authentication
             };
             let user = {
                         id: req.user.id,
-                        avatar_url: req.user.avatar_url,
+                        avatar_url: req.user._json.avatar_url,
                         email: req.user._json.email,
                         displayName: req.user.displayName
                     };
