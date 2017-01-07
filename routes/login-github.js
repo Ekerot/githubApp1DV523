@@ -140,7 +140,7 @@ router.route('/:name')
 
                 let jsonObject = res;
 
-                request.session['issues'] = {            //creating context variable to send to view
+                request.session['issues'] = {
 
                     issues: jsonObject.map(function (issues) {
                         return {
@@ -155,6 +155,7 @@ router.route('/:name')
                         }
                     })
                 };
+
                 console.log(request.session)
                 response.render('main/index', request.session)
             })
