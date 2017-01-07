@@ -134,28 +134,7 @@ router.route('/issues/:name')
 
                     if (err) console.log(err);
 
-                    if (req.code === '422') {
-
-                        let jsonObject = res;
-
-                        let issues = {            //creating context variable to send to view
-
-                            issues: jsonObject.map(function (issues) {
-                                return {
-                                    repo: request.params.name,
-                                    title: issues.title,
-                                    id: issues.id,
-                                    body: issues.body,
-                                    comments: issues.comments,
-                                    created_at: issues.created_at,
-                                    html_url: issues.html_url,
-                                    login: issues.user.login,
-                                    avatar_url: issues.user.avatar_url,
-                                }
-                            })
-                        };
-                        response.render('main/index', issues)
-                    }
+                    if (req.code !== '422') {
 
                     else {
                         let username = request.user.username;
@@ -180,10 +159,47 @@ router.route('/issues/:name')
                             console.log(err);
                             response.redirect('/:name');
                         });
+                    };
+                        let jsonObject = res;
+
+                        let issues = {            //creating context variable to send to view
+
+                            issues: jsonObject.map(function (issues) {
+                                return {
+                                    repo: request.params.name,
+                                    title: issues.title,
+                                    id: issues.id,
+                                    body: issues.body,
+                                    comments: issues.comments,
+                                    created_at: issues.created_at,
+                                    html_url: issues.html_url,
+                                    login: issues.user.login,
+                                    avatar_url: issues.user.avatar_url,
+                                }
+                            })
+                        };
+                        response.render('main/index', issues)
                     }
-                    ;
+                    let jsonObject = res;
+
+                    let issues = {            //creating context variable to send to view
+
+                        issues: jsonObject.map(function (issues) {
+                            return {
+                                repo: request.params.name,
+                                title: issues.title,
+                                id: issues.id,
+                                body: issues.body,
+                                comments: issues.comments,
+                                created_at: issues.created_at,
+                                html_url: issues.html_url,
+                                login: issues.user.login,
+                                avatar_url: issues.user.avatar_url,
+                            }
+                        })
+                    };
+                    response.render('main/index', issues)
                 });
-        });
     });
 
 //function to authenticate user
