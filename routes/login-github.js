@@ -49,7 +49,7 @@ router.use(partials());
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 router.use(methodOverride());
-router.use(session({ secret: 'kissmehoneyhoneykissme', resave: false, saveUninitialized: false }));
+router.use(session({ secret: 'kissmehoneyhoneykissme', resave: false, saveUninitialized: false, cache: 'no-cache' }));
 router.use(passport.initialize());
 router.use(passport.session());
 
