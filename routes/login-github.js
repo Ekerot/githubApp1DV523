@@ -38,7 +38,7 @@ passport.use(new GitHubStrategy({                           //making a strategy 
         clientSecret: process.env.CLIENT_SECRET,
         callbackURL: "https://www.ekerot.se/auth/github/callback"
     },
-    function (accessToken, refreshToken, profile, done) {
+    (accessToken, refreshToken, profile, done) => {
         // asynchronous verification, for effect...
         process.nextTick(() => {
             process.env['AUTH_TOKEN'] = accessToken;
@@ -69,6 +69,24 @@ router.get('/auth/github/callback',                             //authentication
     passport.authenticate('github', {failureRedirect: '/'}),
     (req, res) => {
 
+        let github = new GitHubApi({  //setup to access the GitHub API
+            // optional
+            debug: true,
+            protocol: 'https',
+            host: 'api.github.com', // should be api.github.com for GitHub
+            headers: {
+                'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
+            },
+            Promise: require('bluebird'),
+            followRedirects: false,
+            timeout: 5000
+        });
+
+        github.authenticate({  //authenticate user with Oauth
+            type: "oauth",
+            token: process.env.AUTH_TOKEN
+        });
+
         github.repos.getAll({type: 'owner'},(err, request) => {  //get all repositories
 
             let jsonObject = request;
@@ -96,14 +114,14 @@ router.get('/auth/github/callback',                             //authentication
 
 router.get('/logout',(req, res) => {  //logout function, kill/clear cookie manually
     // --- .logout() not supported in Express 4
-    req.session.destroy(function() {
+    req.session.destroy(() => {
         res.clearCookie('connect.sid');
         res.redirect('/');
     });
 });
 
 router.route('/:name')
-    .get(ensureAuthenticated, function(request, response) {
+    .get(ensureAuthenticated,(request, response) => {
 
         let github = new GitHubApi({  //setup to access the GitHub API
             // optional
@@ -142,13 +160,15 @@ router.route('/:name')
                     if(err) console.log(err);
         });
 
+        process.env['CLIENT_ID'] = "7e66ee29510aa0f4db54"
+        process.env['CLIENT_SECRET'] ="2284eb7c2af97ba1151befe9a98a3f009afda80c"
+
         //get all issues from selected repo
-        github.issues.getForRepo({owner: request.user._json.login, repo: request.params.name}, function (err, req) {
+        github.issues.getForRepo({owner: request.user._json.login, repo: request.params.name},(err, req) => {
 
             if(err) console.log(err);
 
             let jsonObject = req;
-
 
             //we need this in the seesion, we don´ want users information to get mixed up / data leaks
             request.session['issues'] = {
