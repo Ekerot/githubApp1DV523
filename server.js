@@ -24,7 +24,7 @@ app.use(session({
         return string
     }),
     secret: "superDuperBestMunchiCookie",
-    name: "hwerethehellismysecretpasswordforgotitagain",
+    name: "wherethehellismysecretpasswordforgotitagain",
     resave: true,
     saveUninitialized: true,
     cookie: {
