@@ -134,7 +134,7 @@ router.route('/:name')
             token: process.env.AUTH_TOKEN
         });
 
-        console.log(request.user.login)
+        console.log(request.user)
 
         github.repos.testHook({repo:request.params.name},{owner:response.user.username}, (err, req, res) => {
 
