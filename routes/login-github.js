@@ -160,7 +160,7 @@ router.route('/:name')
 //TODO: Get sessionId get repository ID seperate usersSession and use session to store values
 
 //get all issues from selected repo
-        github.issues.getForRepo({owner: request.nav.username, repo: request.params.name}, function (err, req) {
+        github.issues.getForRepo({owner: request.user._json.login, repo: request.params.name}, function (err, req) {
 
             let jsonObject = req;
 
