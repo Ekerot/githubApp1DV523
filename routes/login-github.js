@@ -17,6 +17,25 @@ const GitHubStrategy = require('passport-github2').Strategy;
 const partials = require('express-partials');
 const GitHubApi = require('github');
 
+let github = new GitHubApi({  //setup to access the GitHub API
+    // optional
+    debug: true,
+    protocol: 'https',
+    host: 'api.github.com', // should be api.github.com for GitHub
+    headers: {
+        'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
+    },
+    Promise: require('bluebird'),
+    followRedirects: false,
+    timeout: 5000
+});
+
+github.authenticate({  //authenticate user with Oauth
+    type: "oauth",
+    token: process.env.AUTH_TOKEN
+});
+
+
 router.route('/')    //function just to render first page
     .get((req, res) => {
 
@@ -67,29 +86,11 @@ router.get('/auth/github/callback',                             //authentication
     passport.authenticate('github', {failureRedirect: '/'}),
     (req, res) => {
 
-        let github = new GitHubApi({  //setup to access the GitHub API
-            // optional
-            debug: true,
-            protocol: 'https',
-            host: 'api.github.com', // should be api.github.com for GitHub
-            headers: {
-                'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
-            },
-            Promise: require('bluebird'),
-            followRedirects: false,
-            timeout: 5000
-        });
-
-        github.authenticate({  //authenticate user with Oauth
-            type: "oauth",
-            token: process.env.AUTH_TOKEN
-        });
-
         github.repos.getAll({type: 'owner'},(err, request) => {  //get all repositories
 
             let jsonObject = request;
 
-            //we need this in the seesion, we don´ want users information to get mixed up / data leaks
+            //we need this in the seesion, we don´t want users information to get mixed up / data leaks
 
             req.session['repo'] = {
                 repo: jsonObject.map((repo) => {
@@ -121,25 +122,7 @@ router.get('/logout',(req, res) => {  //logout function, kill/clear cookie manua
 router.route('/:name')
     .get(ensureAuthenticated, function(request, response) {
 
-        let github = new GitHubApi({
-            // optional
-            debug: true,
-            protocol: 'https',
-            host: 'api.github.com', // should be api.github.com for GitHub
-            headers: {
-                'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
-            },
-            Promise: require('bluebird'),
-            followRedirects: false, // default: true; there's currently an issue with non-get redirects, so allow ability to disable follow-redirects
-            timeout: 5000
-        });
-
-        github.authenticate({
-            type: 'oauth',
-            token: process.env.AUTH_TOKEN
-        });
-
-        github.repos.createHook({              // If the repo don´ have any hook we need to create one
+        github.repos.createHook({              // If the repo don´t have any hook we need to create one
             "owner": request.user._json.login,
             "repo": request.params.name,
             "name": "web",
