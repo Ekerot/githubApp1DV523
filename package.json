@@ -31,6 +31,7 @@
     "passport": "^0.3.2",
     "passport-github2": "^0.1.10",
     "path": "^0.12.7",
+    "pm2": "^2.2.3",
     "session": "^0.1.0",
     "socket.io": "^1.7.2",
     "uid-safe": "^2.1.3",

@@ -21,14 +21,6 @@ router.route('/')    //function just to render first page
         res.render('main/index')
     });
 
-passport.serializeUser(function(user, done) {
-    done(null, user);
-});
-
-passport.deserializeUser(function(obj, done) {
-    done(null, obj);
-});
-
 passport.use(new GitHubStrategy({                           //making a strategy to login with oauth2
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
@@ -86,6 +78,8 @@ router.get('/auth/github/callback',                             //authentication
 
             let jsonObject = request;
 
+            //we need this in the seesion, we don´ want users information to get mixed up / data leaks
+
             req.session['repo'] = {
                 repo: jsonObject.map(function (repo) {
                     return {
@@ -134,7 +128,7 @@ router.route('/:name')
             token: process.env.AUTH_TOKEN
         });
 
-        github.repos.createHook({
+        github.repos.createHook({              // If the repo don´ have any hook we need to create one
             "owner": request.user._json.login,
             "repo": request.params.name,
             "name": "web",
@@ -150,16 +144,19 @@ router.route('/:name')
                 "insecure_ssl": "1"
             }
         }, function (err, req, res) {
-                    if(err)
-            console.log(err);
+                    if(err) console.log(err);
 
         });
 
 //get all issues from selected repo
         github.issues.getForRepo({owner: request.user._json.login, repo: request.params.name}, function (err, req) {
 
+            if(err) console.log(err);
+
             let jsonObject = req;
 
+
+            //we need this in the seesion, we don´ want users information to get mixed up / data leaks
             request.session['issues'] = {
 
                 issues: jsonObject.map(function (issues) {

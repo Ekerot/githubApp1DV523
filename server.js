@@ -91,3 +91,7 @@ app.use((err, req, res) =>
 app.use((err, req, res) =>
     res.status(500).render("errors/500")
 );
+
+app.use((err, req, res) =>
+    res.status(502).render("errors/500")
+);
