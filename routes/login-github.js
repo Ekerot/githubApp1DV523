@@ -110,7 +110,6 @@ router.get('/logout', function (req, res) {  //logout function, kill/clear cooki
 
         req.session.destroy(function() {
         res.clearCookie('connect.sid');
-        res.clearCookie('wherethehellismysecretpasswordforgotitagain');
         res.redirect('/');
     });
 });
