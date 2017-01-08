@@ -136,7 +136,7 @@ router.route('/:name')
 
         console.log(request.user._json.login)
 
-        github.repos.testHook({owner:request.user._json.login, repo:request.params.name}, (err, req, res) => {
+        github.repos.testHook({owner:request.user._json.login, repo:request.params.name, id:request.repo.repo.id}, (err, req, res) => {
 
                 console.log(req)
 
