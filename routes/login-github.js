@@ -154,7 +154,7 @@ router.route('/:name')
         }, function (err, req, res) {
 
             console.log(err);
-            response.redirect('/:name');
+
         });
 
 //TODO: Get sessionId get repository ID seperate usersSession and use session to store values
