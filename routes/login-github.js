@@ -58,6 +58,7 @@ router.use(passport.session());
 
 //----------------------------------------------------------------------------------------
 
+//calling github for authentication and callback
 router.get('/auth/github',
     passport.authenticate('github', {scope: ['admin:repo_hook']}),
     (req, res) => {
@@ -67,24 +68,6 @@ router.get('/auth/github/callback',                             //authentication
     // and listing them in the nav bar
     passport.authenticate('github', {failureRedirect: '/'}),
     (req, res) => {
-
-        let github = new GitHubApi({  //setup to access the GitHub API
-            // optional
-            debug: true,
-            protocol: 'https',
-            host: 'api.github.com', // should be api.github.com for GitHub
-            headers: {
-                'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
-            },
-            Promise: require('bluebird'),
-            followRedirects: false,
-            timeout: 5000
-        });
-
-        github.authenticate({  //authenticate user with Oauth
-            type: "oauth",
-            token: process.env.AUTH_TOKEN
-        });
 
         github.repos.getAll({type: 'owner'},(err, request) => {  //get all repositories
 
@@ -122,6 +105,24 @@ router.get('/logout',(req, res) => {  //logout function, kill/clear cookie manua
 router.route('/:name')
     .get(ensureAuthenticated, function(request, response) {
 
+        let github = new GitHubApi({  //setup to access the GitHub API
+            // optional
+            debug: true,
+            protocol: 'https',
+            host: 'api.github.com', // should be api.github.com for GitHub
+            headers: {
+                'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
+            },
+            Promise: require('bluebird'),
+            followRedirects: false,
+            timeout: 5000
+        });
+
+        github.authenticate({  //authenticate user with Oauth
+            type: "oauth",
+            token: process.env.AUTH_TOKEN
+        });
+
         github.repos.createHook({              // If the repo don´t have any hook we need to create one
             "owner": request.user._json.login,
             "repo": request.params.name,
@@ -141,7 +142,7 @@ router.route('/:name')
                     if(err) console.log(err);
         });
 
-//get all issues from selected repo
+        //get all issues from selected repo
         github.issues.getForRepo({owner: request.user._json.login, repo: request.params.name}, function (err, req) {
 
             if(err) console.log(err);
