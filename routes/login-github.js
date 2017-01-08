@@ -4,6 +4,8 @@
  * Created by ekerot on 2017-01-05.
  */
 
+//TODO: Making new function: close issue from application, try to clean som more code.
+
 const router = require('express').Router();
 const express = require('express');
 const passport = require('passport');
@@ -14,6 +16,9 @@ const methodOverride = require('method-override');
 const GitHubStrategy = require('passport-github2').Strategy;
 const partials = require('express-partials');
 const GitHubApi = require('github');
+
+process.env['CLIENT_ID'] = "7e66ee29510aa0f4db54"
+process.env['CLIENT_SECRET'] ="2284eb7c2af97ba1151befe9a98a3f009afda80c"
 
 router.route('/')    //function just to render first page
     .get(function(req, res) {
