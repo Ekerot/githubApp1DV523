@@ -30,8 +30,8 @@ passport.deserializeUser(function(obj, done) {
 });
 
 passport.use(new GitHubStrategy({                           //making a strategy to login with oauth2
-        clientID: "7e66ee29510aa0f4db54",
-        clientSecret: "2284eb7c2af97ba1151befe9a98a3f009afda80c",
+        clientID: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
         callbackURL: "https://www.ekerot.se/auth/github/callback"
     },
     function (accessToken, refreshToken, profile, done) {
@@ -154,8 +154,6 @@ router.route('/:name')
             console.log(err);
 
         });
-
-//TODO: Get sessionId get repository ID seperate usersSession and use session to store values
 
 //get all issues from selected repo
         github.issues.getForRepo({owner: request.user._json.login, repo: request.params.name}, function (err, req) {
