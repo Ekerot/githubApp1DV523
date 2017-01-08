@@ -136,14 +136,8 @@ router.route('/:name')
 
         console.log(request.repo)
 
-        github.repos.testHook({owner:request.user._json.login, repo:request.params.name, id:request.repo.id}, (err, req, res) => {
-
-                console.log(req)
-
-            } );
-
         github.repos.createHook({
-            "owner": request.nav.username,
+            "owner": request.user._json.login,
             "repo": request.params.name,
             "name": "web",
             "active": true,
