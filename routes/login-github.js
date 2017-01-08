@@ -17,21 +17,18 @@ const GitHubStrategy = require('passport-github2').Strategy;
 const partials = require('express-partials');
 const GitHubApi = require('github');
 
-process.env['CLIENT_ID'] = "7e66ee29510aa0f4db54"
-process.env['CLIENT_SECRET'] ="2284eb7c2af97ba1151befe9a98a3f009afda80c"
-
 router.route('/')    //function just to render first page
-    .get(function(req, res) {
+    .get((req, res) => {
 
         res.render('main/index')
     });
 
 //serialize user into session
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
     done(null, user);
 });
 
-passport.deserializeUser(function(obj, done) {
+passport.deserializeUser((obj, done) => {
     done(null, obj);
 });
 
@@ -42,7 +39,7 @@ passport.use(new GitHubStrategy({                           //making a strategy 
     },
     function (accessToken, refreshToken, profile, done) {
         // asynchronous verification, for effect...
-        process.nextTick(function () {
+        process.nextTick(() => {
             process.env['AUTH_TOKEN'] = accessToken;
             return done(null, profile);
         });
@@ -62,13 +59,13 @@ router.use(passport.session());
 
 router.get('/auth/github',
     passport.authenticate('github', {scope: ['admin:repo_hook']}),
-    function (req, res) {
+    (req, res) => {
     });
 
 router.get('/auth/github/callback',                             //authentication callback, selecting all repos
     // and listing them in the nav bar
     passport.authenticate('github', {failureRedirect: '/'}),
-    function (req, res) {
+    (req, res) => {
 
         let github = new GitHubApi({  //setup to access the GitHub API
             // optional
@@ -88,14 +85,14 @@ router.get('/auth/github/callback',                             //authentication
             token: process.env.AUTH_TOKEN
         });
 
-        github.repos.getAll({type: 'owner'}, function(err, request){  //get all repositories
+        github.repos.getAll({type: 'owner'},(err, request) => {  //get all repositories
 
             let jsonObject = request;
 
             //we need this in the seesion, we don´ want users information to get mixed up / data leaks
 
             req.session['repo'] = {
-                repo: jsonObject.map(function (repo) {
+                repo: jsonObject.map((repo) => {
                     return {
                         name: repo.name,
                         id: repo.id,
@@ -113,7 +110,7 @@ router.get('/auth/github/callback',                             //authentication
         });
     });
 
-router.get('/logout', function (req, res) {  //logout function, kill/clear cookie manually
+router.get('/logout',(req, res) => {  //logout function, kill/clear cookie manually
     // --- .logout() not supported in Express 4
     req.session.destroy(function() {
         res.clearCookie('connect.sid');
@@ -157,9 +154,8 @@ router.route('/:name')
                 "secret": "kljfd9823u4nfkls923nfdjks989324",
                 "insecure_ssl": "1"
             }
-        }, function (err, req, res) {
+        },(err, req, res) =>{
                     if(err) console.log(err);
-
         });
 
 //get all issues from selected repo
@@ -173,7 +169,7 @@ router.route('/:name')
             //we need this in the seesion, we don´ want users information to get mixed up / data leaks
             request.session['issues'] = {
 
-                issues: jsonObject.map(function (issues) {
+                issues: jsonObject.map((issues) => {
                     return {
                         title: issues.title,
                         id: issues.id,
