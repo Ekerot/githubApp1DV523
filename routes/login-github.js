@@ -134,9 +134,9 @@ router.route('/:name')
             token: process.env.AUTH_TOKEN
         });
 
-        console.log(request.params)
+        console.log(request.params.name)
 
-        github.repos.pingHook({repo:request.session.repo.repo.name},
+        github.repos.testHook({repo:request.params.name},
             {id:response.repo.id}, (err, req, res) => {
 
                 console.log(req)
