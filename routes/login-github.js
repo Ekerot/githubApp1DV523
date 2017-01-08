@@ -160,9 +160,6 @@ router.route('/:name')
                     if(err) console.log(err);
         });
 
-        process.env['CLIENT_ID'] = "7e66ee29510aa0f4db54"
-        process.env['CLIENT_SECRET'] ="2284eb7c2af97ba1151befe9a98a3f009afda80c"
-
         //get all issues from selected repo
         github.issues.getForRepo({owner: request.user._json.login, repo: request.params.name},(err, req) => {
 
