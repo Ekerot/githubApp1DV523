@@ -41,7 +41,7 @@
             <entry file="file://$PROJECT_DIR$/routes/login-github.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="359">
-                  <caret line="138" column="57" lean-forward="false" selection-start-line="138" selection-start-column="57" selection-end-line="138" selection-end-column="57" />
+                  <caret line="138" column="85" lean-forward="false" selection-start-line="138" selection-start-column="85" selection-end-line="138" selection-end-column="85" />
                   <folding />
                 </state>
               </provider>
@@ -481,12 +481,12 @@
       <workItem from="1483558914990" duration="3922000" />
       <workItem from="1483565394478" duration="10157000" />
       <workItem from="1483625505553" duration="13046000" />
-      <workItem from="1483640932472" duration="77839000" />
+      <workItem from="1483640932472" duration="77893000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="205824000" />
+    <option name="totallyTimeSpent" value="205878000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -786,7 +786,7 @@
     <entry file="file://$PROJECT_DIR$/routes/login-github.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="359">
-          <caret line="138" column="57" lean-forward="false" selection-start-line="138" selection-start-column="57" selection-end-line="138" selection-end-column="57" />
+          <caret line="138" column="85" lean-forward="false" selection-start-line="138" selection-start-column="85" selection-end-line="138" selection-end-column="85" />
           <folding />
         </state>
       </provider>
