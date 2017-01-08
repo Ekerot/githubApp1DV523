@@ -100,14 +100,14 @@ router.get('/auth/github/callback',                             //authentication
                 email: req.user._json.email,
                 displayName: req.user.displayName
             };
-            console.log(req.session)
+
             res.render('main/index', req.session)
         });
     });
 
 router.get('/logout', function (req, res) {  //logout function, kill/clear cookie manually
     // --- .logout() not supported in Express 4
-    req.session.destroy(function() {
+        req.session.destroy(function() {
         res.clearCookie('connect.sid');
         res.redirect('/');
     });
@@ -134,8 +134,6 @@ router.route('/:name')
             token: process.env.AUTH_TOKEN
         });
 
-        console.log(request.repo)
-
         github.repos.createHook({
             "owner": request.user._json.login,
             "repo": request.params.name,
@@ -152,7 +150,7 @@ router.route('/:name')
                 "insecure_ssl": "1"
             }
         }, function (err, req, res) {
-
+                    if(err)
             console.log(err);
 
         });
@@ -163,8 +161,6 @@ router.route('/:name')
         github.issues.getForRepo({owner: request.user._json.login, repo: request.params.name}, function (err, req) {
 
             let jsonObject = req;
-
-            console.log(jsonObject)
 
             request.session['issues'] = {
 
@@ -181,8 +177,6 @@ router.route('/:name')
                     }
                 })
             };
-
-            console.log(request.session)
             response.render('main/index', request.session)
         })
     });
