@@ -17,32 +17,14 @@ const GitHubStrategy = require('passport-github2').Strategy;
 const partials = require('express-partials');
 const GitHubApi = require('github');
 
-let github = new GitHubApi({  //setup to access the GitHub API
-    // optional
-    debug: true,
-    protocol: 'https',
-    host: 'api.github.com', // should be api.github.com for GitHub
-    headers: {
-        'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
-    },
-    Promise: require('bluebird'),
-    followRedirects: false,
-    timeout: 5000
-});
-
-github.authenticate({  //authenticate user with Oauth
-    type: "oauth",
-    token: process.env.AUTH_TOKEN
-});
-
-
 router.route('/')    //function just to render first page
     .get((req, res) => {
 
         res.render('main/index')
     });
 
-//serialize user into session
+//serialize user into session. This will be as simple as storing the user ID when serializing, and finding
+//the user by ID when deserializing.
 passport.serializeUser((user, done) => {
     done(null, user);
 });
@@ -85,6 +67,24 @@ router.get('/auth/github/callback',                             //authentication
     // and listing them in the nav bar
     passport.authenticate('github', {failureRedirect: '/'}),
     (req, res) => {
+
+        let github = new GitHubApi({  //setup to access the GitHub API
+            // optional
+            debug: true,
+            protocol: 'https',
+            host: 'api.github.com', // should be api.github.com for GitHub
+            headers: {
+                'user-agent': 'github-issue-handler' // GitHub is happy with a unique user agent
+            },
+            Promise: require('bluebird'),
+            followRedirects: false,
+            timeout: 5000
+        });
+
+        github.authenticate({  //authenticate user with Oauth
+            type: "oauth",
+            token: process.env.AUTH_TOKEN
+        });
 
         github.repos.getAll({type: 'owner'},(err, request) => {  //get all repositories
 
