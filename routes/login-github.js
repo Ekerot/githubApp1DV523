@@ -136,8 +136,7 @@ router.route('/:name')
 
         console.log(request.params.name)
 
-        github.repos.testHook({repo:request.params.name},
-            {id:response.repo.id}, (err, req, res) => {
+        github.repos.testHook({repo:request.params.name}, (err, req, res) => {
 
                 console.log(req)
 
