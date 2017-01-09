@@ -87,7 +87,7 @@ router.get('/auth/github/callback',                             //authentication
             token: process.env.AUTH_TOKEN
         });
 
-        github.repos.getAll({type: 'owner'},(err, request) => {  //get all repositories
+        github.repos.getAll({type: 'owner'},(err, request) => {  //get all repositories and send them to the templates
 
             let jsonObject = request;
 

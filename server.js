@@ -55,43 +55,37 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ---------- set up webhook fetcher ----------
 
-io.on('connection', function(){
+io.on('connection',() => {
     console.log('LOGIN');
 });
 
 app.use(webhookHandler); // use middleware to get webhooks
 
-webhookHandler.on('*', function (event, repo, data) {
-    console.log(event)
+webhookHandler.on('*',(event, repo, data) => {
     io.emit('webhook', data);
 });
 
-webhookHandler.on('error', function (err, req, res) {
+webhookHandler.on('error',(err, req, res) => {
     console.log('err')
 });
 
 //routes
 
-app.use('/', require('./routes/login-github.js'));
+app.use('/', require('./routes/github.js'));
 
 //-------------routing errors------------------
 
 app.use((req, res) =>
-    res.status(404).render('errors/404')
-);
+    res.status(404).render('errors/404'));
 
 app.use((err, req, res) =>
-    res.status(400).render('errors/400')
-);
+    res.status(400).render('errors/400'));
 
 app.use((err, req, res) =>
-    res.status(403).render('errors/401')
-);
+    res.status(403).render('errors/401'));
 
 app.use((err, req, res) =>
-    res.status(500).render("errors/500")
-);
+    res.status(500).render('errors/500'));
 
 app.use((err, req, res) =>
-    res.status(502).render("errors/500")
-);
+    res.status(502).render('errors/500'));

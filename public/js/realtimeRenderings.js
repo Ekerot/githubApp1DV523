@@ -6,22 +6,20 @@
 
 var socket = io.connect();
 
-socket.on('webhook', function(hook) {
-
-    console.log(hook)
+socket.on('webhook', function(hook) {  //getmessages from the websocket
 
     var selector = "div[id*='" + hook.issue.id + "']";
 
     $(document).ready(function () {
 
-        switch(hook.action) {
+        switch(hook.action) {  //actions givs signal of what to do.
 
             case 'closed':
                 $(selector).remove();
                 break;
 
-            case 'edited':
-                $(selector).find('.body').text(hook.issue.body);
+            case 'edited':  //GitHUb does not provide the new edited comment in the hook so I had to do a "ful hack"
+                location.reload();
                 break;
 
             case 'created':
@@ -36,7 +34,7 @@ socket.on('webhook', function(hook) {
 
                 break;
 
-            case 'opened':
+            case 'opened':      //open and reopen issues
             case 'reopened':
 
 
