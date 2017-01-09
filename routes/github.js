@@ -16,7 +16,6 @@ const methodOverride = require('method-override');
 const GitHubStrategy = require('passport-github2').Strategy;
 const partials = require('express-partials');
 const GitHubApi = require('github');
-const email = require('../libs/emailserver')
 
 router.route('/')    //function just to render first page
     .get((req, res) => {
@@ -185,9 +184,8 @@ router.route('/:name')
                     }
                 })
             };
-            email(request.params.name);
             response.render('main/index', request.session)
-        })
+        });
     });
 
 //function to authenticate user
