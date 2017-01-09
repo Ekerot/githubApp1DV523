@@ -16,6 +16,7 @@ const methodOverride = require('method-override');
 const GitHubStrategy = require('passport-github2').Strategy;
 const partials = require('express-partials');
 const GitHubApi = require('github');
+const email = require('../libs/emailserver')
 
 router.route('/')    //function just to render first page
     .get((req, res) => {
@@ -148,7 +149,8 @@ router.route('/:name')
             "active": true,
             "events": [
                 "issues",
-                "issue_comment"
+                "issue_comment",
+                "notification",
             ],
             "config": {
                 "url": "https://www.ekerot.se/webhook",
@@ -183,6 +185,7 @@ router.route('/:name')
                     }
                 })
             };
+            email(request.params.name);
             response.render('main/index', request.session)
         })
     });
