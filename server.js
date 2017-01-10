@@ -12,16 +12,15 @@ const   GitHubWebHook = require('express-github-webhook');
 const   webhookHandler = GitHubWebHook({path: '/webhook', secret: process.env.SECRET_TOKEN});
 const   session = require('express-session');
 const   uid = require('uid-safe');
-const   slack = require('./libs/slack-bot');
 
 const   app = express();
 const   port = process.env.PORT || 3000;
 
 //-------- set up session ---------------------
 
-session({
+app.use(session({
     genid: uid(18, function (err, string) {
-        if (err) throw err
+        if (err) throw err;
         return string
     }),
     secret: "superDuperBestMunchiCookie",
@@ -33,7 +32,7 @@ session({
         httpOnly: true,
         maxAge: 6000000
     }
-});
+}));
 
 // ------- set up websocket -------------------
 
@@ -56,21 +55,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ---------- set up webhook fetcher ----------
 
-app.use(webhookHandler); // use middleware to get webhooks
-
-io.on('connection', (socket) => {
-
+io.on('connection',() => {
+    console.log('LOGIN');
 });
+
+app.use(webhookHandler); // use middleware to get webhooks
 
 webhookHandler.on('*',(event, repo, data) => {
     io.emit('webhook', data);
-    slack(data);
 });
 
 webhookHandler.on('error',(err, req, res) => {
-    console.log('Error:', err)
+    console.log('err')
 });
-
 
 //routes
 

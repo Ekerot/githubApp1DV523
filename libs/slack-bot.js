@@ -12,7 +12,6 @@ let token = process.env.SLACK_API_TOKEN;
 
 let web = new WebClient(token);
 
-
 module.exports = (data) => {   //this function sends the message always use first the chanel and second the message
     web.chat.postMessage('test', 'The user ' + data.issue.user.login + ' has '
         + data.action  + ' the issue ' + data.issue.title + ' at the repository '
