@@ -10,7 +10,7 @@ const   bodyParser = require('body-parser');
 const   path = require('path');
 const   GitHubWebHook = require('express-github-webhook');
 const   webhookHandler = GitHubWebHook({path: '/webhook', secret: process.env.SECRET_TOKEN});
-const   sessions = require('express-session');
+const   session = require('express-session');
 const   uid = require('uid-safe');
 const   slack = require('./libs/slack-bot');
 
@@ -19,7 +19,7 @@ const   port = process.env.PORT || 3000;
 
 //-------- set up session ---------------------
 
-let session = sessions({
+session({
     genid: uid(18, function (err, string) {
         if (err) throw err
         return string
@@ -34,10 +34,6 @@ let session = sessions({
         maxAge: 6000000
     }
 });
-
-app.use(sessionX);
-
-let sharedsession = require("express-socket.io-session");
 
 // ------- set up websocket -------------------
 
@@ -62,25 +58,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(webhookHandler); // use middleware to get webhooks
 
-io.use(sharedsession(session, {
-    autoSave:true
-}));
-
 io.on('connection', (socket) => {
 
+});
+
 webhookHandler.on('*',(event, repo, data) => {
-    socket.on('login', function(data) {
-        socket.handshake.session.userdata = data.issue.user.login;
-        io.emit('webhook', data);
-        slack(data);
-    });
+    io.emit('webhook', data);
+    slack(data);
 });
 
-    webhookHandler.on('error',(err, req, res) => {
-        console.log('Error:', err)
-    });
-
+webhookHandler.on('error',(err, req, res) => {
+    console.log('Error:', err)
 });
+
 
 //routes
 
