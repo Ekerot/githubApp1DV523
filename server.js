@@ -19,7 +19,7 @@ const   port = process.env.PORT || 3000;
 
 //-------- set up session ---------------------
 
-app.use(session({
+let sessionX = session({
     genid: uid(18, function (err, string) {
         if (err) throw err
         return string
@@ -33,7 +33,9 @@ app.use(session({
         httpOnly: true,
         maxAge: 6000000
     }
-}));
+});
+
+app.use(sessionX);
 
 // ------- set up websocket -------------------
 
@@ -56,15 +58,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ---------- set up webhook fetcher ----------
 
-io.on('connection',() => {
-    console.log('LOGIN');
-});
-
 app.use(webhookHandler); // use middleware to get webhooks
 
+io.use(function(socket, next) {
+    sessionX(socket.request, socket.request.res, next);
+});
+
+
+io.on('connection', (socket) => {
+    socket.join(socket.request.session.genid)
+});
+
 webhookHandler.on('*',(event, repo, data) => {
-    io.emit('webhook', data);
-    slack(data);
+
+        io.to(socket.request.session.genid).emit('webhook', data);
+        slack(data);
 });
 
 webhookHandler.on('error',(err, req, res) => {

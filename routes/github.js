@@ -147,7 +147,7 @@ router.route('/:name')
 
             if (repo.name === request.params.name) {
 
-                github.repos.deleteHook({owner: request.user._json.login, repo: repo.id});
+                github.repos.deleteHook({owner: request.user._json.login, repo: repo.name, id: repo.id});
 
             }
 
@@ -185,7 +185,6 @@ router.route('/:name')
 
                 issues: jsonObject.map((issues) => {
                     return {
-                        repo: request.params.name,
                         title: issues.title,
                         id: issues.id,
                         body: issues.body,
