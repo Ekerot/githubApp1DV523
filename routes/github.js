@@ -179,7 +179,6 @@ router.route('/:name')
             if(err) console.log(err);
 
             let jsonObject = req;
-            console.log.(request
 
             //we need this in the seesion, we don´ want users information to get mixed up / data leaks
             request.session['issues'] = {
