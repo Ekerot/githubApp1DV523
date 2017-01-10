@@ -68,7 +68,7 @@ webhookHandler.on('*',(event, repo, data) => {
 });
 
 webhookHandler.on('error',(err, req, res) => {
-    console.log('err')
+    console.log('Error:', err)
 });
 
 //routes

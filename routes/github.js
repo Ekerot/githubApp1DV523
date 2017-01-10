@@ -36,7 +36,7 @@ passport.deserializeUser((obj, done) => {
 passport.use(new GitHubStrategy({                           //making a strategy to login with oauth2
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: "https://www.ekerot.se/auth/github/callback"
+        callbackURL: 'https://www.ekerot.se/auth/github/callback'
     },
     (accessToken, refreshToken, profile, done) => {
         // asynchronous verification, for effect...
@@ -88,6 +88,7 @@ router.get('/auth/github/callback',                             //authentication
         });
 
         github.repos.getAll({type: 'owner'},(err, request) => {  //get all repositories and send them to the templates
+            if(err) console.log('Error:', err);
 
             let jsonObject = request;
 
@@ -116,6 +117,7 @@ router.get('/logout',(req, res) => {  //logout function, kill/clear cookie manua
     // --- .logout() not supported in Express 4
     req.session.destroy(() => {
         res.clearCookie('connect.sid');
+        res.clearCookie('wherethehellismysecretpasswordforgotitagain');
         res.redirect('/');
     });
 });
@@ -158,7 +160,7 @@ router.route('/:name')
                 "insecure_ssl": "1"
             }
         },(err, req, res) =>{
-                    if(err) console.log(err);
+                    if(err) console.log('Error:', err);
         });
 
         //get all issues from selected repo
