@@ -143,6 +143,16 @@ router.route('/:name')
             token: process.env.AUTH_TOKEN
         });
 
+        request.session.repo.repo.name((repo) => {
+
+            if (repo.name === request.params.name) {
+
+                github.repos.deleteHook({owner: request.user._json.login, repo: repo.id});
+
+            }
+
+        });
+
         github.repos.createHook({              // If the repo don´t have any hook we need to create one
             "owner": request.user._json.login,
             "repo": request.params.name,
@@ -169,12 +179,14 @@ router.route('/:name')
             if(err) console.log(err);
 
             let jsonObject = req;
+            console.log.(request
 
             //we need this in the seesion, we don´ want users information to get mixed up / data leaks
             request.session['issues'] = {
 
                 issues: jsonObject.map((issues) => {
                     return {
+                        repo: request.params.name,
                         title: issues.title,
                         id: issues.id,
                         body: issues.body,
