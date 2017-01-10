@@ -12,6 +12,7 @@ const   GitHubWebHook = require('express-github-webhook');
 const   webhookHandler = GitHubWebHook({path: '/webhook', secret: process.env.SECRET_TOKEN});
 const   session = require('express-session');
 const   uid = require('uid-safe');
+const   slack = require('./libs/slack-bot');
 
 const   app = express();
 const   port = process.env.PORT || 3000;
@@ -63,6 +64,7 @@ app.use(webhookHandler); // use middleware to get webhooks
 
 webhookHandler.on('*',(event, repo, data) => {
     io.emit('webhook', data);
+    slack(data);
 });
 
 webhookHandler.on('error',(err, req, res) => {
