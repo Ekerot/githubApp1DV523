@@ -4,7 +4,7 @@
  * Created by ekerot on 2017-01-05.
  */
 
-let socket = io.connect('socket');
+let socket = io.connect();
 
 socket.on('webhook', function(hook) {  //getmessages from the websocket
 

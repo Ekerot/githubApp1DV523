@@ -88,12 +88,11 @@ router.get('/auth/github/callback',                             //authentication
         });
 
         github.repos.getAll({type: 'owner'},(err, request) => {  //get all repositories and send them to the templates
-            if(err) console.log('Error:', err);
+            if(err) console.err('Error:', err);
 
             let jsonObject = request;
 
-            //we need this in the seesion, we don´t want users information to get mixed up / data leaks
-
+            //save it in session
             req.session['repo'] = {
                 repo: jsonObject.map((repo) => {
                     return {
@@ -160,13 +159,13 @@ router.route('/:name')
                 "insecure_ssl": "1"
             }
         },(err, req, res) =>{
-                    if(err) console.log('Error:', err);
+                    if(err) console.err('Error:', err);
         });
 
         //get all issues from selected repo
         github.issues.getForRepo({owner: request.user._json.login, repo: request.params.name},(err, req) => {
 
-            if(err) console.log(err);
+            if(err) console.err(err);
 
             let jsonObject = req;
 
