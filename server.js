@@ -56,14 +56,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ---------- set up webhook fetcher ----------
 
-io.on('connection',() => {
-});
-
 app.use(webhookHandler); // use middleware to get webhooks
 
 webhookHandler.on('*',(event, repo, data) => {
-    io.emit('webhook', data);
-    slack(data);
+
+        io.emit('webhook', data);
+        slack(data);
+
 });
 
 webhookHandler.on('error',(err, req, res) => {

@@ -170,7 +170,7 @@ router.route('/:name')
 
             let jsonObject = req;
 
-            //we need this in the seesion, we don´ want users information to get mixed up / data leaks
+            //send issues to session
             request.session['issues'] = {
 
                 issues: jsonObject.map((issues) => {
